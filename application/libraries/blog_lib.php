@@ -26,6 +26,34 @@ class blog_lib{
     return $html;
   }
 
+  public function get_post($filename)
+  {
+    $prev_post = array();
+    $next_post = array();
+    $current_post = array();
+    $filename .= '.md';
+    $posts = $this->__get_all_posts();
+    foreach($posts as $key =>$post){
+      if(strtolower($post['fname'])==strtolower($filename)){
+        if($key>1)
+        {
+          $prev_post = $posts[$key-1];
+        }
+        if($key<count($posts)-1){
+          $next_post = $posts[$key+1];
+        }
+        $current_post = $post;
+        $current_post['html'] = $this->markdown($post['content']);
+        break;
+      }
+      
+    }
+    if (!empty($current_post)) {
+      return array('curr'=>$current_post,'prev'=>$prev_post,'next'=>$next_post);
+    }else{
+      return False;
+    }
+  }
   private function __get_all_posts()
   {
     if(!empty($this->_all_posts))
@@ -59,7 +87,7 @@ class blog_lib{
                   else{
                     switch (strtolower($matches[1])) {
                       case 'title':
-                        $post_title = $this->markdown($matches[2]);
+                        $post_title = $matches[2];
                         break;
                       case 'date':
                         $post_date = trim($matches[2]);
@@ -74,7 +102,14 @@ class blog_lib{
 
                       case 'tags':
                         $tags = trim($matches[2]);
-                        $post_tags = explode(' ',$tags);
+                        $post_tags = explode(' ',$tags);                  
+
+                        foreach($post_tags as $k=>$row)
+                        {
+                          $trimed_tag = trim($row);
+                          if(empty($trimed_tag))
+                            unset($post_tags[$k]);
+                        }
                         break;
                       case 'intro':
                         $post_intro = trim($matches[2]);
@@ -88,16 +123,19 @@ class blog_lib{
                 }
                 if(empty($post_date) or 1)
                 {
-                  $post_date = date("Y-m-d h:i:s",filemtime($posts_path.$entry));
+                  $post_date = filemtime($posts_path.$entry);
                 }
                 $post_author = $this->CI->blog_config['author'];
                 $post_content_md = trim(join('', array_slice($fcontents, $hi, count($fcontents) -1)));
-                $post_content = $this->markdown($post_content_md);
+                $post_content = $post_content_md;
                 if(empty($post_intro)){
                   $post_intro = mb_substr($post_content_md,0,200);
                 }
-
-                $files[] = array('fname' => $entry, 'post_title' => $post_title, 'post_author' => $post_author, 'post_date' => $post_date, 'post_tags' => $post_tags, 'post_status' => $post_status, 'post_intro' => $post_intro, 'post_content' => $post_content);
+                $slug = str_replace($this->file_ext,'',$entry);
+                $files[] = array('fname' => $entry, 
+                'slug'=>$slug,
+                'link'=> "/post/$slug",
+                'title' => $post_title, 'author' => $post_author, 'date' => $post_date, 'tags' => $post_tags, 'status' => $post_status, 'intro' => $post_intro, 'content' => $post_content);
                 $post_dates[] = $post_date;
                 $post_titles[] = $post_title;
                 $post_authors[] = $post_author;
@@ -108,7 +146,9 @@ class blog_lib{
             }
         }
         array_multisort($post_dates, SORT_DESC, $files);
+
         $this->_all_posts = $files;
+        
         return $this->_all_posts;
 
     } else {
