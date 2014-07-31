@@ -6,6 +6,8 @@ class blog_lib{
 	var $CI;
   var $posts_path;
   var $file_ext='.md';
+  
+  var $_all_posts;
 	public function __construct()
 	{
  
@@ -24,8 +26,13 @@ class blog_lib{
     return $html;
   }
 
-  public function get_posts($options = array())
+  private function __get_all_posts()
   {
+    if(!empty($this->_all_posts))
+    {
+      return $this->_all_posts;
+    }
+
     $posts_path = $this->posts_path;
     if($handle = opendir($posts_path)) {
 
@@ -101,11 +108,16 @@ class blog_lib{
             }
         }
         array_multisort($post_dates, SORT_DESC, $files);
-        return $files;
+        $this->_all_posts = $files;
+        return $this->_all_posts;
 
     } else {
-        return false;
-    }    
+        return array();
+    }        
+  }
+  public function get_posts($options = array())
+  {
+    return $this->__get_all_posts();
   }
   
 }
