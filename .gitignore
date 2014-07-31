@@ -1,0 +1,8 @@
+
+posts/*
+!posts/index.html
+
+cache/*
+!cache/index.html
+
+application/cache
