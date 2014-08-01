@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="description" content="xieyu33333的博客"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>xieyu33333的博客</title>
+  <title>{{ post.title }}</title>
   <link rel="stylesheet" href="/templates/simple/css/main_heiti.css"/>
 </head>
 <body>
@@ -30,30 +30,4 @@
     </div>
   </div>
 </body>
-<!-- <body>
-  <h1 id="tagline">{{ post.title }}</h1>
-
-{{ post.html|raw }}
-
-{{ post.date|date('Y-m-d')}}
-
-
-
-{% if next_post %}
-<h1>下一篇 {{ next_post.title }}</h1>
-{% endif %}
-
-
-{% if pre_post %}
-<h1>上一篇{{ pre_post.title }}</h1>
-{% endif %}
-
-Tags:
-{% if post.tags %}
-{% for tag in post.tags %}
-    <li>{{ tag }}</li>
-{% endfor %}
-{% endif %}
-
-</body> -->
 </html>
