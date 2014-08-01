@@ -199,10 +199,10 @@ if (defined('ENVIRONMENT'))
  * And away we go...
  *
  */
-if (function_exists('saeAutoLoader')) {
-  define('IS_SAE', FALSE);
-}else{
+if (function_exists('sae_debug')) {
   define('IS_SAE', TRUE);
+}else{
+  define('IS_SAE', FALSE);
 }
 require_once BASEPATH.'core/CodeIgniter.php';
 
