@@ -16,10 +16,17 @@ class Twig_lib {
         Twig_Autoloader::register();
         $this->_ci =& get_instance();
         $this->loader = new Twig_Loader_Filesystem(FCPATH.'templates/'.$this->_ci->blog_config['template'].'/');
-        $this->twig = new Twig_Environment($this->loader, array(
-            'cache' => APPPATH.'cache',
-      'auto_reload' => true
-        ));
+        if(IS_SAE){
+          $this->twig = new Twig_Environment($this->loader, array(
+          'auto_reload' => true
+          ));          
+        }else{
+          $this->twig = new Twig_Environment($this->loader, array(
+          'cache' => APPPATH.'cache',
+          'auto_reload' => true
+          ));          
+        }
+
     }
 
     public function render($tpl,$data,$return = FALSE) {
