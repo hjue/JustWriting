@@ -16,7 +16,7 @@ class Twig_lib {
         Twig_Autoloader::register();
         $this->_ci =& get_instance();
         $this->loader = new Twig_Loader_Filesystem(FCPATH.'templates/'.$this->_ci->blog_config['template'].'/');
-        if(IS_SAE){
+        if(defined('IS_SAE')){
           $this->twig = new Twig_Environment($this->loader, array(
           'auto_reload' => true
           ));          
