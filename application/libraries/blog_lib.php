@@ -35,7 +35,7 @@ class blog_lib{
     $posts = $this->__get_all_posts();
     foreach($posts as $key =>$post){
       if(strtolower($post['fname'])==strtolower($filename)){
-        if($key>1)
+        if($key>=1)
         {
           $prev_post = $posts[$key-1];
         }

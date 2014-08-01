@@ -9,10 +9,11 @@
 </head>
 <body>
   <div class="leftside">
+    
     <div id="user-msg">
-      <img class="avatar" src="/templates/simple/imgs/avatar_default.png">
-      <h4>庇护祝福</h4>
-      <p class="info">I come from China, I Love My MotherLand!</p>
+      <img class="avatar" src="{{ config.avatar}}">
+      <h4>{{ config.title}}</h4>
+      <p class="info">{{ config.intro}}</p>
     </div>
    <!--  <a class="goto" href="simple.html">博 文</a> -->
     <a class="goto" href="/">目 录</a>
@@ -21,11 +22,11 @@
     <h1 id="tagline">{{ post.title }}<span>{{ post.date|date('Y-m-d')}}</span></h1>
       {{ post.html|raw }}
     <div class="footer">
-      {% if pre_post %}
-        <a class="prev" href="#"> <-- 上一篇</a>
+      {% if prev_post %}
+        <a class="prev" href="{{prev_post.link}}"> <-- {{prev_post.title}} </a>
       {% endif %}
       {% if next_post %}
-        <a class="next" href="#">下一篇 --></a>
+        <a class="next" href="{{next_post.link}}">  {{next_post.title}} --></a>
       {% endif %}
     </div>
   </div>

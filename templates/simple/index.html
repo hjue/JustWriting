@@ -2,17 +2,17 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <meta name="description" content="xieyu33333的博客"/>
+  <meta name="description" content="{{ config.title}}"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>xieyu33333的博客</title>
+  <title>{{ config.title}}</title>
   <link rel="stylesheet" href="/templates/simple/css/main_heiti.css"/>
 </head>
 <body>
   <div class="leftside">
     <div id="user-msg">
-      <img class="avatar" src="/templates/simple/imgs/avatar_default.png">
-      <h4>庇护祝福</h4>
-      <p class="info">I come from China, I Love My MotherLand!</p>
+      <img class="avatar" src="{{ config.avatar}}">
+      <h4>{{ config.title}}</h4>
+      <p class="info">{{ config.intro}}</p>
     </div>
     <!-- <a class="goto" href="simple.html">博 文</a> -->
     <!-- <a class="goto" href="/">目 录</a> -->
