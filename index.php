@@ -199,6 +199,11 @@ if (defined('ENVIRONMENT'))
  * And away we go...
  *
  */
+if (function_exists('saeAutoLoader')) {
+  define('IS_SAE', FALSE);
+}else{
+  define('IS_SAE', TRUE);
+}
 require_once BASEPATH.'core/CodeIgniter.php';
 
 /* End of file index.php */
