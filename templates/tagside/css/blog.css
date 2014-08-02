@@ -66,8 +66,11 @@ html{
     height:45px;
     width: 45px;
   }
+  .row-offcanvas-left.active .left-side{
+    left :0;
+  }
   .left-side{
-    left:0 !important;
+    left:-220;
   }
 }
 
@@ -408,6 +411,7 @@ html{
 }
 
 .index ul>li>a{
+  position: relative;
   font-size: 1.5em;
   color:#333;
   text-decoration: none;
@@ -437,9 +441,6 @@ html{
   right:0;
   width: 34%;
   max-width: 220px;
-  @media only screen and (max-width: 800px) {
-    display:none;
-  }
 }
 
 .index ul li .article-msg a{
@@ -462,4 +463,22 @@ html{
   vertical-align:middle;
   box-sizing: content-box;
   -webkit-box-sizing: content-box;
+}
+
+@media only screen and (max-width: 800px) {
+  .index ul li .article-msg {
+    display:none;
+  }
+  .index ul li{
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width:641px) {
+  .index {
+    float: none;
+    padding: 2em 1em 2em 1em;
+    width: 100%;
+    border: none;
+  }
 }
