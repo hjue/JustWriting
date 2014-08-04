@@ -121,7 +121,7 @@ class blog_lib{
                     }
                   }                  
                 }
-                if(empty($post_date) or 1)
+                if(empty($post_date))
                 {
                   $post_date = filemtime($posts_path.$entry);
                 }
