@@ -25,6 +25,7 @@ class Blog extends CI_Controller {
   
   public function post($slug)
   {
+    $slug=urldecode($slug);
     $this->load->library('twig_lib');        
     $data['config'] = $this->blog_config;
     $post = $this->blog_lib->get_post($slug);
