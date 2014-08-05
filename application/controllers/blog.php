@@ -14,13 +14,14 @@ class Blog extends CI_Controller {
 
     $data['config'] = $this->blog_config;
     $this->load->library('twig_lib');    
+    $data['all_tags'] = $this->blog_lib->get_posts_tags();    
     $data['posts'] = $this->blog_lib->get_posts();
     $this->twig_lib->render("index.html",$data); 
 	}
   
   public function posts($pageno=1)
   {
-    
+//TODO: 支持分页    
   }
   
   public function post($slug)
@@ -40,5 +41,21 @@ class Blog extends CI_Controller {
       $this->twig_lib->render("post.html",$data); 
     }
 
+  }
+  
+  
+  public function tags($tag='')
+  {
+    $tag = trim(urldecode($tag));
+    $data['config'] = $this->blog_config;
+    $this->load->library('twig_lib');    
+    $data['all_tags'] = $this->blog_lib->get_posts_tags();    
+    if(empty($tag)){
+      $this->twig_lib->render("tags_cloud.html",$data);           
+      return ;
+    }else{
+      $data['posts'] = $this->blog_lib->get_posts_by_tag($tag);
+      $this->twig_lib->render("tags.html",$data);           
+    }
   }
 }

@@ -8,6 +8,7 @@ class blog_lib{
   var $file_ext='.md';
   
   var $_all_posts;
+  var $_all_tags;
 	public function __construct()
 	{
  
@@ -54,13 +55,15 @@ class blog_lib{
       return False;
     }
   }
+  
+
   private function __get_all_posts()
   {
     if(!empty($this->_all_posts))
     {
       return $this->_all_posts;
     }
-
+    $all_tags = array();
     $posts_path = $this->posts_path;
     if($handle = opendir($posts_path)) {
 
@@ -109,6 +112,9 @@ class blog_lib{
                           $trimed_tag = trim($row);
                           if(empty($trimed_tag))
                             unset($post_tags[$k]);
+                          else{
+                            $all_tags[$trimed_tag]=1;
+                          }
                         }
                         break;
                       case 'intro':
@@ -148,16 +154,40 @@ class blog_lib{
         array_multisort($post_dates, SORT_DESC, $files);
 
         $this->_all_posts = $files;
-        
+        $this->_all_tags = $all_tags;
+
         return $this->_all_posts;
 
     } else {
         return array();
     }        
   }
+  
   public function get_posts($options = array())
   {
     return $this->__get_all_posts();
   }
-  
+ 
+  public function get_posts_tags()
+  {
+    $this->__get_all_posts();
+    return array_keys($this->_all_tags);
+  }
+ public function get_posts_by_tag($tag){
+   $tag = trim($tag);
+   $posts = $this->__get_all_posts();
+   $result = array();
+   foreach($posts as $post)
+   {
+     foreach($post['tags'] as $post_tag)
+     {
+       if(strtolower($tag)==strtolower($post_tag)){
+          $result[]=$post;
+          break;
+       }
+     }
+   }
+   return $result;
+ }
+ 
 }
