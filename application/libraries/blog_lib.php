@@ -138,17 +138,20 @@ class blog_lib{
                   $post_intro = mb_substr($post_content_md,0,200);
                 }
                 $slug = str_replace($this->file_ext,'',$entry);
-                $files[] = array('fname' => $entry, 
-                'slug'=>$slug,
-                'link'=> "/post/$slug",
-                'title' => $post_title, 'author' => $post_author, 'date' => $post_date, 'tags' => $post_tags, 'status' => $post_status, 'intro' => $post_intro, 'content' => $post_content);
-                $post_dates[] = $post_date;
-                $post_titles[] = $post_title;
-                $post_authors[] = $post_author;
-                $post_tags[] = $post_tags;
-                $post_statuses[] = $post_status;
-                $post_intros[] = $post_intro;
-                $post_contents[] = $post_content;
+                if($post_status=='public'){
+                  $files[] = array('fname' => $entry, 
+                  'slug'=>$slug,
+                  'link'=> "/post/$slug",
+                  'title' => $post_title, 'author' => $post_author, 'date' => $post_date, 'tags' => $post_tags, 'status' => $post_status, 'intro' => $post_intro, 'content' => $post_content);
+                  $post_dates[] = $post_date;
+                  $post_titles[] = $post_title;
+                  $post_authors[] = $post_author;
+                  $post_tags[] = $post_tags;
+                  $post_statuses[] = $post_status;
+                  $post_intros[] = $post_intro;
+                  $post_contents[] = $post_content;                  
+                }
+
             }
         }
         array_multisort($post_dates, SORT_DESC, $files);
