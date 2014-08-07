@@ -58,4 +58,9 @@ class Blog extends CI_Controller {
       $this->twig_lib->render("tags.html",$data);           
     }
   }
+  
+  public function help()
+  {
+    echo $this->blog_lib->get_help();
+  }
 }

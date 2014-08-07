@@ -20,10 +20,18 @@ class blog_lib{
 
 	}
 
+  public function get_help()
+  {
+    $content = file_get_contents(FCPATH.'README.md');
+    $html = $this->markdown($content);
+    return $html;
+  }
+  
   public function markdown($value='')
   {        
     $text = $value;
     $html = Markdown::defaultTransform($text);
+    $html = preg_replace('/<img src="images\/([^\"]*)"/i', '<img src="/images/$1"', $html);
     return $html;
   }
 

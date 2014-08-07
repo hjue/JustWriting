@@ -43,6 +43,7 @@ $route['posts/(\d+)'] = "blog/posts/$1";
 $route['post/(:any)'] = "blog/post/$1";
 $route['tags/(:any)'] = "blog/tags/$1";
 $route['tags'] = "blog/tags";
+$route['help'] = "blog/help";
 $route['404_override'] = '';
 
 
