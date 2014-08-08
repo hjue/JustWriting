@@ -115,15 +115,7 @@ class blog_lib{
                         $tags = trim($matches[2]);
                         $post_tags = preg_split('#[,\s]#',$tags, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
 
-                        foreach($post_tags as $k=>$row)
-                        {
-                          $trimed_tag = trim($row);
-                          if(empty($trimed_tag))
-                            unset($post_tags[$k]);
-                          else{
-                            $all_tags[$trimed_tag]=1;
-                          }
-                        }
+
                         break;
                       case 'intro':
                         $post_intro = trim($matches[2]);
@@ -139,6 +131,15 @@ class blog_lib{
                 if(strtolower($post_status)!='public'){
                   continue;
                 }
+                foreach($post_tags as $k=>$row)
+                {
+                  $trimed_tag = trim($row);
+                  if(empty($trimed_tag))
+                    unset($post_tags[$k]);
+                  else{
+                    $all_tags[$trimed_tag]=1;
+                  }
+                }                
                 if(empty($post_date))
                 {
                   $post_date = filemtime($posts_path.$entry);
