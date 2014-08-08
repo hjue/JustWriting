@@ -31,7 +31,7 @@ class blog_lib{
   {        
     $text = $value;
     $html = Markdown::defaultTransform($text);
-    $html = preg_replace('/<img src="images\/([^\"]*)"/i', '<img src="/images/$1"', $html);
+    $html = preg_replace('/<img src="images\/([^\"]*)"/i', '<img src="/posts/images/$1"', $html);
     return $html;
   }
 
@@ -113,7 +113,7 @@ class blog_lib{
 
                       case 'tags':
                         $tags = trim($matches[2]);
-                        $post_tags = explode(' ',$tags);                  
+                        $post_tags = preg_split('#[,\s]#',$tags, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
 
                         foreach($post_tags as $k=>$row)
                         {
@@ -135,9 +135,15 @@ class blog_lib{
                     }
                   }                  
                 }
+                
+                if(strtolower($post_status)!='public'){
+                  continue;
+                }
                 if(empty($post_date))
                 {
                   $post_date = filemtime($posts_path.$entry);
+                }else{
+                  $post_date = strtotime($post_date);
                 }
                 $post_author = $this->CI->blog_config['author'];
                 $post_content_md = trim(join('', array_slice($fcontents, $hi, count($fcontents) -1)));
@@ -146,7 +152,9 @@ class blog_lib{
                   $post_intro = mb_substr($post_content_md,0,200);
                 }
                 $slug = str_replace($this->file_ext,'',$entry);
+
                 if($post_status=='public'){
+
                   $files[] = array('fname' => $entry, 
                   'slug'=>$slug,
                   'link'=> "/post/$slug",
@@ -188,10 +196,14 @@ class blog_lib{
    $tag = trim($tag);
    $posts = $this->__get_all_posts();
    $result = array();
+
    foreach($posts as $post)
    {
      foreach($post['tags'] as $post_tag)
      {
+       if(strpos(strtolower($post_tag),'mysql')){
+         print_r($post);
+       }
        if(strtolower($tag)==strtolower($post_tag)){
           $result[]=$post;
           break;

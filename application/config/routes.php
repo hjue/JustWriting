@@ -44,6 +44,9 @@ $route['post/(:any)'] = "blog/post/$1";
 $route['tags/(:any)'] = "blog/tags/$1";
 $route['tags'] = "blog/tags";
 $route['help'] = "blog/help";
+$route['feed'] = "blog/feed";
+$route['gallery'] = "blog/gallery";
+
 $route['404_override'] = '';
 
 

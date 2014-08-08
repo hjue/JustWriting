@@ -44,6 +44,18 @@ class Blog extends CI_Controller {
   }
   
   
+  public function gallery()
+  {
+
+    $this->load->library('twig_lib');        
+    $data['config'] = $this->blog_config;
+
+    $this->twig_lib->render("gallery.html",$data); 
+
+
+  }
+  
+    
   public function tags($tag='')
   {
     $tag = trim(urldecode($tag));
@@ -62,5 +74,15 @@ class Blog extends CI_Controller {
   public function help()
   {
     echo $this->blog_lib->get_help();
+  }
+  
+  public function feed()
+  {
+    $this->load->helper('xml');
+    $this->load->helper('text');    
+    $data['config'] = $this->blog_config;
+    $data['all_tags'] = $this->blog_lib->get_posts_tags();    
+    $data['posts'] = $this->blog_lib->get_posts();
+    $this->load->view("feed.html",$data); 
   }
 }
