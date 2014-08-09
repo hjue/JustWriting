@@ -158,7 +158,7 @@ class blog_lib{
 
                   $files[] = array('fname' => $entry, 
                   'slug'=>$slug,
-                  'link'=> "/post/$slug",
+                  'link'=> $this->CI->blog_config['base_url']."/post/$slug",
                   'title' => $post_title, 'author' => $post_author, 'date' => $post_date, 'tags' => $post_tags, 'status' => $post_status, 'intro' => $post_intro, 'content' => $post_content);
                   $post_dates[] = $post_date;
                   $post_titles[] = $post_title;

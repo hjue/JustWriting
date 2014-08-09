@@ -10,7 +10,7 @@
      
     <title><?php echo $config['title']; ?></title>
  
-    <link><?php echo $config['domain']; ?></link>
+    <link><?php echo $config['base_url']; ?></link>
     <description><?php echo $config['intro']; ?></description>
  
     <dc:rights>Copyright <?php echo gmdate("Y", time()); ?></dc:rights>
@@ -23,7 +23,7 @@
           <link><?php echo $post['link']; ?></link>
           <guid><?php echo $post['link']; ?></guid>
  
-            <description><![CDATA[ <?php echo character_limiter($post['intro'], 200); ?> ]]></description>
+            <description><![CDATA[ <?php echo $post['intro']; ?> ]]></description>
             <pubDate><?php echo date('Y-m-d',$post['date']); ?></pubDate>
         </item>
  
