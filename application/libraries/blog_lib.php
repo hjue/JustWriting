@@ -8,6 +8,7 @@ class blog_lib{
   var $file_ext='.md';
   
   var $_all_posts;
+  var $_all_tags;
 	public function __construct()
 	{
  
@@ -19,10 +20,18 @@ class blog_lib{
 
 	}
 
+  public function get_help()
+  {
+    $content = file_get_contents(FCPATH.'README.md');
+    $html = $this->markdown($content);
+    return $html;
+  }
+  
   public function markdown($value='')
   {        
     $text = $value;
     $html = Markdown::defaultTransform($text);
+    $html = preg_replace('/<img src="images\/([^\"]*)"/i', '<img src="/posts/images/$1"', $html);
     return $html;
   }
 
@@ -54,13 +63,15 @@ class blog_lib{
       return False;
     }
   }
+  
+
   private function __get_all_posts()
   {
     if(!empty($this->_all_posts))
     {
       return $this->_all_posts;
     }
-
+    $all_tags = array();
     $posts_path = $this->posts_path;
     if($handle = opendir($posts_path)) {
 
@@ -102,14 +113,9 @@ class blog_lib{
 
                       case 'tags':
                         $tags = trim($matches[2]);
-                        $post_tags = explode(' ',$tags);                  
+                        $post_tags = preg_split('#[,\s]#',$tags, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
 
-                        foreach($post_tags as $k=>$row)
-                        {
-                          $trimed_tag = trim($row);
-                          if(empty($trimed_tag))
-                            unset($post_tags[$k]);
-                        }
+
                         break;
                       case 'intro':
                         $post_intro = trim($matches[2]);
@@ -121,9 +127,24 @@ class blog_lib{
                     }
                   }                  
                 }
-                if(empty($post_date) or 1)
+                
+                if(strtolower($post_status)!='public'){
+                  continue;
+                }
+                foreach($post_tags as $k=>$row)
+                {
+                  $trimed_tag = trim($row);
+                  if(empty($trimed_tag))
+                    unset($post_tags[$k]);
+                  else{
+                    $all_tags[$trimed_tag]=1;
+                  }
+                }                
+                if(empty($post_date))
                 {
                   $post_date = filemtime($posts_path.$entry);
+                }else{
+                  $post_date = strtotime($post_date);
                 }
                 $post_author = $this->CI->blog_config['author'];
                 $post_content_md = trim(join('', array_slice($fcontents, $hi, count($fcontents) -1)));
@@ -132,32 +153,65 @@ class blog_lib{
                   $post_intro = mb_substr($post_content_md,0,200);
                 }
                 $slug = str_replace($this->file_ext,'',$entry);
-                $files[] = array('fname' => $entry, 
-                'slug'=>$slug,
-                'link'=> "/post/$slug",
-                'title' => $post_title, 'author' => $post_author, 'date' => $post_date, 'tags' => $post_tags, 'status' => $post_status, 'intro' => $post_intro, 'content' => $post_content);
-                $post_dates[] = $post_date;
-                $post_titles[] = $post_title;
-                $post_authors[] = $post_author;
-                $post_tags[] = $post_tags;
-                $post_statuses[] = $post_status;
-                $post_intros[] = $post_intro;
-                $post_contents[] = $post_content;
+
+                if($post_status=='public'){
+
+                  $files[] = array('fname' => $entry, 
+                  'slug'=>$slug,
+                  'link'=> $this->CI->blog_config['base_url']."/post/$slug",
+                  'title' => $post_title, 'author' => $post_author, 'date' => $post_date, 'tags' => $post_tags, 'status' => $post_status, 'intro' => $post_intro, 'content' => $post_content);
+                  $post_dates[] = $post_date;
+                  $post_titles[] = $post_title;
+                  $post_authors[] = $post_author;
+                  $post_tags[] = $post_tags;
+                  $post_statuses[] = $post_status;
+                  $post_intros[] = $post_intro;
+                  $post_contents[] = $post_content;                  
+                }
+
             }
         }
         array_multisort($post_dates, SORT_DESC, $files);
 
         $this->_all_posts = $files;
-        
+        $this->_all_tags = $all_tags;
+
         return $this->_all_posts;
 
     } else {
         return array();
     }        
   }
+  
   public function get_posts($options = array())
   {
     return $this->__get_all_posts();
   }
-  
+ 
+  public function get_posts_tags()
+  {
+    $this->__get_all_posts();
+    return array_keys($this->_all_tags);
+  }
+ public function get_posts_by_tag($tag){
+   $tag = trim($tag);
+   $posts = $this->__get_all_posts();
+   $result = array();
+
+   foreach($posts as $post)
+   {
+     foreach($post['tags'] as $post_tag)
+     {
+       if(strpos(strtolower($post_tag),'mysql')){
+         print_r($post);
+       }
+       if(strtolower($tag)==strtolower($post_tag)){
+          $result[]=$post;
+          break;
+       }
+     }
+   }
+   return $result;
+ }
+ 
 }

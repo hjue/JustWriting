@@ -1,0 +1,46 @@
+<div class="mid-col">
+    <div class="mid-col-container clearfix">
+		<div class="bread_nav">
+			{% if folder %}
+				{{ bread_nav(folder.path, '/folder/') }}
+			{% endif %}
+		</div>
+		</br>
+		<div id="images_container">
+			<ul class="image_list" id="image_list">
+			{% for file in files %}
+				{% if file.content_type == 'folder' %}
+				<li class="folder">
+					<a href="/file/{{file.path}}" title="{{file.title}}">
+						<img src='{{ file.url }}?width=320&height=214&fixed=true' title="{{ file.title }}, 内有 {{ file.images_count }} 张图片" />
+						{% if file.content_type == 'folder' %}
+						<span>{{ file.title }} <small>({{ file.images_count }})</small></span>
+						{% endif %}
+					</a>
+					{% endif %}			
+					{% if file.content_type != 'folder' %}
+					<a class="fancybox" rel="group" href="{{file.url}}" >
+						<img src='{{ file.url }}?width=320&height=214&fixed=true' title="{{ file.title }}" />
+					{% endif %}
+					</a>
+				</li>
+			{% endfor %}
+			</ul>
+			{% include 'include/paginator.html' %}
+			<script type="text/javascript">
+				function images_auto_margin(){
+					var images_e = document.getElementById('image_list');
+					images_e.style.marginLeft = 0;
+					var width = document.width || document.body.clientWidth;
+					if (images_e && width > 330){
+						images_e.style.marginLeft = ( width% 336) /2 + 'px';
+					}
+				}
+				images_auto_margin();
+				window.onresize = images_auto_margin;
+			</script>
+		</div>
+    </div>
+	</br>
+    {% include 'include/footer.html' %}
+</div>

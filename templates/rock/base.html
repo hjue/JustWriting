@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>{% block title %}{{ config.title }} {% endblock %}</title>
+
+    <!-- http://t.co/dKP3o1e -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel='alternate' type='application/rss+xml' title='atom 1.0' href='/feed' />
+    
+    <link href="/favicon.png" rel="shortcut icon">
+    
+	<link href="/templates/rock/css/highlight.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+    <link href="/templates/rock/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <link href="/templates/rock/css/style.css" rel="stylesheet" type="text/css">
+    
+    <script type="text/javascript" src="/templates/rock/js/jquery-1.9.1.min.js"></script>    
+	<link rel="stylesheet" href="/templates/rock/css/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="/templates/rock/css/fancybox/jquery.fancybox.pack.js"></script>
+    <script type="text/javascript" src="/templates/rock/js/jquery.githubRepoWidget.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("a[href$='.jpg'],a[href$='.jpeg'],a[href$='.png'],a[href$='.gif'],a[href$='.bmp'],a[href$='.JPG'],a[href$='.JPEG'],a[href$='.PNG'],a[href$='.GIF'],a[href$='.BMP']").attr('rel','group-images').fancybox({
+				openEffect	: 'none',
+				closeEffect	: 'none'
+			});
+		});
+	</script>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="left-col">
+            <div class="intrude-less">
+            <header id="header" class="inner">
+                <div class="profilepic">
+<img src="{{ config.avatar }}" alt='Profile Picture' style='width: 160px;' id='ProfilePicture' />
+                </div>
+
+				{% if config.title %}
+                <h2><a href="/">{{ config.title }}</a></h2>
+				{% endif %}
+				{% if config.intro %}
+                <p class="subtitle">{{ config.intro }}</p>
+				{% endif %}
+                <nav id="main-nav">
+                    <ul class="main-navigation">
+                        <li><a href="/">首页</a></li>
+                            <li><a href="/tags">标签</a></li>
+                        <li><a href="/feed">RSS</a></li>                        
+
+                    </ul>
+                </nav>
+                <nav id="sub-nav">
+                <div class="social">
+                  
+					{% if config.github %}
+                    <a class="github" href="{{ config.github }}" title="GitHub">GitHub</a>
+					{% endif %}
+
+                </div>
+                </nav>
+
+                <br/>
+				{% if config.author %}
+                <section>
+                    <h2>关于作者</h2>
+                    <p></p>
+                </section>
+				{% endif %}
+        <section>
+            <h2>我的作品</h2>
+        </section>
+                </br>
+
+            </header>               
+            </div>
+        </div>  
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
+
+

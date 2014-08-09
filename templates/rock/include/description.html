@@ -1,0 +1,36 @@
+<div id="description">
+    {% if post and post.metadata.cover %}
+        <img id="description_bg" src="{{ post.metadata.cover }}?height=350"/>
+        {% set cover_author = post.metadata.cover_author %}
+    {% elif site.configs.cover %}
+        <img id="description_bg" src="{{ site.configs.cover }}?height=350"/>
+        {% set cover_author = site.configs.cover_author %}
+    {% else %}
+        <img id="description_bg" src="http://resource.farbox.com/image/cover.jpg"/>
+        {% set cover_author = 'Shutterhacks@Flickr & Licenses:CC BY 2.0' %}
+    {% endif %}
+
+    <div id="description_content"  {% if cover_author %}title="photo by {{ cover_author }}"{% endif %}>
+        <div class="slogan">
+            <div class="slogan_content">
+                {% if post and post.metadata.foreword %}
+                    {{ post.metadata.foreword | linebreaks }}
+                {% elif site.description %}
+                    {{ site.description | linebreaks }}
+                {% else %}
+                <p>
+                    写作，是对生命的一种礼赞。
+                </p>
+                <p>
+                    我们沉浸于生活的时候，会遗忘生活赋予我们的理想；我们停下脚步，用笔尖与思想同黑夜对话的时候。
+                </p>
+                <p>
+                    我们就感觉到了自己。
+                    <a href="/template-readme#modify_description"><small style="color:darkred">如何修改这段文字？</small></a>
+                </p>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
