@@ -6,5 +6,5 @@ $blog_config['avatar']= 'https://raw.githubusercontent.com/hjue/JustWriting/deve
 $blog_config['template'] = 'rock';
 $blog_config['comment'] = True;
 $blog_config['duoshuo_short_name'] = 'justwriting';
-$blog_config['base_url'] = 'http://justwriting.sinaapp.com';
+$blog_config['base_url'] = '';
 $blog_config['github'] = 'https://github.com/hjue/JustWriting';
