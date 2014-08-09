@@ -3,7 +3,7 @@ JustWritting
 
 JustWritting is a Super simple Blog engine.
 
-![](docs/logo_128x128.png)
+![](docs/page.png)
 
 ### Requirements
 
