@@ -34,6 +34,11 @@ Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱�
 
 - Dropbox
 
+    1. [ Create App ](https://www.dropbox.com/developers/apps)
+    1. Generated access token
+    1. Configure params in settings.php: `$blog_config['dropbox']['key'],$blog_config['dropbox']['secret'],$blog_config['dropbox']['access_token']`
+    1. access [http://your_justwriting_site/sync/dropbox/download ](http://your_justwriting_site/sync/dropbox/download ) for syncing posts
+
 - 百度网盘
 
 
