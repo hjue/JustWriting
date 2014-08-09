@@ -83,7 +83,7 @@ class blog_lib{
                 $fcontents = file($posts_path.$entry);
 
                 $hi=0;
-                $pattern = '/^\s*(title|date|position|intro|status|toc|url|tags):(.*?)$/im';
+                $pattern = '/^\s*(title|date|position|description|intro|status|toc|url|tags):(.*?)$/im';
                 $post_title='';
                 $post_intro='';
                 $post_date='';
@@ -113,11 +113,14 @@ class blog_lib{
 
                       case 'tags':
                         $tags = trim($matches[2]);
+                        if(substr($tags,0,1)=='[') $tags = substr($tags,1);
+                        if(substr($tags,-1,1)==']') $tags = substr($tags,0,-1);
                         $post_tags = preg_split('#[,\s]#',$tags, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
 
 
                         break;
                       case 'intro':
+                      case 'description':
                         $post_intro = trim($matches[2]);
                         break;
                         
