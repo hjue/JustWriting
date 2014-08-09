@@ -1,0 +1,41 @@
+.read_more{
+    display: inline-block;
+    padding: 10px 10px 10px 10px;
+    float: right;
+}
+
+.read_more a{
+    color: #808080;
+    padding: 2px;
+}
+
+.read_more a:hover{
+    color:#E60900;
+}
+
+.tag{
+	width:200px;
+    padding: 10px 10px 10px 10px;
+	font-family:"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight:300;
+	font-size:24px;
+    display: inline;
+}
+
+.tag a:link{
+    color: #808080;
+    padding: 2px;
+}
+
+.tag a:visited{
+    color: #808080;
+    padding: 2px;
+}
+
+.tag a:hover{
+    color:#000;
+}
+
+.tag a:hover{
+    color:#000;
+}

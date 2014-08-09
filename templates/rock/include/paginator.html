@@ -1,0 +1,11 @@
+{% if paginator.has_previous or  paginator.has_next %}
+<nav id="pagenavi">
+    {% if paginator.has_previous %}
+        <a class="prev" href="{{ paginator.previous_page_url }}">上一页</a>
+    {% endif %}
+	{% if paginator.has_next %}
+        <a class="next" href="{{ paginator.next_page_url}}">下一页</a>
+    {% endif %}
+    <div class="center"><a href="/archive">存档</a></div>
+</nav>
+{% endif %}
