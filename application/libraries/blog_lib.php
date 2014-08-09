@@ -1,6 +1,6 @@
 <?php
-require APPPATH.'third_party/Michelf/Markdown.inc.php';
-use \Michelf\Markdown;
+require APPPATH.'third_party/Michelf/MarkdownExtra.inc.php';
+use \Michelf\MarkdownExtra;
 class blog_lib{
 
 	var $CI;
@@ -30,7 +30,7 @@ class blog_lib{
   public function markdown($value='')
   {        
     $text = $value;
-    $html = Markdown::defaultTransform($text);
+    $html = MarkdownExtra::defaultTransform($text);
     $html = preg_replace('/<img src="images\/([^\"]*)"/i', '<img src="/posts/images/$1"', $html);
     return $html;
   }
@@ -83,20 +83,24 @@ class blog_lib{
                 $fcontents = file($posts_path.$entry);
 
                 $hi=0;
-                $pattern = '/^\s*(title|date|position|description|intro|status|toc|url|tags):(.*?)$/im';
+                $pattern = '/^\s*(title|date|position|description|intro|status|toc|url|tags)\s*:(.*?)$/im';
                 $post_title='';
                 $post_intro='';
                 $post_date='';
-                $post_status=''; 
+                $post_status='public'; 
                 $post_tags=array();
-                       
+                
+                while(!trim($fcontents[$hi])){
+                  $hi++;
+                  continue;
+                }
                 while(trim($fcontents[$hi])){
                   preg_match($pattern, $fcontents[$hi], $matches);
                   $hi++;
                   
                   if(empty($matches)) break;
                   else{
-                    switch (strtolower($matches[1])) {
+                    switch (trim(strtolower($matches[1]))) {
                       case 'title':
                         $post_title = $matches[2];
                         break;
@@ -129,6 +133,9 @@ class blog_lib{
                         break;
                     }
                   }                  
+                }
+                if(empty($post_title)){
+                  $post_title = str_replace('.md','',$entry);
                 }
                 
                 if(strtolower($post_status)!='public'){
