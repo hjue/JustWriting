@@ -34,40 +34,86 @@
         <h1>
 <a name="justwritting" class="anchor" href="#justwritting"><span class="octicon octicon-link"></span></a>JustWritting</h1>
 
-<p>JustWritting is a Super simple Blog engine.</p>
+<p>JustWritting是支持Markdown的极简的博客系统。</p>
 
-<p><img src="https://raw.githubusercontent.com/hjue/JustWriting/master/docs/logo.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/page.png" alt=""></p>
 
 <h3>
 <a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h3>
 
 <ul>
 <li>PHP 5.3.6+</li>
-</ul><p>To determine your PHP version, create a new file with this PHP code: <code>&lt;?php echo PHP_VERSION; // version.php</code>. This will print your version number to the screen.</p>
-
-<h3>
+</ul><h3>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h3>
 
 <ul>
-<li>Super Simple</li>
-<li>No Database</li>
-<li>Markdown Formatting</li>
+<li>极简博客</li>
+<li>不需要数据库</li>
+<li>不需要管理后台</li>
+<li>用Markdown写博客</li>
 <li>Twig Templates</li>
-<li>Open Source</li>
-</ul><p><img src="https://raw.githubusercontent.com/hjue/JustWriting/master/docs/feature-v1.png" alt=""></p>
-
-<h3>
+</ul><h3>
 <a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h3>
 
 <ol>
-<li>上传源代码到你的PHP空间。目前支持SAE。</li>
-<li>将markdown文档放到posts目录中</li>
-</ol><h3>
+<li>上传源代码到你的PHP空间</li>
+<li>将Markdown文档放到posts目录中</li>
+</ol><blockquote>
+<p>Justwriting 支持<a href="http://sae.sina.com.cn">SAE</a>云空间。SAE是Sina App Engine的简称，是新浪研发中心推出的国内首个公有云计算平台，支持PHP,MySQL,Memcached,Mail,TaskQueue,RDC（关系型数据库集群）等服务。SAE通过实名认证及开发者认证，每个月送大量云豆，对于一般的博客站点云豆完全够用，也就是说用SAE搭建博客完全免费，不需要支付费用。同时SAE还支持绑定自己的域名，只是对于没有备案的域名请求走海外中转，流量计费翻倍。</p>
+</blockquote>
+
+<h3>
+<a name="%E6%96%87%E7%AB%A0%E4%BF%A1%E6%81%AF" class="anchor" href="#%E6%96%87%E7%AB%A0%E4%BF%A1%E6%81%AF"><span class="octicon octicon-link"></span></a>文章信息</h3>
+
+<p>文章头部放置头信息
+Date: 2014-08-09
+Title: Compile Zeal on Mac OS X
+Tags: Zeal Mac
+Status: public</p>
+
+<h3>
+<a name="%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83" class="anchor" href="#%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83"><span class="octicon octicon-link"></span></a>文章发布</h3>
+
+<ul>
+<li>
+<p>如果是在自己的VPS上搭建Justwriting，建议使用Dropbox来同步文章</p>
+
+<ol>
+<li><a href="https://www.dropbox.com/developers/apps"> Create App </a></li>
+<li>Generated access token</li>
+<li>Configure params in settings.php: <code>$blog_config['dropbox']['key'],$blog_config['dropbox']['secret'],$blog_config['dropbox']['access_token']</code>
+</li>
+<li>access <a href="http://your_justwriting_site/sync/dropbox/download">http://your_justwriting_site/sync/dropbox/download </a> for syncing posts</li>
+</ol>
+</li>
+</ul><ul>
+<li>
+<p>如果在SAE上搭建Justwriting，建议使用SVN来更新文章
+Windows下SVN的使用方法点<a href="http://sae.sina.com.cn/doc/tutorial/code-deploy.html#tortoisesvn">这里</a>
+Mac &amp; Linux 下还是习惯用命令行：</p>
+
+<pre><code>svn co https://svn.sinaapp.com/you_sae_name
+svn add 1/
+svn ci -m "submit code"   
+</code></pre>
+
+<p><a href="http://sae.sina.com.cn/doc/tutorial/helloworld-for-linux-mac.html">详情使用方法点这里</a></p>
+</li>
+</ul><h3>
 <a name="todo-list" class="anchor" href="#todo-list"><span class="octicon octicon-link"></span></a>ToDo List</h3>
 
 <ul>
-<li>支持微盘同步(Sina网盘)</li>
+<li>[ ] 文章列表分页</li>
+<li><p>[x] 支持微盘同步(Sina网盘) 
+Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱中的文件居然不出现在用户的微盘中，微盘为什么要这么设计？多学学Dropbox的设计吧。
+<a href="http://vdisk.weibo.com/developers/index.php?module=api&amp;action=rights#space">Vdisk文档参见这里</a></p></li>
+<li><p>[ ] 百度网盘</p></li>
 </ul><h3>
+<a name="%E8%B0%81%E5%9C%A8%E7%94%A8" class="anchor" href="#%E8%B0%81%E5%9C%A8%E7%94%A8"><span class="octicon octicon-link"></span></a>谁在用</h3>
+
+<p>如果你使用了Justwriting，你将出现在这里。<a href="https://github.com/hjue/JustWriting/issues/new">点这里告诉我</a></p>
+
+<h3>
 <a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h3>
 
 <ul>
