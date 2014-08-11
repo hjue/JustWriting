@@ -1,6 +1,7 @@
 tmp/*
 posts/*
 !posts/index.html
+!posts/justwriting.md
 
 cache/*
 !cache/index.html
