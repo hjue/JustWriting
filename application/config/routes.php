@@ -46,6 +46,8 @@ $route['tags'] = "blog/tags";
 $route['help'] = "blog/help";
 $route['feed'] = "blog/feed";
 $route['gallery'] = "blog/gallery";
+$route['sync/dropbox'] = "dropbox";
+$route['sync/dropbox/(:any)'] = "dropbox/$1";
 
 $route['404_override'] = '';
 
