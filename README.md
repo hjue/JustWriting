@@ -26,13 +26,16 @@ JustWritting是支持Markdown的极简的博客系统。
 
 > Justwriting 支持[SAE](http://sae.sina.com.cn)云空间。SAE是Sina App Engine的简称，是新浪研发中心推出的国内首个公有云计算平台，支持PHP,MySQL,Memcached,Mail,TaskQueue,RDC（关系型数据库集群）等服务。SAE通过实名认证及开发者认证，每个月送大量云豆，对于一般的博客站点云豆完全够用，也就是说用SAE搭建博客完全免费，不需要支付费用。同时SAE还支持绑定自己的域名，只是对于没有备案的域名请求走海外中转，流量计费翻倍。
 
-### 文章信息
+### 写文章
 
-文章头部放置头信息
-Date: 2014-08-09
-Title: Compile Zeal on Mac OS X
-Tags: Zeal Mac
-Status: public
+#### 文章头部放置头信息
+
+    Date: 2014-08-09
+    Title: Compile Zeal on Mac OS X
+    Tags: Zeal Mac
+    Status: public
+    
+    这里写正文
 
 ### 文章发布
 
