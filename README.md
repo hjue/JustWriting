@@ -20,7 +20,7 @@ JustWritting是支持Markdown的极简的博客系统。
 
 
 ### Install
-
+1. 设置博客参数，修改settings.php
 1. 上传源代码到你的PHP空间
 2. 将Markdown文档放到posts目录中
 
