@@ -1,0 +1,41 @@
+<appwizard>
+  <introduction> 
+		<name>JustWriting</name>
+		<author>haojue@gmail.com</author>
+		<icon>https://raw.githubusercontent.com/hjue/JustWriting/master/docs/logo_128x128.png</icon>
+		<homepage>https://github.com/hjue/JustWriting</homepage>
+		<category>博客</category>		
+		<description>
+		<![CDATA[
+		JustWritting是支持Markdown的极简的博客系统。
+    Features：
+    * 极简博客
+    * 不需要数据库
+    * 不需要管理后台
+    * 用Markdown写博客
+    * Twig Templates 
+    
+		]]>
+		</description>
+	</introduction>  
+    <platform>
+        <services>
+        </services>
+        <appconfig>
+        <!-- appconfig配置，如果应用中用到了appconfig，则配置该段，具体配置方法，请参考appconfig的说明文档 -->
+            <tpl>
+                <![CDATA[
+                    name: <<appname>>
+                    version: <<version>>
+                    
+                    handle: 
+                      - rewrite: if( !is_file() && path ~ "^(.*)$" ) goto "/index.php/$1"                     
+                ]]>
+            </tpl>
+        </appconfig>
+    </platform>
+    <code>
+    <!-- 初始化页面地址：即应用安装成功后跳转的地址，可以将应用安装脚本或数据库导入脚本写在该文件中 -->
+    <initScript>install.php</initScript>
+    </code>
+</appwizard>
