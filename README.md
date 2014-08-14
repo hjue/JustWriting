@@ -12,14 +12,15 @@ JustWritting是支持Markdown的极简的博客系统。
 
 ### Features
 
-- 极简博客
+- 极简博客，全部代码不超过400行
 - 不需要数据库
-- 不需要管理后台
-- 用Markdown写博客
+- 不需要博客后台，只需要在本地书写
+- 用Markdown书写
 - Twig Templates
-
+- 支持使用Dropbox发布文章
 
 ### Install
+
 1. 设置博客参数，修改settings.php
 1. 上传源代码到你的PHP空间
 2. 将Markdown文档放到posts目录中
@@ -35,12 +36,18 @@ JustWritting是支持Markdown的极简的博客系统。
 
 #### 文章头部放置头信息
 
+文章头部放置头信息，Justwriting采用的Farbox头部信息的格式，同时也支持Jekyll的头信息格式。
+
     Date: 2014-08-09
     Title: Compile Zeal on Mac OS X
     Tags: Zeal Mac
     Status: public
     
     这里写正文
+
+文章完成之前status可以设置为draft，这样这篇文章不会出现在你的博客列表中。
+
+在posts目录中用Markdown书写，保存为.md文件。
 
 ### 文章发布
 
@@ -65,8 +72,8 @@ JustWritting是支持Markdown的极简的博客系统。
 
 - [ ] 文章列表分页
 - [x] 支持微盘同步(Sina网盘) 
-Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱中的文件居然不出现在用户的微盘中，微盘为什么要这么设计？多学学Dropbox的设计吧。
-[Vdisk文档参见这里](http://vdisk.weibo.com/developers/index.php?module=api&action=rights#space)
+Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱中的文件居然不出现在用户的微盘中。
+[Vdisk的文档](http://vdisk.weibo.com/developers/index.php?module=api&action=rights#space)
 
 - [ ] 百度网盘
 

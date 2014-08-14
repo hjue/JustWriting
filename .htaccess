@@ -1,3 +1,7 @@
+<Files ~ "\.md$">
+order allow,deny
+deny from all
+</files>
 RewriteEngine on
 RewriteCond $1 !^(index\.php|images|posts|templates|robots\.txt)
 RewriteRule ^(.*)$ /index.php/$1 [L]
