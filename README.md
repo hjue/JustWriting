@@ -1,9 +1,21 @@
 JustWritting
 ============
 
-JustWritting是支持Markdown的极简的博客系统。
 
 ![](https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/page.png)
+
+[Justwriting](https://github.com/hjue/JustWriting)是一个极简开源博客系统，不同于Wordpress等传统博客系统，Justwriting没有博客后台，你只需要在你的电脑上用Markdown书写，还有比这更简单的吗。同时你不用担心你的文章丢失，因为文章就在你的电脑里。
+
+Justwriting的创意来自[Farbox](https://www.farbox.com/),我自己原本也是Farbox的用户，只是最近Farbox文章同步太慢(也许是用户量太大了)，并且访问速度也很慢，自己才写了这个博客系统。
+
+Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机，建议你使用Dropbox+Justwriting，在设置博客系统以后，你只需要用Markdown书写，完全不需要关注其他。
+
+如果你不用Dropbox，目前只能通过FTP、SVN、Git等其他途径发布文章了，这样不能发挥Justwriting最大的功效。
+
+其他网盘的支持我正在推进中，微博微盘(Vdisk)无法支持了，因为Vdisk App沙箱中的文件居然不出现在用户的微盘中的，My God！[这是Vdisk的文档](http://vdisk.weibo.com/developers/index.php?module=api&action=rights#space)
+
+下一个计划支持的网盘是百度网盘。
+
 
 ### Requirements
 
