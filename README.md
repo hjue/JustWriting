@@ -6,7 +6,7 @@ JustWriting
 
 [Justwriting](https://github.com/hjue/JustWriting)是一个极简开源博客系统，不同于Wordpress等传统博客系统，Justwriting没有博客后台，你只需要在你的电脑上用Markdown书写，还有比这更简单的吗。同时你不用担心你的文章丢失，因为文章就在你的电脑里。
 
-Justwriting的创意来自[Farbox](https://www.farbox.com/),我自己原本也是Farbox的用户，只是最近Farbox文章同步太慢(也许是用户量太大了)，并且访问速度也很慢，自己才写了这个博客系统。
+Justwriting的创意来自[Farbox](https://www.farbox.com/),我自己原本也是Farbox的粉丝，只是最近喜欢折腾，写了这个博客系统。
 
 Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机，建议你使用Dropbox+Justwriting，在设置博客系统以后，你只需要用Markdown书写，完全不需要关注其他。
 
@@ -16,6 +16,7 @@ Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机�
 
 下一个计划支持的网盘是百度网盘。
 
+使用当中有任何问题，[点这里告诉我](https://github.com/hjue/JustWriting/issues/new)
 
 ### Requirements
 
