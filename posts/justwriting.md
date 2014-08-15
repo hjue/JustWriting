@@ -1,5 +1,6 @@
 Date: 2014-08-11
 Title: JustWritting 使用指南
+intro:Justwriting是一个极简开源博客系统，不同于Wordpress等传统博客系统，Justwriting没有博客后台，你只需要在你的电脑上用Markdown书写，还有比这更简单的吗。同时你不用担心你的文章丢失，因为文章就在你的电脑里。
 Tags: JustWritting PHP
 Status: public
 
