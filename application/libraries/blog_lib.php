@@ -160,7 +160,8 @@ class blog_lib{
                 $post_content_md = trim(join('', array_slice($fcontents, $hi, count($fcontents) -1)));
                 $post_content = $post_content_md;
                 if(empty($post_intro)){
-                  $post_intro = mb_substr($post_content_md,0,200);
+                  $post_text = strip_tags($this->markdown($post_content));
+                  $post_intro = mb_substr($post_text,0,200);                  
                 }
                 $slug = str_replace($this->file_ext,'',$entry);
 
