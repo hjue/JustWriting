@@ -51,8 +51,9 @@ Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机�
 文章头部放置头信息，Justwriting采用的Farbox头部信息的格式，同时也支持Jekyll的头信息格式。
 
     Date: 2014-08-09
-    Title: Compile Zeal on Mac OS X
-    Tags: Zeal Mac
+    Title: 文章标题
+    Intro: 文章摘要
+    Tags: Justwriting Blog
     Status: public
     
     这里写正文
