@@ -1,4 +1,4 @@
-JustWritting
+JustWriting
 ============
 
 
@@ -89,6 +89,7 @@ Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱�
 [Vdisk的文档](http://vdisk.weibo.com/developers/index.php?module=api&action=rights#space)
 
 - [ ] 百度网盘
+- [ ] 支持插件机制
 
 ### 谁在用
 
