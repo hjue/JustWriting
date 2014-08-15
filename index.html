@@ -32,11 +32,23 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
         <h1>
-<a name="justwritting" class="anchor" href="#justwritting"><span class="octicon octicon-link"></span></a>JustWritting</h1>
-
-<p>JustWritting是支持Markdown的极简的博客系统。</p>
+<a name="justwriting" class="anchor" href="#justwriting"><span class="octicon octicon-link"></span></a>JustWriting</h1>
 
 <p><img src="https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/page.png" alt=""></p>
+
+<p><a href="https://github.com/hjue/JustWriting">Justwriting</a>是一个极简开源博客系统，不同于Wordpress等传统博客系统，Justwriting没有博客后台，你只需要在你的电脑上用Markdown书写，还有比这更简单的吗。同时你不用担心你的文章丢失，因为文章就在你的电脑里。</p>
+
+<p>Justwriting的创意来自<a href="https://www.farbox.com/">Farbox</a>,我自己原本也是Farbox的粉丝，只是最近喜欢折腾，写了这个博客系统。</p>
+
+<p>Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机，建议你使用Dropbox+Justwriting，在设置博客系统以后，你只需要用Markdown书写，完全不需要关注其他。</p>
+
+<p>如果你不用Dropbox，目前只能通过FTP、SVN、Git等其他途径发布文章了，这样不能发挥Justwriting最大的功效。</p>
+
+<p>其他网盘的支持我正在推进中，微博微盘(Vdisk)无法支持了，因为Vdisk App沙箱中的文件居然不出现在用户的微盘中的，My God！<a href="http://vdisk.weibo.com/developers/index.php?module=api&amp;action=rights#space">这是Vdisk的文档</a></p>
+
+<p>下一个计划支持的网盘是百度网盘。</p>
+
+<p>使用当中有任何问题，<a href="https://github.com/hjue/JustWriting/issues/new">点这里告诉我</a></p>
 
 <h3>
 <a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h3>
@@ -47,15 +59,17 @@
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h3>
 
 <ul>
-<li>极简博客</li>
+<li>极简博客，全部代码不超过400行</li>
 <li>不需要数据库</li>
-<li>不需要管理后台</li>
-<li>用Markdown写博客</li>
+<li>不需要博客后台，只需要在本地书写</li>
+<li>用Markdown书写</li>
 <li>Twig Templates</li>
+<li>支持使用Dropbox发布文章</li>
 </ul><h3>
 <a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h3>
 
 <ol>
+<li>设置博客参数，修改settings.php</li>
 <li>上传源代码到你的PHP空间</li>
 <li>将Markdown文档放到posts目录中</li>
 </ol><blockquote>
@@ -63,18 +77,31 @@
 </blockquote>
 
 <h3>
+<a name="%E4%BF%AE%E6%94%B9%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE" class="anchor" href="#%E4%BF%AE%E6%94%B9%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE"><span class="octicon octicon-link"></span></a>修改博客配置</h3>
+
+<p>博客配置在根目录下的settings.php中。
+使用SAE搭建博客的小伙伴可以通过SAE提供的在线编辑代码的功能修改配置，或者通过SVN修改settings.php。</p>
+
+<h3>
 <a name="%E5%86%99%E6%96%87%E7%AB%A0" class="anchor" href="#%E5%86%99%E6%96%87%E7%AB%A0"><span class="octicon octicon-link"></span></a>写文章</h3>
 
 <h4>
 <a name="%E6%96%87%E7%AB%A0%E5%A4%B4%E9%83%A8%E6%94%BE%E7%BD%AE%E5%A4%B4%E4%BF%A1%E6%81%AF" class="anchor" href="#%E6%96%87%E7%AB%A0%E5%A4%B4%E9%83%A8%E6%94%BE%E7%BD%AE%E5%A4%B4%E4%BF%A1%E6%81%AF"><span class="octicon octicon-link"></span></a>文章头部放置头信息</h4>
 
+<p>文章头部放置头信息，Justwriting采用的Farbox头部信息的格式，同时也支持Jekyll的头信息格式。</p>
+
 <pre><code>Date: 2014-08-09
-Title: Compile Zeal on Mac OS X
-Tags: Zeal Mac
+Title: 文章标题
+Intro: 文章摘要
+Tags: Justwriting Blog
 Status: public
 
 这里写正文
 </code></pre>
+
+<p>文章完成之前status可以设置为draft，这样这篇文章不会出现在你的博客列表中。</p>
+
+<p>在posts目录中用Markdown书写，保存为.md文件。</p>
 
 <h3>
 <a name="%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83" class="anchor" href="#%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83"><span class="octicon octicon-link"></span></a>文章发布</h3>
@@ -110,9 +137,10 @@ svn ci -m "submit code"
 <ul>
 <li>[ ] 文章列表分页</li>
 <li><p>[x] 支持微盘同步(Sina网盘) 
-Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱中的文件居然不出现在用户的微盘中，微盘为什么要这么设计？多学学Dropbox的设计吧。
-<a href="http://vdisk.weibo.com/developers/index.php?module=api&amp;action=rights#space">Vdisk文档参见这里</a></p></li>
+Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱中的文件居然不出现在用户的微盘中。
+<a href="http://vdisk.weibo.com/developers/index.php?module=api&amp;action=rights#space">Vdisk的文档</a></p></li>
 <li><p>[ ] 百度网盘</p></li>
+<li>[ ] 支持插件机制</li>
 </ul><h3>
 <a name="%E8%B0%81%E5%9C%A8%E7%94%A8" class="anchor" href="#%E8%B0%81%E5%9C%A8%E7%94%A8"><span class="octicon octicon-link"></span></a>谁在用</h3>
 
