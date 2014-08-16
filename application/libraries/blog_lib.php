@@ -61,6 +61,34 @@ class blog_lib{
     return $filename;
   }
   
+  public function image_upload($image)
+  {
+    if(empty($image))
+      return false;
+    $config['upload_path'] = FCPATH.'posts/images';
+    if(!file_exists($config['upload_path']))
+    {
+      mkdir($config['upload_path'],0777,true);
+    }
+    $config['allowed_types'] = 'gif|jpg|png';
+    $config['max_size'] = '0';
+    $config['max_width'] = '0';
+    $config['max_height'] = '0';
+
+    $this->CI->load->library('upload', $config);      
+    if ( !$this->CI->upload->do_upload('image'))
+    {
+     $error = array('error' => $this->CI->upload->display_errors());
+     return false;
+    } 
+    else
+    {
+     $data = $this->CI->upload->data();
+     $image_filename = $data['file_name'];
+     return $image_filename;
+    }     
+  }
+  
   public function append_post($filename,$text,$image)
   {
     if(empty($text) and empty($image)) return false;
@@ -96,17 +124,17 @@ class blog_lib{
 
       $this->CI->load->library('upload', $config);      
       if ( !$this->CI->upload->do_upload('image'))
-        {
-         $error = array('error' => $this->CI->upload->display_errors());
-         return false;
-        } 
-        else
-        {
-         $data = $this->CI->upload->data();
-         $image_filename = $data['file_name'];
-         $content .= "\n\n"."![](images/$image_filename)";
-         file_put_contents($path,$content);
-        }            
+      {
+       $error = array('error' => $this->CI->upload->display_errors());
+       return false;
+      } 
+      else
+      {
+       $data = $this->CI->upload->data();
+       $image_filename = $data['file_name'];
+       $content .= "\n\n"."![](images/$image_filename)";
+       file_put_contents($path,$content);
+      }            
     }
     
     

@@ -50,6 +50,32 @@ class Api extends CI_Controller {
   }
   
   /* 
+  curl http://localhost:8080/api/image -F api_key=1234561 -F image=@2.png
+  */  
+  public function image()
+  {
+    $this->check_auth();
+    if(isset($_FILES))
+    {
+      $image  = $_FILES['image'];
+
+    }
+    
+    $filename =  $this->blog_lib->image_upload($image);
+    if($filename)
+    {
+      $link = $this->blog_config['base_url']."/posts/images/$filename";
+      $result['link'] = $link;
+      echo json_encode($result);          
+    }else{
+      set_status_header(401);
+      echo json_encode(array('errorMsg'=>'upload failed'));
+      exit;      
+    }
+
+  }  
+  
+  /* 
   curl http://localhost:8080/api/article/post -d api_key=1234561 -d name=test -d text=AAAA 
   */
   private function article_post()
@@ -58,10 +84,17 @@ class Api extends CI_Controller {
     $name = $this->input->post('name');
     $text = $this->input->post('text');
     $filename =  $this->blog_lib->write_post($name,$text);
-    $link = $this->blog_lib->get_post_link($filename);
-    $result['name']= $name;
-    $result['link'] = $link;
-    echo json_encode($result);    
+    if($filename)
+    {
+      $link = $this->blog_lib->get_post_link($filename);
+      $result['name']= $name;
+      $result['link'] = $link;
+      echo json_encode($result);            
+    }else{
+      set_status_header(401);
+      echo json_encode(array('errorMsg'=>'post failed'));
+      exit;            
+    }
     
   }
   
@@ -83,10 +116,17 @@ class Api extends CI_Controller {
     $text = $this->input->post('text');
     
     $filename =  $this->blog_lib->append_post($name,$text,$image);
-    $link = $this->blog_lib->get_post_link($filename);
-    $result['name']= $name;
-    $result['link'] = $link;
-    echo json_encode($result);
+    if($filename){
+      $link = $this->blog_lib->get_post_link($filename);
+      $result['name']= $name;
+      $result['link'] = $link;
+      echo json_encode($result);      
+    }else{
+      set_status_header(401);
+      echo json_encode(array('errorMsg'=>'append failed'));
+      exit;            
+    }
+
     
   }  
 }

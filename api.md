@@ -51,3 +51,23 @@ image|追加的图片
     
 返回信息，返回json格式，返回信息同Post Article
 
+
+### Upload  Image
+
+	/api/image
+	
+
+Post parameters
+
+key|description
+----|------
+api_key|Api的密钥，在settings.php中设置
+image|上传的图片
+    
+返回信息，返回json格式
+
+Success ，http status code = 200
+
+    {
+      "link" : "http://justwriting.sinaapp.com/posts/images/world.png"
+    }
