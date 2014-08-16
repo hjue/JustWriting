@@ -38,6 +38,7 @@ Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机�
 1. 设置博客参数，修改settings.php
 1. 上传源代码到你的PHP空间
 2. 将Markdown文档放到posts目录中
+1. 设置posts和application/cache目录web用户可写
 
 > Justwriting 支持[SAE](http://sae.sina.com.cn)云空间。SAE是Sina App Engine的简称，是新浪研发中心推出的国内首个公有云计算平台，支持PHP,MySQL,Memcached,Mail,TaskQueue,RDC（关系型数据库集群）等服务。SAE通过实名认证及开发者认证，每个月送大量云豆，对于一般的博客站点云豆完全够用，也就是说用SAE搭建博客完全免费，不需要支付费用。同时SAE还支持绑定自己的域名，只是对于没有备案的域名请求走海外中转，流量计费翻倍。
 
