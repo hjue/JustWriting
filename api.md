@@ -10,7 +10,7 @@ JustWriting Api
 Http Method:Post
 
 key|description
--|-
+----|------
 api_key|Api的密钥，在settings.php中设置
 name|文章的文件名，去掉.md的部分。若文件存在，会覆盖原先的文章
 text|文章的正文
@@ -43,7 +43,7 @@ Content-Type:multipart/form-data
 Post parameters
 
 key|description
--|-
+----|------
 api_key|Api的密钥，在settings.php中设置
 name|文章的文件名，去掉.md的部分
 text|追加的内容
