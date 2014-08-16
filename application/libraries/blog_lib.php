@@ -20,6 +20,7 @@ class blog_lib{
 
 	}
 
+
   public function get_help()
   {
     $content = file_get_contents(FCPATH.'README.md');
@@ -35,6 +36,84 @@ class blog_lib{
     return $html;
   }
 
+  public function get_post_link($filename)
+  {
+    if(substr($filename,-3)!='.md'){
+      $filename .= '.md';
+    }
+
+    $path = $this->posts_path.$filename;
+    if(file_exists($path)){
+      $slug = str_replace($this->file_ext,'',$filename);
+      return $this->CI->blog_config['base_url']."/post/$slug";
+    }    
+  }
+  
+  public function write_post($filename,$text)
+  {
+    if(strlen(trim($text))==0) return false;
+    if(substr($filename,-3)!='.md'){
+      $filename .= '.md';
+    }
+
+    $path = $this->posts_path.$filename;
+    file_put_contents($path,"\n".$text);
+    return $filename;
+  }
+  
+  public function append_post($filename,$text,$image)
+  {
+    if(empty($text) and empty($image)) return false;
+    if(substr($filename,-3)!='.md'){
+      $filename .= '.md';
+    }
+
+    $path = $this->posts_path.$filename;
+    if(!file_exists($path))
+    {
+      return false;
+    }
+    
+    $content = file_get_contents($path);
+    
+    if($text){
+      $content .= "\n\n".$text;
+      file_put_contents($path,$content);
+    }
+    
+    if($image){
+      $config['upload_path'] = FCPATH.'posts/images';
+      if(!file_exists($config['upload_path']))
+      {
+        mkdir($config['upload_path'],0777,true);
+      }
+      $config['allowed_types'] = 'gif|jpg|png';
+      $config['max_size'] = '0';
+      $config['max_width'] = '0';
+      $config['max_height'] = '0';
+      $config['file_name'] = date("YmdHis").".jpg";
+      $config['encrypt_name'] = TRUE;
+
+      $this->CI->load->library('upload', $config);      
+      if ( !$this->CI->upload->do_upload('image'))
+        {
+         $error = array('error' => $this->CI->upload->display_errors());
+         return false;
+        } 
+        else
+        {
+         $data = $this->CI->upload->data();
+         $image_filename = $data['file_name'];
+         $content .= "\n\n"."![](images/$image_filename)";
+         file_put_contents($path,$content);
+        }            
+    }
+    
+    
+    return $filename;
+  }  
+  
+  
   public function get_post($filename)
   {
     $prev_post = array();
@@ -90,50 +169,50 @@ class blog_lib{
                 $post_status='public'; 
                 $post_tags=array();
                 
-                while(!trim($fcontents[$hi])){
-                  $hi++;
-                  continue;
-                }
-                while(trim($fcontents[$hi])){
-                  preg_match($pattern, $fcontents[$hi], $matches);
-                  $hi++;
+                if($fcontents[$hi] and strpos($fcontents[$hi],':')){
+
+                  while(trim($fcontents[$hi])){
+                    preg_match($pattern, $fcontents[$hi], $matches);
+                    $hi++;
                   
-                  if(empty($matches)) break;
-                  else{
-                    switch (trim(strtolower($matches[1]))) {
-                      case 'title':
-                        $post_title = $matches[2];
-                        break;
-                      case 'date':
-                        $post_date = trim($matches[2]);
-                        break;                      
+                    if(empty($matches)) break;
+                    else{
+                      switch (trim(strtolower($matches[1]))) {
+                        case 'title':
+                          $post_title = $matches[2];
+                          break;
+                        case 'date':
+                          $post_date = trim($matches[2]);
+                          break;                      
                       
-                      case 'status':
-                        $post_status = trim($matches[2]);
-                        if($post_status!='public'){
-                          $post_status = 'draft';
-                        }
-                        break;
+                        case 'status':
+                          $post_status = trim($matches[2]);
+                          if($post_status!='public'){
+                            $post_status = 'draft';
+                          }
+                          break;
 
-                      case 'tags':
-                        $tags = trim($matches[2]);
-                        if(substr($tags,0,1)=='[') $tags = substr($tags,1);
-                        if(substr($tags,-1,1)==']') $tags = substr($tags,0,-1);
-                        $post_tags = preg_split('#[,\s]#',$tags, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+                        case 'tags':
+                          $tags = trim($matches[2]);
+                          if(substr($tags,0,1)=='[') $tags = substr($tags,1);
+                          if(substr($tags,-1,1)==']') $tags = substr($tags,0,-1);
+                          $post_tags = preg_split('#[,\s]#',$tags, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
 
 
-                        break;
-                      case 'intro':
-                      case 'description':
-                        $post_intro = trim($matches[2]);
-                        break;
+                          break;
+                        case 'intro':
+                        case 'description':
+                          $post_intro = trim($matches[2]);
+                          break;
                         
-                      default:
-                        # code...
-                        break;
-                    }
+                        default:
+                          # code...
+                          break;
+                      }
+                    }                  
                   }                  
                 }
+
                 if(empty($post_title)){
                   $post_title = str_replace('.md','',$entry);
                 }
@@ -157,8 +236,10 @@ class blog_lib{
                   $post_date = strtotime($post_date);
                 }
                 $post_author = $this->CI->blog_config['author'];
-                $post_content_md = trim(join('', array_slice($fcontents, $hi, count($fcontents) -1)));
+
+                $post_content_md = trim(join('', array_slice($fcontents, $hi, count($fcontents))));
                 $post_content = $post_content_md;
+
                 if(empty($post_intro)){
                   $post_text = strip_tags($this->markdown($post_content));
                   $post_intro = mb_substr($post_text,0,200);                  
@@ -194,6 +275,7 @@ class blog_lib{
     }        
   }
   
+
   public function get_posts($options = array())
   {
     return $this->__get_all_posts();
@@ -204,6 +286,7 @@ class blog_lib{
     $this->__get_all_posts();
     return array_keys($this->_all_tags);
   }
+  
  public function get_posts_by_tag($tag){
    $tag = trim($tag);
    $posts = $this->__get_all_posts();
@@ -213,9 +296,6 @@ class blog_lib{
    {
      foreach($post['tags'] as $post_tag)
      {
-       if(strpos(strtolower($post_tag),'mysql')){
-         print_r($post);
-       }
        if(strtolower($tag)==strtolower($post_tag)){
           $result[]=$post;
           break;
