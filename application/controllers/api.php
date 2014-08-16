@@ -19,7 +19,7 @@ class Api extends CI_Controller {
   
   public function test()
   {
-    echo $this->blog_lib->write_post("test","asdfasdfas");
+    $this->check_auth();
   }
   
   private function check_auth()
