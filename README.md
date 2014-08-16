@@ -31,6 +31,7 @@ Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机�
 - 用Markdown书写
 - Twig Templates
 - 支持使用Dropbox发布文章
+- 支持通过Api发布文章
 
 ### Install
 
@@ -81,6 +82,13 @@ Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机�
         svn ci -m "submit code"   
         
     [详情使用方法点这里](http://sae.sina.com.cn/doc/tutorial/helloworld-for-linux-mac.html)
+
+### Api
+
+
+Justwriting支持通过Api发布文章。点这里查看[Api文档](https://github.com/hjue/JustWriting/wiki/API)
+
+使用Api需要在配置文件(settings.php)中打开Api，并且设置Api的密钥。
     
 ### ToDo List
 
