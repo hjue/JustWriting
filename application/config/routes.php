@@ -49,6 +49,8 @@ $route['gallery'] = "blog/gallery";
 $route['sync/dropbox'] = "dropbox";
 $route['sync/dropbox/(:any)'] = "dropbox/$1";
 
+$route['api'] = "api/index";
+$route['api/article/post'] = "api/article/post";
 $route['404_override'] = '';
 
 

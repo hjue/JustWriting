@@ -18,10 +18,10 @@ $blog_config['base_url'] = '';
 //你的github地址，没有可以设置为空
 $blog_config['github'] = 'https://github.com/hjue/JustWriting';
 
-//是否开启通过Api发布文章功能，默认未开启
-$blog_config['api'] = False;
+//是否开启通过Api发布文章功能，默认未开启,Api文档见 /api
+$blog_config['api'] = True;
 //api_key的密码，请不要告诉其他人
-$blog_config['api_key'] = '';
+$blog_config['api_key'] = '1234561';
 
 
 
