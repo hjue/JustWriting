@@ -67,7 +67,9 @@ Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机�
 
 ### 文章发布
 
-- 如果是在自己的VPS上搭建Justwriting，建议使用Dropbox来同步文章
+- 如果是在自己的VPS上搭建Justwriting，建议使用Dropbox来同步文章。[安装过程见这里](https://github.com/hjue/JustWriting/wiki/%E4%BD%BF%E7%94%A8Dropbox%E5%92%8CJustwriting%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2)。
+
+- 虚拟主机用户按照如下指示进行操作  
 
     1. [ Create App ](https://www.dropbox.com/developers/apps)
     1. Generated access token
