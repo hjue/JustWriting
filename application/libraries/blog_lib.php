@@ -1,6 +1,7 @@
 <?php
 require APPPATH.'third_party/Michelf/MarkdownExtra.inc.php';
 use \Michelf\MarkdownExtra;
+define('IMAGE_PATH','posts/images/');
 class blog_lib{
 
 	var $CI;
@@ -64,16 +65,32 @@ class blog_lib{
   public function image_upload($image)
   {
     if(empty($image))
-      return false;
-    $config['upload_path'] = FCPATH.'posts/images';
-    if(!file_exists($config['upload_path']))
+      return false;		
+	
+		if (IS_SAE)
+		{
+			$config['upload_path'] = IMAGE_PATH;
+		}
+		else
+		{
+      $config['upload_path'] = FCPATH.IMAGE_PATH;
+      if(!file_exists($config['upload_path']))
+      {
+        mkdir($config['upload_path'],0777,true);
+      }
+		}
+    if(IS_SAE)
     {
-      mkdir($config['upload_path'],0777,true);
+      //TODO:SAE下如何获得上传文件的类型
+      $config['allowed_types'] = '*';
+    }else{
+      $config['allowed_types'] = 'gif|jpg|png';
     }
-    $config['allowed_types'] = 'gif|jpg|png';
+    
     $config['max_size'] = '0';
     $config['max_width'] = '0';
     $config['max_height'] = '0';
+    $config['overwrite'] = true;
 
     $this->CI->load->library('upload', $config);      
     if ( !$this->CI->upload->do_upload('image'))
@@ -85,7 +102,14 @@ class blog_lib{
     {
      $data = $this->CI->upload->data();
      $image_filename = $data['file_name'];
-     return $image_filename;
+     if(IS_SAE)
+     {
+       $link =  $data['full_path'];
+     }else{
+      $link = $this->CI->blog_config['base_url']."/posts/images/$image_filename";       
+     }
+      
+     return $link;
     }     
   }
   
@@ -119,8 +143,10 @@ class blog_lib{
       $config['max_size'] = '0';
       $config['max_width'] = '0';
       $config['max_height'] = '0';
-      $config['file_name'] = date("YmdHis").".jpg";
-      $config['encrypt_name'] = TRUE;
+      // $config['file_name'] = date("YmdHis").".jpg";
+      // $config['encrypt_name'] = TRUE;      
+      $config['overwrite'] = true;
+
 
       $this->CI->load->library('upload', $config);      
       if ( !$this->CI->upload->do_upload('image'))
@@ -197,7 +223,7 @@ class blog_lib{
                 $post_status='public'; 
                 $post_tags=array();
                 
-                if($fcontents[$hi] and strpos($fcontents[$hi],':')){
+                if($fcontents and $fcontents[$hi] and strpos($fcontents[$hi],':')){
 
                   while(trim($fcontents[$hi])){
                     preg_match($pattern, $fcontents[$hi], $matches);
