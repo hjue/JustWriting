@@ -27,7 +27,7 @@ Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机�
 
 - 极简博客，全部代码不超过400行
 - 不需要数据库
-- 不需要博客后台，只需要在本地书写
+- 不需要用在线编辑器，只需要在本地书写
 - 用Markdown书写
 - Twig Templates
 - 支持使用Dropbox发布文章
