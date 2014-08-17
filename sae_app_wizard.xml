@@ -20,6 +20,8 @@
 	</introduction>  
     <platform>
         <services>
+          <service name="posts" params="public">Storage</service>
+          <service>KVDB</service>          
         </services>
         <appconfig>
         <!-- appconfig配置，如果应用中用到了appconfig，则配置该段，具体配置方法，请参考appconfig的说明文档 -->
