@@ -1,10 +1,15 @@
 <link rel="stylesheet" type="text/css" href="/css/GitHub2.css">
 JustWriting Api
 ============
+### recently posted articles
 
+    /api/articles
+    
+Http Method:GET
+    
 ### Post article
 
-    /api/article/post/
+    /api/articles
     
 
 Http Method:Post
@@ -36,15 +41,16 @@ Failed：invalid api key ，http status code = 403
 
 ### Append  Image/Text to Article
 
-	/api/article/append/
+	/api/articles
 	
 Content-Type:multipart/form-data  
 
-Post parameters
+Post parameters，PHP对PUT支持的不好，只能接着用Post了。
 
 key|description
 ----|------
 api_key|Api的密钥，在settings.php中设置
+action|append，没有这个值就会覆盖文章。
 name|文章的文件名，去掉.md的部分
 text|追加的内容
 image|追加的图片
@@ -54,7 +60,7 @@ image|追加的图片
 
 ### Upload  Image
 
-	/api/image
+	/api/images
 	
 
 Post parameters
