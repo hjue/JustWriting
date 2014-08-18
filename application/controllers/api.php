@@ -1,5 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/*
+测试Api的curl
+curl http://localhost:8080/api/images -F api_key=1234561 -F image=@2.png
+curl http://localhost:8080/api/articles -d api_key=1234561 -d name=test -d text=AAAA 
+curl http://localhost:8080/api/articles  -F action=append -F api_key=1234561 -F image=@2.png -F name=test -F text=AAAb
+*/
+
 class Api extends CI_Controller {
 
   public function __construct()
@@ -37,22 +44,61 @@ class Api extends CI_Controller {
   }
   
   
-  public function article($action)
+  public function articles()
   {
-    if($action=='post')
+    $method = strtolower($_SERVER['REQUEST_METHOD']);
+    
+    if($method=='get')
     {
-      $this->article_post();
+      $this->article_list ();
+    }    
+    
+    if($method=='post')
+    {
+      $action = strtolower($this->input->post('action'));
+      if($action=='append'){
+        $this->article_append();
+      }else{
+        $this->article_post();
+      }
+      
     }
     
-    if($action == 'append'){
-      $this->article_append();
+    if($method == 'put'){
+      parse_str(file_get_contents("php://input"),$post_vars);
     }
   }
   
+  public function article_list()    
+  {
+    $posts = $this->blog_lib->get_posts();
+    if($posts){
+      $posts = array_slice($posts,0,20);
+      $articles = array();
+      foreach($posts as $post){
+        foreach($post as $key=>$val){
+
+          if(!in_array($key,array('link','title','date','tags','intro'))){
+            unset($post[$key]);
+          }
+        }
+        $articles[]= $post;
+        
+      }
+
+      echo json_encode($articles);
+    }else{
+      set_status_header(404);
+      echo json_encode(array('errorMsg'=>'no article found'));
+      exit;            
+    }
+    
+  }
+  
   /* 
-  curl http://localhost:8080/api/image -F api_key=1234561 -F image=@2.png
+  Post Image
   */  
-  public function image()
+  public function images()
   {
     $this->check_auth();
     if(isset($_FILES))
@@ -75,7 +121,7 @@ class Api extends CI_Controller {
   }  
   
   /* 
-  curl http://localhost:8080/api/article/post -d api_key=1234561 -d name=test -d text=AAAA 
+  Post Article
   */
   private function article_post()
   {
@@ -98,12 +144,11 @@ class Api extends CI_Controller {
   }
   
   /*
-  curl http://localhost:8080/api/article/append -F api_key=1234561 -F image=@2.png -F name=test -F text=AAAA
+  Append Text/Image to Article
   */
   
   private function article_append()
   {
-
     $this->check_auth();
 
     $name = $this->input->post('name');
