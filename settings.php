@@ -23,9 +23,14 @@ $blog_config['api'] = True;
 //api_key的密码，请不要告诉其他人
 $blog_config['api_key'] = '1234561';
 
-
-
 //有关dropgox的配置，详细配置方法见https://github.com/hjue/JustWriting
 $blog_config['dropbox']['key']= '';
 $blog_config['dropbox']['secret']= '';
 $blog_config['dropbox']['access_token']= '';
+
+//代码高亮的配置，不需要的话可以设置为空
+$blog_config['highlight']='<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>';
+//数学公式的支持
+$blog_config['mathjax']='<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>';

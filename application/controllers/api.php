@@ -61,10 +61,9 @@ class Api extends CI_Controller {
 
     }
     
-    $filename =  $this->blog_lib->image_upload($image);
-    if($filename)
+    $link =  $this->blog_lib->image_upload($image);
+    if($link)
     {
-      $link = $this->blog_config['base_url']."/posts/images/$filename";
       $result['link'] = $link;
       echo json_encode($result);          
     }else{
