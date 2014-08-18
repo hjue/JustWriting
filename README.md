@@ -29,9 +29,12 @@ Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机�
 - 不需要数据库
 - 不需要用在线编辑器，只需要在本地书写
 - 用Markdown书写
+- 支持代码高亮
+- 支持数学公式显示
 - Twig Templates
 - 支持使用Dropbox发布文章
 - 支持通过Api发布文章
+
 
 ### Install
 
