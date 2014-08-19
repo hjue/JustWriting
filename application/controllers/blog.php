@@ -21,7 +21,33 @@ class Blog extends CI_Controller {
   
   public function posts($pageno=1)
   {
-//TODO: 支持分页    
+    $pageno = intval($pageno);
+    $data['config'] = $this->blog_config;
+    $posts_per_page = $this->blog_config['posts_per_page'];
+    
+
+    $this->load->library('twig_lib');    
+    $data['all_tags'] = $this->blog_lib->get_posts_tags();    
+    $posts = $this->blog_lib->get_posts();
+
+    $offset = ($pageno-1)*$posts_per_page;
+    $data['posts'] = array_slice($posts,$offset,$posts_per_page);
+    if($pageno>1){
+      $data['paginator']['has_previous'] = true;
+      $data['paginator']['previous_page_url'] = "/page/".($pageno-1);
+      
+    }else{
+      $data['paginator']['has_previous'] = false;
+    }
+    if(($offset+$posts_per_page)<count($posts)){
+      $data['paginator']['has_next'] = true;
+      $data['paginator']['next_page_url'] = "/page/".($pageno+1);
+    }else{
+      $data['paginator']['has_next'] = false;
+    }
+    
+    $this->twig_lib->render("index.html",$data);     
+
   }
   
   public function post($slug)

@@ -18,8 +18,10 @@ $blog_config['base_url'] = '';
 //你的github地址，没有可以设置为空
 $blog_config['github'] = 'https://github.com/hjue/JustWriting';
 
+$blog_config['posts_per_page'] = 10;
+
 //是否开启通过Api发布文章功能，默认未开启,Api文档见 /api
-$blog_config['api'] = True;
+$blog_config['api'] = False;
 //api_key的密码，请不要告诉其他人
 $blog_config['api_key'] = '1234561';
 
@@ -33,4 +35,11 @@ $blog_config['highlight']='<link rel="stylesheet" href="http://cdnjs.cloudflare.
 <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>';
 //数学公式的支持
-$blog_config['mathjax']='<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>';
+$blog_config['mathjax']='<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default">
+MathJax.Hub.Config({
+    tex2jax: {
+         inlineMath: [ ["$","$"]]
+         },
+     extensions: ["jsMath2jax.js", "tex2jax.js"],
+     messageStyle: "none"
+ });</script>';
