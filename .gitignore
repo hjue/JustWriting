@@ -2,6 +2,7 @@ tmp/*
 posts/*
 !posts/index.html
 !posts/justwriting.md
+!posts/test2.md
 
 cache/*
 !cache/index.html
