@@ -50,6 +50,24 @@ class Blog extends CI_Controller {
 
   }
   
+  public function archive()
+  {
+    $data['config'] = $this->blog_config;
+    $this->load->library('twig_lib');    
+    $posts = $this->blog_lib->get_posts();
+    $entries = array();
+    foreach($posts as $post){
+      $item=array();
+      foreach(array('title','date','link','tags') as $row)
+      {
+        $item[$row]=$post[$row];
+      }
+      $entries[date('Y',$item['date'])][] = $item;
+    }
+    $data['entries'] = $entries;
+    $this->twig_lib->render("archive.html",$data);
+    
+  }
   public function post($slug)
   {
     $slug=urldecode($slug);

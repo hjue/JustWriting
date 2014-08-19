@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mid-col">
+    <div class="mid-col-container">
+        <div id="content" class="inner">
+            {% for year, posts in entries %}
+            <section class="archives"><h1 class="year">{{ year }}</h1>
+                {% for post in posts %}
+                <article>
+                    <div class="meta">
+                        <span class="date">{{ post.date | date('Y-m-d') }}</span>
+                        <br>
+                        <span class="tags">
+                            {% if post.tags %}
+                                {% for tag in post.tags %}
+                                    <a class='category' href="/tags/{{ tag }}">{{ tag }}</a>
+                                {% endfor %}
+                            {% endif %}
+                        </span>
+                        
+                    </div>
+					{% if post.metadata.link %}
+					<h1 class="title">[链接]<a href="{{post.metadata.link}}" target="_blank">{{ post.title }}</a></h1>
+					{% else %}
+                    <h1 class="title"><a href="{{ post.link }}">{{ post.title }}</a></h1>
+					{% endif %}
+                </article>
+                {% endfor %}
+            </section>
+            {% endfor %}
+        </div>
+    </div>
+    {% include 'include/footer.html' %}
+</div>
+{% endblock %}
+
