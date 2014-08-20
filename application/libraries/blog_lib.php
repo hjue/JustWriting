@@ -4,6 +4,7 @@ use \Michelf\MarkdownExtra;
 define('IMAGE_PATH','posts/images/');
 class blog_lib{
 
+  var $_error;
 	var $CI;
   var $posts_path;
   var $file_ext='.md';
@@ -21,7 +22,10 @@ class blog_lib{
 
 	}
 
-
+  public function errorMsg(){
+    return $this->_error;
+  }
+  
   public function get_help()
   {
     $content = file_get_contents(FCPATH.'README.md');
@@ -44,7 +48,7 @@ class blog_lib{
     }
 
     $path = $this->posts_path.$filename;
-    if(file_exists($path)){
+    if(s_file_exists($path)){
       $slug = str_replace($this->file_ext,'',$filename);
       return $this->CI->blog_config['base_url']."/post/$slug";
     }    
@@ -56,9 +60,12 @@ class blog_lib{
     if(substr($filename,-3)!='.md'){
       $filename .= '.md';
     }
-
-    $path = $this->posts_path.$filename;
-    file_put_contents($path,"\n".$text);
+    if(IS_SAE){
+      $path = 'posts/'.$filename;
+    }else{
+      $path = $this->posts_path.$filename;
+    }    
+    s_write($path,"\n".$text);
     return $filename;
   }
   
@@ -74,18 +81,24 @@ class blog_lib{
 		else
 		{
       $config['upload_path'] = FCPATH.IMAGE_PATH;
+
       if(!file_exists($config['upload_path']))
-      {
-        mkdir($config['upload_path'],0777,true);
+      {       
+        if(is_writable($this->posts_path)){
+          mkdir($config['upload_path'],0777,true);
+        }else{
+          $this->_error = $config['upload_path'].' is not writable.';
+          return false;
+        }
+       
       }
 		}
-    if(IS_SAE)
-    {
-      //TODO:SAE下如何获得上传文件的类型
-      $config['allowed_types'] = '*';
-    }else{
-      $config['allowed_types'] = 'gif|jpg|png';
-    }
+
+    //TODO:SAE下如何获得上传文件的类型
+    $config['allowed_types'] = '*';
+
+    // $config['allowed_types'] = 'gif|jpg|png';
+
     
     $config['max_size'] = '0';
     $config['max_width'] = '0';
@@ -95,7 +108,7 @@ class blog_lib{
     $this->CI->load->library('upload', $config);      
     if ( !$this->CI->upload->do_upload('image'))
     {
-     $error = array('error' => $this->CI->upload->display_errors());
+     $this->_error = array('error' => $this->CI->upload->display_errors());
      return false;
     } 
     else
@@ -119,50 +132,35 @@ class blog_lib{
     if(substr($filename,-3)!='.md'){
       $filename .= '.md';
     }
-
-    $path = $this->posts_path.$filename;
-    if(!file_exists($path))
+    if(IS_SAE){
+      $path = 'posts/'.$filename;
+    }else{
+      $path = $this->posts_path.$filename;
+    }
+    
+    if(!s_file_exists($path))
     {
+      $this->_error = $filename.' is not exist';
       return false;
     }
     
-    $content = file_get_contents($path);
+    $content = s_read($path);
     
     if($text){
-      $content .= "\n\n".$text;
-      file_put_contents($path,$content);
+      $content .= "\n\n".$text;      
+      s_write($path,$content);
     }
     
     if($image){
-      $config['upload_path'] = FCPATH.'posts/images';
-      if(!file_exists($config['upload_path']))
-      {
-        mkdir($config['upload_path'],0777,true);
+      $ret = $this->image_upload($image);
+      if($ret===false){
+        return false;
+      }else{
+        $image_filename = basename($ret);
+        $content .= "\n\n"."![](images/$image_filename)";
+        s_write($path,$content);        
       }
-      $config['allowed_types'] = 'gif|jpg|png';
-      $config['max_size'] = '0';
-      $config['max_width'] = '0';
-      $config['max_height'] = '0';
-      // $config['file_name'] = date("YmdHis").".jpg";
-      // $config['encrypt_name'] = TRUE;      
-      $config['overwrite'] = true;
-
-
-      $this->CI->load->library('upload', $config);      
-      if ( !$this->CI->upload->do_upload('image'))
-      {
-       $error = array('error' => $this->CI->upload->display_errors());
-       return false;
-      } 
-      else
-      {
-       $data = $this->CI->upload->data();
-       $image_filename = $data['file_name'];
-       $content .= "\n\n"."![](images/$image_filename)";
-       file_put_contents($path,$content);
-      }            
-    }
-    
+    }    
     
     return $filename;
   }  
