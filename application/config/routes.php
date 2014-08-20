@@ -52,6 +52,10 @@ $route['sync/dropbox'] = "dropbox";
 $route['sync/dropbox/(:any)'] = "dropbox/$1";
 
 $route['api'] = "api/index";
+
+$route['images/(:any)'] = 'images/file/$1';
+$route['posts/images/(:any)'] = 'images/file/$1';
+
 $route['404_override'] = '';
 
 
