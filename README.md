@@ -6,17 +6,29 @@ JustWriting
 
 [Justwriting](https://github.com/hjue/JustWriting)是一个极简开源博客系统，不同于Wordpress等传统博客系统，Justwriting没有博客后台，你只需要在你的电脑上用Markdown书写，还有比这更简单的吗。同时你不用担心你的文章丢失，因为文章就在你的电脑里。
 
+这个方法搭建的博客还有一个优势，就是可以用作团队博客。具体操作是把Dropbox中的文章目录共享给你的团队成员，团队成员的Dropbox中就多了你分享的目录，他只需要在这个目录中添加Markdown文章即可。当然，他也可以修改你的文章，不过这个操作最好不要和你同时进行，否则文件会出现冲突。
+
 Justwriting的创意来自[Farbox](https://www.farbox.com/),我自己原本也是Farbox的粉丝，只是最近喜欢折腾，写了这个博客系统。
 
 Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机，建议你使用Dropbox+Justwriting，在设置博客系统以后，你只需要用Markdown书写，完全不需要关注其他。
 
 如果你不用Dropbox，目前只能通过FTP、SVN、Git等其他途径发布文章了，这样不能发挥Justwriting最大的功效。
 
-其他网盘的支持我正在推进中，微博微盘(Vdisk)无法支持了，因为Vdisk App沙箱中的文件居然不出现在用户的微盘中的，My God！[这是Vdisk的文档](http://vdisk.weibo.com/developers/index.php?module=api&action=rights#space)
-
-下一个计划支持的网盘是百度网盘。
+[在线演示在这里。](http://justwriting.sinaapp.com/)
 
 使用当中有任何问题，[点这里告诉我](https://github.com/hjue/JustWriting/issues/new)
+
+其他网盘的支持我正在推进中，微博微盘(Vdisk)无法支持了，因为Vdisk App沙箱中的文件居然不出现在用户的微盘中的，My God！[这是Vdisk的文档](http://vdisk.weibo.com/developers/index.php?module=api&action=rights#space)
+
+目前已经尝试了以下的国内云盘，Justwriting都无法支持。试了一圈国内的网盘，发自内心感叹Dropbox的牛X。Dropbox不仅可以在服务器上通过客户端同步，同时也可以选择创建应用同步，Dropbox在创建应用时就可以为自己生成access token。
+
+云盘|无法支持的原因
+----|----
+酷盘 [文档](http://open.kanbox.com/)|无增量接口
+百度PCS [文档](http://developer.baidu.com/wiki/index.php?title=docs/pcs/rest/file_data_apis_list#.E5.A2.9E.E9.87.8F.E6.9B.B4.E6.96.B0.E6.9F.A5.E8.AF.A2) |有增量接口，但申请一周后仍未有进展
+快盘 [文档](http://www.kuaipan.cn/developers/document.htm) |无增量接口
+新浪微盘 [文档](http://vdisk.weibo.com/developers/index.php?module=api&action=apidoc#delta) |有增量接口，但应用的沙箱的文件不出现的用户网盘中
+
 
 ### Requirements
 
@@ -104,7 +116,6 @@ Justwriting支持通过Api发布文章。点这里查看[Api文档](https://gith
     
 ### ToDo List
 
-- [ ] 文章列表分页
 - [x] 支持微盘同步(Sina网盘) 
 Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱中的文件居然不出现在用户的微盘中。
 [Vdisk的文档](http://vdisk.weibo.com/developers/index.php?module=api&action=rights#space)
@@ -120,9 +131,6 @@ Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱�
 
 - [xieyu33333](https://github.com/xieyu33333)
 
-### Online Demo
-
-[Online Demo](http://justwriting.sinaapp.com/)
 
 ## License
 

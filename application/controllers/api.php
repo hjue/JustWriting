@@ -2,9 +2,9 @@
 
 /*
 测试Api的curl
-curl http://localhost:8080/api/images -F api_key=1234561 -F image=@2.png
+curl http://localhost:8080/api/images -F api_key=1234561 -F image=@1.jpeg
 curl http://localhost:8080/api/articles -d api_key=1234561 -d name=test -d text=AAAA 
-curl http://localhost:8080/api/articles  -F action=append -F api_key=1234561 -F image=@2.png -F name=test -F text=AAAb
+curl http://localhost:8080/api/articles  -F action=append -F api_key=1234561 -F image=@1.jpeg -F name=test -F text=AAAb
 */
 
 class Api extends CI_Controller {
@@ -114,7 +114,7 @@ class Api extends CI_Controller {
       echo json_encode($result);          
     }else{
       set_status_header(401);
-      echo json_encode(array('errorMsg'=>'upload failed'));
+      echo json_encode(array('errorMsg'=>$this->blog_lib->errorMsg()));
       exit;      
     }
 
@@ -167,7 +167,7 @@ class Api extends CI_Controller {
       echo json_encode($result);      
     }else{
       set_status_header(401);
-      echo json_encode(array('errorMsg'=>'append failed'));
+      echo json_encode(array('errorMsg'=>$this->blog_lib->errorMsg()));
       exit;            
     }
 
