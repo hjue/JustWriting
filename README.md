@@ -14,11 +14,21 @@ Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机�
 
 如果你不用Dropbox，目前只能通过FTP、SVN、Git等其他途径发布文章了，这样不能发挥Justwriting最大的功效。
 
-其他网盘的支持我正在推进中，微博微盘(Vdisk)无法支持了，因为Vdisk App沙箱中的文件居然不出现在用户的微盘中的，My God！[这是Vdisk的文档](http://vdisk.weibo.com/developers/index.php?module=api&action=rights#space)
-
-下一个计划支持的网盘是百度网盘。
+[在线演示在这里。](http://justwriting.sinaapp.com/)
 
 使用当中有任何问题，[点这里告诉我](https://github.com/hjue/JustWriting/issues/new)
+
+其他网盘的支持我正在推进中，微博微盘(Vdisk)无法支持了，因为Vdisk App沙箱中的文件居然不出现在用户的微盘中的，My God！[这是Vdisk的文档](http://vdisk.weibo.com/developers/index.php?module=api&action=rights#space)
+
+目前已经尝试了以下的国内云盘，Justwriting都无法支持。试了一圈国内的网盘，发自内心感叹Dropbox的牛X。Dropbox不仅可以在服务器上通过客户端同步，同时也可以选择创建应用同步，Dropbox在创建应用时就可以为自己生成access token。
+
+云盘|无法支持的原因
+----|----
+酷盘 [文档](http://open.kanbox.com/)|无增量接口
+百度PCS [文档](http://developer.baidu.com/wiki/index.php?title=docs/pcs/rest/file_data_apis_list#.E5.A2.9E.E9.87.8F.E6.9B.B4.E6.96.B0.E6.9F.A5.E8.AF.A2) |有增量接口，但申请一周后仍未有进展
+快盘 [文档](http://www.kuaipan.cn/developers/document.htm) |无增量接口
+新浪微盘 [文档](http://vdisk.weibo.com/developers/index.php?module=api&action=apidoc#delta) |有增量接口，但应用的沙箱的文件不出现的用户网盘中
+
 
 ### Requirements
 
@@ -121,9 +131,6 @@ Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱�
 
 - [xieyu33333](https://github.com/xieyu33333)
 
-### Online Demo
-
-[Online Demo](http://justwriting.sinaapp.com/)
 
 ## License
 
