@@ -1,8 +1,9 @@
 JustWriting
 ============
 
-
 ![](https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/page.png)
+
+![](https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/preview_deepure.png)
 
 [Justwriting](https://github.com/hjue/JustWriting)是一个极简开源博客系统，不同于Wordpress等传统博客系统，Justwriting没有博客后台，你只需要在你的电脑上用Markdown书写，还有比这更简单的吗。同时你不用担心你的文章丢失，因为文章就在你的电脑里。
 
@@ -43,7 +44,7 @@ Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机�
 - 用Markdown书写
 - 支持代码高亮
 - 支持数学公式显示
-- Twig Templates
+- 多模板支持
 - 支持使用Dropbox发布文章
 - 支持通过Api发布文章
 
