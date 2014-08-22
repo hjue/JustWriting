@@ -1,0 +1,30 @@
+{% if config.comment %}
+<!-- 多说评论框 start -->
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"{{config.duoshuo_short_name}}"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->    
+
+{% endif %}  
+
+<footer id="footer">
+	<div class="footer-right">
+
+	</div>
+	<div class="copyright">
+		Powered By
+		<a target='_blank' href="https://github.com/hjue/JustWriting">JustWriting</a>
+		Theme by <a href="http://motype.org">Deepure</a> . Thanks for
+		<a href="http://fontawesome.io/">Fontawesome</a> & <a href="https://www.dropbox.com/"><i class="icon-dropbox"></i></a> 
+	</div>
+</footer>

@@ -48,7 +48,7 @@ Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机�
 - 支持通过Api发布文章
 
 
-### Install
+### 安装
 
 1. 设置博客参数，修改settings.php
 1. 上传源代码到你的PHP空间

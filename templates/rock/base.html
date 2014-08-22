@@ -13,7 +13,7 @@
     
     <link href="/favicon.png" rel="shortcut icon">
     
-	<link href="/templates/rock/css/highlight.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/templates/{{config.template}}/css/highlight.css" media="screen, projection" rel="stylesheet" type="text/css">
 
     <link href="/templates/rock/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
     <link href="/templates/rock/css/style.css" rel="stylesheet" type="text/css">
@@ -31,7 +31,11 @@
 			});
 		});
 	</script>
-{{ config.highlight|raw }}
+{% if config.highlight %}      
+      <link rel="stylesheet" href="/styles/highlight/styles/{{config.highlight}}.css">
+      <script src="/styles/highlight/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+{% endif %}
 {{ config.mathjax|raw }}
 </head>
 <body>

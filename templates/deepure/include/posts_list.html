@@ -1,0 +1,60 @@
+{% for post in posts %}
+<article class="loop-post">
+    {% if post.metadata.link %}
+    <h2>
+        <a href="{{post.metadata.link}}"> <i class="icon-external-link"></i>
+            {{ post.title }}
+        </a>
+    </h2>
+    <div class="post-intro post-link">{{ post.content }}</div>
+    <div class="entry-meta entry-link">
+        <span> <i class="icon-time"></i>
+            {{ post.date | date('Y-m-d') }}
+        </span>
+        {% if post.tags %}
+        <span>
+            <i class="icon-tags"></i>
+            {% for tag in post.tags %}
+            <a class="tag" href="/tags/{{ tag }}">{{ tag }}</a>
+            {% endfor %}
+        </span>
+        {% endif %}
+        <span class="count">
+            <i class="icon-book"></i>
+            {{ post.visits }}
+        </span>
+    </div>
+    {% else %}
+    
+    {% if post.cover != none %}
+    <a class="entry-thumbnail" href="{{post.link}}">
+        <img src="{{post.cover}}?width=200" alt=""></a>
+    {% endif %}
+    <h2>
+        <a href="{{post.link}}">{{ post.title }}</a>
+    </h2>
+    <div class="entry-meta">
+        <span>
+            <i class="icon-time"></i>
+            {{ post.date | date('Y-m-d') }}
+        </span>
+        {% if post.tags %}
+        <span>
+            <i class="icon-tags"></i>
+            {% for tag in post.tags %}
+            <a class="tag" href="/tags/{{ tag }}">{{ tag }}</a>
+            {% endfor %}
+        </span>
+        {% endif %}
+        <span class="count">
+            <i class="icon-book"></i>
+            {{ post.visits }}
+        </span>
+    </div>
+
+    <div class="post-intro">{{ post.intro }}</div>
+    {% endif %}
+</article>
+{% endfor %}
+
+{% include 'include/paginator.html' %}

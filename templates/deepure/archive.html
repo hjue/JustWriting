@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}{{ config.title }}{% endblock %}
+
+{% block nav_archive %}
+    class="current"
+{% endblock %}
+
+{% block content %}
+    <ul class="archive-list">
+    {% for year, posts in entries %}
+        <li class="list-years">{{ year }}</li>
+        <ul class='listing'>
+        {% for post in posts %}
+            <li class="listing-item">
+                <span class="date">{{ post.date | date('Y-m-d') }}</span>
+                <a href="{{ post.link }}" title="{{ post.title }}">{{ post.title }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+    </ul>
+{% endblock %}

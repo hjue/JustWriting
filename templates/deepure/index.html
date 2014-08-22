@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}{{ config.title }}{% endblock %}
+{% block nav_index %}
+    class="current"
+{% endblock %}
+
+{% block content %}
+<div class="primary">{% include 'include/posts_list.html' %}</div>
+{% include 'include/sider.html' %}
+
+{% endblock %}
