@@ -7,7 +7,7 @@ $blog_config['intro'] = 'Super Simple Blog Engine';
 $blog_config['author']='JustWriting';
 //博客头像
 $blog_config['avatar']= 'https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/logo.png';
-//博客模板,模板在templates目录下，可自己定制
+//博客模板,模板在templates目录下，可自己定制，目前可选模板rock,deepure
 $blog_config['template'] = 'rock';
 //是否开启评论,关闭设置为False
 $blog_config['comment'] = True;
@@ -30,10 +30,8 @@ $blog_config['dropbox']['key']= '';
 $blog_config['dropbox']['secret']= '';
 $blog_config['dropbox']['access_token']= '';
 
-//代码高亮的配置，不需要的话可以设置为空
-$blog_config['highlight']='<link rel="stylesheet" href="/styles/highlight/styles/monokai_sublime.css">
-<script src="/styles/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>';
+//代码高亮的配置，不需要的话可以设置为空,支持多种高亮方案，高亮方案的名称是styles/highlight/styles/目录下css的文件名
+$blog_config['highlight']='default';
 //数学公式的支持
 $blog_config['mathjax']='<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default">
 MathJax.Hub.Config({

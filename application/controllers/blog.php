@@ -11,12 +11,7 @@ class Blog extends CI_Controller {
     
 	public function index()
 	{
-
-    $data['config'] = $this->blog_config;
-    $this->load->library('twig_lib');    
-    $data['all_tags'] = $this->blog_lib->get_posts_tags();    
-    $data['posts'] = $this->blog_lib->get_posts();
-    $this->twig_lib->render("index.html",$data); 
+    $this->posts();
 	}
   
   public function posts($pageno=1)
@@ -72,6 +67,7 @@ class Blog extends CI_Controller {
   {
     $slug=urldecode($slug);
     $this->load->library('twig_lib');        
+    $data['all_tags'] = $this->blog_lib->get_posts_tags();        
     $data['config'] = $this->blog_config;
     $post = $this->blog_lib->get_post($slug);
     if($post===False)
