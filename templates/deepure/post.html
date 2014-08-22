@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="primary">
+    <article class="post">
+        <header>
+            <h2>
+                <a href="{{post.link}}">{{ post.title }}</a>
+            </h2>
+            <div class="entry-meta">
+                <span> <i class="icon-time"></i>
+                    {{ post.date |  date('Y-m-d') }}
+                </span>
+                {% if post.tags %}
+                <span> <i class="icon-tags"></i>
+                    {% for tag in post.tags %}
+                    <a class="tag" href="/tags/{{ tag }}">{{ tag }}</a>
+                    {% endfor %}
+                </span>
+                {% endif %}
+                <span class="count">
+                    <i class="icon-book"></i>
+                    {{ post.visits }}
+                </span>
+            </div>
+        </header>
+        <div class="entry">{{ post.html|raw }} </div>
+    </article>
+
+    
+{% if config.comment %}
+	<div class="ds-thread" data-title="{{ post.title }}" data-url="{{ post.link }}"></div>
+{% endif %}    
+</div>
+{% include 'include/sider.html' %}
+{% endblock %}

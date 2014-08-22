@@ -1,0 +1,10 @@
+{% if paginator.has_previous or  paginator.has_next %}
+    <div class="pager cf">
+        {% if paginator.has_previous %}
+            <a href="{{ paginator.previous_page_url }}" class="prev"><i class="icon-angle-left"></i> 上一页</a>
+        {% endif %}
+        {% if paginator.has_next %}
+            <a href="{{ paginator.next_page_url}}" class="next"><i class="icon-angle-right"></i> 下一页</a>
+        {% endif %}
+    </div>
+{% endif %}

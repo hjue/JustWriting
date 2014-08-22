@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel='alternate' type='application/rss+xml' title='atom 1.0' href='/feed' />
+    <title>{% block title %} {% endblock %}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="keywords" content="" />
+    <meta name="description" content="{{ config.intro }}" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="/templates/{{config.template}}/stylesheets/screen.css?version={{ resource_version }}" media="all">
+    <!--[if IE]>
+    <link href="/templates/{{config.template}}/stylesheets/ie.css?version={{ resource_version }}" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <!--[if IE 7]>
+    <link href="/templates/{{config.template}}/stylesheets/font-awesome-ie7.min.css.css?version={{ resource_version }}" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
+{% if config.highlight %}      
+      <link rel="stylesheet" href="/styles/highlight/styles/{{config.highlight}}.css">
+      <script src="/styles/highlight/highlight.pack.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script>
+{% endif %}
+{{ config.mathjax|raw }}      
+</head>
+<body>
+    <div id="wrap">
+        <header id="header" class="cf">
+            <div class="logo">
+                <a href="/">{{ config.title}}</a>
+            </div>
+
+            <nav class="main-nav">
+                <ul class="menu">
+                    <li>
+                        <a href="/" {% block nav_index%} {% endblock %}>Home</a>
+                    </li>
+                    <li>
+                        <a href="/archive" {% block nav_archive %} {% endblock %}>Archive</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </header>
+        <div id="main" class="cf">
+            {% block content %}
+            {% endblock %}
+        </div>
+        {% include 'include/footer.html' %}
+    </div>
+</body>
+</html>

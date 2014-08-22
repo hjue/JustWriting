@@ -1,0 +1,35 @@
+<div class="sider">
+{% if all_tags %}      
+    <aside>
+        <h3>Tags</h3>
+        <div>
+            {% for tag in all_tags %}
+            <a href="/tags/{{tag}}">{{ tag }}</a>
+            {% endfor %}
+        </div>
+    </aside>
+{% endif %}    
+
+{% if rposts %}  
+    <aside>
+        <h3><i class="icon-magic"></i> Recent Article</h3>
+        <ul>
+
+            {% for post in rposts %}
+                <li class="listing-item">
+                    <a href="{{ post.link }}" title="{{ post.title }}">{{ post.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </aside>
+{% endif %}
+{% if config.comment %}
+    <aside>
+        <h3> <i class="icon-comments"></i>
+            Recent Comments
+        </h3>
+        <ul class="ds-recent-comments" data-show-title="0" data-show-time="0" data-show-avatars="0"></ul>
+    </aside>
+{% endif %}
+
+</div>
