@@ -137,7 +137,7 @@ class Api extends CI_Controller {
       echo json_encode($result);            
     }else{
       set_status_header(401);
-      echo json_encode(array('errorMsg'=>'post failed'));
+      echo json_encode(array('errorMsg'=>$this->blog_lib->errorMsg()));
       exit;            
     }
     
@@ -152,7 +152,8 @@ class Api extends CI_Controller {
     $this->check_auth();
 
     $name = $this->input->post('name');
-    if(isset($_FILES))
+    $image = null;
+    if(isset($_FILES['image']))
     {
       $image  = $_FILES['image'];
 

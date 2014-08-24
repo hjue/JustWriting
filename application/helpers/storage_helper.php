@@ -50,7 +50,7 @@ if ( ! function_exists('s_write'))
   		$_f = _s_get_path($path);
   		return $_s->write($_f['domain'], $_f['filename'], $content);      
     }else{
-      file_put_contents($path,$content);      
+      return file_put_contents($path,$content);      
     }
 
 	}

@@ -65,8 +65,14 @@ class blog_lib{
     }else{
       $path = $this->posts_path.$filename;
     }    
-    s_write($path,"\n".$text);
-    return $filename;
+    if(s_write($path,"\n".$text)===false)
+    {
+      $this->_error = 'failed to write';
+      return false;
+    }else{
+      return $filename;
+    }
+    
   }
   
   public function image_upload($image)
@@ -148,17 +154,28 @@ class blog_lib{
     
     if($text){
       $content .= "\n\n".$text;      
-      s_write($path,$content);
+      if(s_write($path,$content)===false)
+      {
+        $this->_error = 'failed to write';
+        return false;
+      }
     }
     
     if($image){
+
       $ret = $this->image_upload($image);
       if($ret===false){
         return false;
       }else{
         $image_filename = basename($ret);
         $content .= "\n\n"."![](images/$image_filename)";
-        s_write($path,$content);        
+        if(s_write($path,$content)===false)
+        {
+          $this->_error = 'failed to write';
+          return false;
+        }else{
+          return $filename;
+        }      
       }
     }    
     
