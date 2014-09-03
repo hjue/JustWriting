@@ -135,4 +135,4 @@ Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱�
 
 ## License
 
-MIT
+Please see the file called LICENSE.
