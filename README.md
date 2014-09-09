@@ -126,8 +126,12 @@ Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱�
 
 ### 谁在用
 
+  -  [hjue](http://www.hjue.me)
+  - [JellyBool](http://www.jellybool.com/)
+  
   如果你使用了Justwriting，你将出现在这里。[点这里告诉我](https://github.com/hjue/JustWriting/issues/new)
 
+  
 ### Contributors
 
 - [xieyu33333](https://github.com/xieyu33333)
@@ -135,4 +139,4 @@ Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱�
 
 ## License
 
-MIT
+Please see the file called LICENSE.
