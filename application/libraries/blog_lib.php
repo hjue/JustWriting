@@ -237,6 +237,7 @@ class blog_lib{
                 $post_date='';
                 $post_status='public'; 
                 $post_tags=array();
+                $position = '';
                 
                 if($fcontents and $fcontents[$hi] and strpos($fcontents[$hi],':')){
 
@@ -247,6 +248,9 @@ class blog_lib{
                     if(empty($matches)) break;
                     else{
                       switch (trim(strtolower($matches[1]))) {
+                        case 'position':                        
+                          $position = time() - trim($matches[2]);
+                          break;
                         case 'title':
                           $post_title = $matches[2];
                           break;
@@ -322,7 +326,13 @@ class blog_lib{
                   'slug'=>$slug,
                   'link'=> $this->CI->blog_config['base_url']."/post/$slug",
                   'title' => $post_title, 'author' => $post_author, 'date' => $post_date, 'tags' => $post_tags, 'status' => $post_status, 'intro' => $post_intro, 'content' => $post_content);
-                  $post_dates[] = $post_date;
+                  if($position){
+                    $post_dates[] = $position;
+                  }else{
+                    $post_dates[] = $post_date;                    
+
+                  }
+                  
                   $post_titles[] = $post_title;
                   $post_authors[] = $post_author;
                   $post_tags[] = $post_tags;
