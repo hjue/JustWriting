@@ -19,6 +19,7 @@ class Blog extends CI_Controller {
     $pageno = intval($pageno);
     $data['config'] = $this->blog_config;
     $posts_per_page = $this->blog_config['posts_per_page'];
+    if(empty($posts_per_page)) $posts_per_page = 10;
     
 
     $this->load->library('twig_lib');    
