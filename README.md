@@ -47,6 +47,7 @@ Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机�
 - 多模板支持
 - 支持使用Dropbox发布文章
 - 支持通过Api发布文章
+- 文章置顶
 
 
 ### 安装
@@ -128,6 +129,9 @@ Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱�
 
   -  [hjue](http://www.hjue.me)
   - [JellyBool](http://www.jellybool.com/)
+  - [Colin Yang Blog](http://doc.mekesim.com/)
+  
+  
   
   如果你使用了Justwriting，你将出现在这里。[点这里告诉我](https://github.com/hjue/JustWriting/issues/new)
 
