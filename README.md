@@ -1,10 +1,6 @@
 JustWriting
 ============
 
-![](https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/page.png)
-
-![](https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/preview_deepure.png)
-
 ### Introduction
 
 [**Justwriting**](https://github.com/hjue/JustWriting) is a simple blog platform. You just need writing content with Markdown format, upload the .md file to website, then it will show .md files as posts on your website. 
@@ -20,6 +16,12 @@ Of cause, if you have problem to install Dropbox on servers, it also can upload 
 [Oneline Demo](http://justwriting.sinaapp.com/)
 
 If you have any question, [click here](https://github.com/hjue/JustWriting/issues/new) to tell me.
+
+[中文版使用说明移步这里](https://github.com/hjue/JustWriting/blob/master/README.zh.md)
+
+![](https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/page.png)
+
+![](https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/preview_deepure.png)
 
 ### Requirements
 
