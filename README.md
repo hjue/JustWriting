@@ -110,7 +110,7 @@ Click here to check the [Api documents](https://github.com/hjue/JustWriting/wiki
 ### Contributors
 
 - [xieyu33333](https://github.com/xieyu33333)
-
+- [mekesim](https://github.com/mekesim)
 
 ## License
 
