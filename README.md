@@ -46,7 +46,7 @@ If you have any question, [click here](https://github.com/hjue/JustWriting/issue
 3. Upload Markdown files to folder 'posts'
 4. Open website, just so...
 
-### Deploy  With Docke
+### Deploy  With Docker
 
     docker pull hjue/centos-docker-justwriting
 
