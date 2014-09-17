@@ -34,56 +34,30 @@
         <h1>
 <a name="justwriting" class="anchor" href="#justwriting"><span class="octicon octicon-link"></span></a>JustWriting</h1>
 
+<h3>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h3>
+
+<p><a href="https://github.com/hjue/JustWriting"><strong>Justwriting</strong></a> is a simple blog platform. You just need writing content with Markdown format, upload the .md file to website, then it will show .md files as posts on your website. </p>
+
+<p>It can synchronize files to the server by Dropbox.</p>
+
+<p>So don't care about lost files while the server damaged, as all files can be store on your local devices.</p>
+
+<p>If share the folder in Dropbox with others, then all members can add, edit the postes.</p>
+
+<p>Of cause, if you have problem to install Dropbox on servers, it also can upload files by FTP, SVN or git, any methods you can.</p>
+
+<p><a href="http://justwriting.sinaapp.com/">Oneline Demo</a></p>
+
+<p>If you have any question, <a href="https://github.com/hjue/JustWriting/issues/new">click here</a> to tell me.</p>
+
+<p><a href="https://github.com/hjue/JustWriting/blob/master/README.zh.md">中文版使用说明移步这里</a></p>
+
 <p><img src="https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/page.png" alt=""></p>
 
 <p><img src="https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/preview_deepure.png" alt=""></p>
 
-<p><a href="https://github.com/hjue/JustWriting">Justwriting</a>是一个极简开源博客系统，不同于Wordpress等传统博客系统，Justwriting没有博客后台，你只需要在你的电脑上用Markdown书写，还有比这更简单的吗。同时你不用担心你的文章丢失，因为文章就在你的电脑里。</p>
-
-<p>这个方法搭建的博客还有一个优势，就是可以用作团队博客。具体操作是把Dropbox中的文章目录共享给你的团队成员，团队成员的Dropbox中就多了你分享的目录，他只需要在这个目录中添加Markdown文章即可。当然，他也可以修改你的文章，不过这个操作最好不要和你同时进行，否则文件会出现冲突。</p>
-
-<p>Justwriting的创意来自<a href="https://www.farbox.com/">Farbox</a>,我自己原本也是Farbox的粉丝，只是最近喜欢折腾，写了这个博客系统。</p>
-
-<p>Justwriting是用Dropbox来同步文章。如果自己有VPS或者虚拟主机，建议你使用Dropbox+Justwriting，在设置博客系统以后，你只需要用Markdown书写，完全不需要关注其他。</p>
-
-<p>如果你不用Dropbox，目前只能通过FTP、SVN、Git等其他途径发布文章了，这样不能发挥Justwriting最大的功效。</p>
-
-<p><a href="http://justwriting.sinaapp.com/">在线演示在这里。</a></p>
-
-<p>使用当中有任何问题，<a href="https://github.com/hjue/JustWriting/issues/new">点这里告诉我</a></p>
-
-<p>其他网盘的支持我正在推进中，微博微盘(Vdisk)无法支持了，因为Vdisk App沙箱中的文件居然不出现在用户的微盘中的，My God！<a href="http://vdisk.weibo.com/developers/index.php?module=api&amp;action=rights#space">这是Vdisk的文档</a></p>
-
-<p>目前已经尝试了以下的国内云盘，Justwriting都无法支持。试了一圈国内的网盘，发自内心感叹Dropbox的牛X。Dropbox不仅可以在服务器上通过客户端同步，同时也可以选择创建应用同步，Dropbox在创建应用时就可以为自己生成access token。</p>
-
-<table>
-<thead><tr>
-<th>云盘</th>
-<th>无法支持的原因</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>酷盘 <a href="http://open.kanbox.com/">文档</a>
-</td>
-<td>无增量接口</td>
-</tr>
-<tr>
-<td>百度PCS <a href="http://developer.baidu.com/wiki/index.php?title=docs/pcs/rest/file_data_apis_list#.E5.A2.9E.E9.87.8F.E6.9B.B4.E6.96.B0.E6.9F.A5.E8.AF.A2">文档</a>
-</td>
-<td>有增量接口，但申请一周后仍未有进展</td>
-</tr>
-<tr>
-<td>快盘 <a href="http://www.kuaipan.cn/developers/document.htm">文档</a>
-</td>
-<td>无增量接口</td>
-</tr>
-<tr>
-<td>新浪微盘 <a href="http://vdisk.weibo.com/developers/index.php?module=api&amp;action=apidoc#delta">文档</a>
-</td>
-<td>有增量接口，但应用的沙箱的文件不出现的用户网盘中</td>
-</tr>
-</tbody>
-</table><h3>
+<h3>
 <a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h3>
 
 <ul>
@@ -92,119 +66,107 @@
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h3>
 
 <ul>
-<li>极简博客，全部代码不超过400行</li>
-<li>不需要数据库</li>
-<li>不需要用在线编辑器，只需要在本地书写</li>
-<li>用Markdown书写</li>
-<li>支持代码高亮</li>
-<li>支持数学公式显示</li>
-<li>多模板支持</li>
-<li>支持使用Dropbox发布文章</li>
-<li>支持通过Api发布文章</li>
+<li>Simple blog platform</li>
+<li>No need database</li>
+<li>No need online edit, just writing locally with any device</li>
+<li>Writ with Markdown</li>
+<li>Support code highlight</li>
+<li>Support Latex math equation</li>
+<li>Multi themes</li>
+<li>Support update via Dropbox</li>
+<li>Support post via API</li>
 </ul><h3>
-<a name="%E5%AE%89%E8%A3%85" class="anchor" href="#%E5%AE%89%E8%A3%85"><span class="octicon octicon-link"></span></a>安装</h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
 
 <ol>
-<li>设置博客参数，修改settings.php</li>
-<li>上传源代码到你的PHP空间</li>
-<li>将Markdown文档放到posts目录中</li>
-<li>设置posts和application/cache目录web用户可写</li>
-</ol><blockquote>
-<p>Justwriting 支持<a href="http://sae.sina.com.cn">SAE</a>云空间。SAE是Sina App Engine的简称，是新浪研发中心推出的国内首个公有云计算平台，支持PHP,MySQL,Memcached,Mail,TaskQueue,RDC（关系型数据库集群）等服务。SAE通过实名认证及开发者认证，每个月送大量云豆，对于一般的博客站点云豆完全够用，也就是说用SAE搭建博客完全免费，不需要支付费用。同时SAE还支持绑定自己的域名，只是对于没有备案的域名请求走海外中转，流量计费翻倍。</p>
-</blockquote>
-
-<h4>
-<a name="web%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE" class="anchor" href="#web%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE"><span class="octicon octicon-link"></span></a>Web服务器配置</h4>
+<li>Setting blog parameter, update 'settings.php'</li>
+<li>Upload codes to php space</li>
+<li>Upload Markdown files to folder 'posts'</li>
+<li>Open website, just so...</li>
+</ol><h4>
+<a name="web-server-configuration" class="anchor" href="#web-server-configuration"><span class="octicon octicon-link"></span></a>Web Server Configuration</h4>
 
 <ul>
-<li><a href="https://gist.github.com/hjue/4da6b1e897de31d135f7">Apache配置</a></li>
-<li><a href="https://gist.github.com/hjue/647dc694dc3b67994202">Nginx配置</a></li>
+<li><a href="https://gist.github.com/hjue/4da6b1e897de31d135f7">Apache Setting</a></li>
+<li><a href="https://gist.github.com/hjue/647dc694dc3b67994202">Nginx Setting</a></li>
 </ul><h3>
-<a name="%E4%BF%AE%E6%94%B9%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE" class="anchor" href="#%E4%BF%AE%E6%94%B9%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE"><span class="octicon octicon-link"></span></a>修改博客配置</h3>
-
-<p>博客配置在根目录下的settings.php中。
-使用SAE搭建博客的小伙伴可以通过SAE提供的在线编辑代码的功能修改配置，或者通过SVN修改settings.php。</p>
-
-<h3>
-<a name="%E5%86%99%E6%96%87%E7%AB%A0" class="anchor" href="#%E5%86%99%E6%96%87%E7%AB%A0"><span class="octicon octicon-link"></span></a>写文章</h3>
+<a name="write-articles" class="anchor" href="#write-articles"><span class="octicon octicon-link"></span></a>Write Articles</h3>
 
 <h4>
-<a name="%E6%96%87%E7%AB%A0%E5%A4%B4%E9%83%A8%E6%94%BE%E7%BD%AE%E5%A4%B4%E4%BF%A1%E6%81%AF" class="anchor" href="#%E6%96%87%E7%AB%A0%E5%A4%B4%E9%83%A8%E6%94%BE%E7%BD%AE%E5%A4%B4%E4%BF%A1%E6%81%AF"><span class="octicon octicon-link"></span></a>文章头部放置头信息</h4>
+<a name="head-information" class="anchor" href="#head-information"><span class="octicon octicon-link"></span></a>Head information</h4>
 
-<p>文章头部放置头信息，Justwriting采用的Farbox头部信息的格式，同时也支持Jekyll的头信息格式。</p>
+<p>Put the head information at the beginning of the .md file.</p>
 
 <pre><code>Date: 2014-08-09
-Title: 文章标题
-Intro: 文章摘要
-Tags: Justwriting Blog
+Title: Post tilte
+Intro: Post abstract
+Tags: Tags
 Status: public
 
-这里写正文
+Contents
 </code></pre>
 
-<p>文章完成之前status可以设置为draft，这样这篇文章不会出现在你的博客列表中。</p>
+<p>The <code>status</code> also can be define as <code>draft</code>, then this file will not appeared on the website. </p>
 
-<p>在posts目录中用Markdown书写，保存为.md文件。</p>
+<p>It also support Jekyll head information.</p>
 
 <h3>
-<a name="%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83" class="anchor" href="#%E6%96%87%E7%AB%A0%E5%8F%91%E5%B8%83"><span class="octicon octicon-link"></span></a>文章发布</h3>
+<a name="add-posts" class="anchor" href="#add-posts"><span class="octicon octicon-link"></span></a>Add Posts</h3>
 
-<ul>
-<li><p>如果是在自己的VPS上搭建Justwriting，建议使用Dropbox来同步文章。<a href="https://github.com/hjue/JustWriting/wiki/%E4%BD%BF%E7%94%A8Dropbox%E5%92%8CJustwriting%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2">安装过程见这里</a>。</p></li>
-<li>
-<p>虚拟主机用户按照如下指示进行操作  </p>
+<p>As <strong>Justwriting</strong> will convert any .md file in the posts folder to post, so you just need upload <code>.md</code> file to the servers through any ways. Here list some methods:</p>
+
+<h4>
+<a name="1-synic-with-dropbox-automatically" class="anchor" href="#1-synic-with-dropbox-automatically"><span class="octicon octicon-link"></span></a>1. Synic with Dropbox Automatically</h4>
+
+<p>If running <strong>Justwriting</strong> on VPS, suggest to update post through Dropbox. <a href="https://github.com/hjue/JustWriting/wiki/%E4%BD%BF%E7%94%A8Dropbox%E5%92%8CJustwriting%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2">Installation Process</a>。</p>
+
+<h4>
+<a name="2-manually-update-from-dropbox" class="anchor" href="#2-manually-update-from-dropbox"><span class="octicon octicon-link"></span></a>2. Manually Update from Dropbox</h4>
+
+<p>For virtual host user, it may not able to install Dropbox client, <strong>JustWritting</strong> provide a function to manually pull files from Dropbox.</p>
 
 <ol>
 <li><a href="https://www.dropbox.com/developers/apps"> Create App </a></li>
 <li>Generated access token</li>
-<li>Configure params in settings.php: <code>$blog_config['dropbox']['key'],$blog_config['dropbox']['secret'],$blog_config['dropbox']['access_token']</code>
-</li>
-<li>access <a href="http://your_justwriting_site/sync/dropbox/download">http://your_justwriting_site/sync/dropbox/download </a> for syncing posts</li>
-</ol>
-</li>
-</ul><ul>
 <li>
-<p>如果在SAE上搭建Justwriting，建议使用SVN来更新文章
-Windows下SVN的使用方法点<a href="http://sae.sina.com.cn/doc/tutorial/code-deploy.html#tortoisesvn">这里</a>
-Mac &amp; Linux 下还是习惯用命令行：</p>
+<p>Configure params in settings.php: </p>
 
-<pre><code>svn co https://svn.sinaapp.com/you_sae_name
-svn add 1/
-svn ci -m "submit code"   
+<pre><code>  $blog_config['dropbox']['key'],
+  $blog_config['dropbox']['secret'],
+  $blog_config['dropbox']['access_token']
 </code></pre>
-
-<p><a href="http://sae.sina.com.cn/doc/tutorial/helloworld-for-linux-mac.html">详情使用方法点这里</a></p>
 </li>
-</ul><h3>
-<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>Api</h3>
+<li><p>access <a href="http://your_justwriting_site/sync/dropbox/download">http://your_justwriting_site/sync/dropbox/download </a> for syncing posts</p></li>
+</ol><h4>
+<a name="3-through-api" class="anchor" href="#3-through-api"><span class="octicon octicon-link"></span></a>3. Through Api</h4>
 
-<p>Justwriting支持通过Api发布文章。点这里查看<a href="https://github.com/hjue/JustWriting/wiki/API">Api文档</a></p>
+<p>Justwriting supports post through Api.</p>
 
-<p>使用Api需要在配置文件(settings.php)中打开Api，并且设置Api的密钥。</p>
+<p>If use Api, it need true on the option in settings.php, and set the Api Key in it.</p>
+
+<p>Click here to check the <a href="https://github.com/hjue/JustWriting/wiki/API">Api documents</a></p>
 
 <h3>
-<a name="todo-list" class="anchor" href="#todo-list"><span class="octicon octicon-link"></span></a>ToDo List</h3>
+<a name="who-are-using" class="anchor" href="#who-are-using"><span class="octicon octicon-link"></span></a>Who are using</h3>
 
 <ul>
-<li><p>[x] 支持微盘同步(Sina网盘) 
-Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱中的文件居然不出现在用户的微盘中。
-<a href="http://vdisk.weibo.com/developers/index.php?module=api&amp;action=rights#space">Vdisk的文档</a></p></li>
-<li><p>[ ] 百度网盘</p></li>
-<li>[ ] 支持插件机制</li>
+<li><a href="http://www.hjue.me">hjue</a></li>
+<li><a href="http://www.jellybool.com/">JellyBool</a></li>
+<li>
+<p><a href="http://doc.mekesim.com/">Colin</a></p>
+
+<p>If you are using Justwriting, and would like to list here, <a href="https://github.com/hjue/JustWriting/issues/new">click here</a> tell me.</p>
+</li>
 </ul><h3>
-<a name="%E8%B0%81%E5%9C%A8%E7%94%A8" class="anchor" href="#%E8%B0%81%E5%9C%A8%E7%94%A8"><span class="octicon octicon-link"></span></a>谁在用</h3>
-
-<p>如果你使用了Justwriting，你将出现在这里。<a href="https://github.com/hjue/JustWriting/issues/new">点这里告诉我</a></p>
-
-<h3>
 <a name="contributors" class="anchor" href="#contributors"><span class="octicon octicon-link"></span></a>Contributors</h3>
 
 <ul>
 <li><a href="https://github.com/xieyu33333">xieyu33333</a></li>
+<li><a href="https://github.com/mekesim">mekesim</a></li>
 </ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
-<p>MIT</p>
+<p>Please see the file called LICENSE.</p>
       </section>
     </div>
 
