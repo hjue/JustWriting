@@ -23,7 +23,7 @@ class Blog extends CI_Controller {
     
 
     $this->load->library('twig_lib');    
-    $data['all_tags'] = $this->blog_lib->get_posts_tags();    
+    $data['all_tags'] = $this->blog_lib->get_posts_tags();
     $posts = $this->blog_lib->get_posts();
 
     $offset = ($pageno-1)*$posts_per_page;
@@ -96,6 +96,16 @@ class Blog extends CI_Controller {
 
   }
   
+  public function category($category)
+  {
+    $category = trim(urldecode($category));
+    $data['config'] = $this->blog_config;
+    $this->load->library('twig_lib');    
+    $data['all_tags'] = $this->blog_lib->get_posts_tags();        
+    $data['all_categories'] = $this->blog_lib->get_posts_categories();    
+    $data['posts'] = $this->blog_lib->get_posts_by_category($category);
+    $this->twig_lib->render("tags.html",$data);
+  }  
     
   public function tags($tag='')
   {

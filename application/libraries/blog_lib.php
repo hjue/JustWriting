@@ -11,6 +11,8 @@ class blog_lib{
   
   var $_all_posts;
   var $_all_tags;
+  var $_all_categories;
+  
 	public function __construct()
 	{
  
@@ -213,6 +215,36 @@ class blog_lib{
   }
   
 
+  private function findFiles($directory, $extensions = array()) {
+      function glob_recursive($directory, &$directories = array()) {
+          foreach(glob($directory, GLOB_ONLYDIR | GLOB_NOSORT) as $folder) {
+              $directories[] = $folder;
+              glob_recursive("{$folder}/*", $directories);
+          }
+      }
+      glob_recursive($directory, $directories);
+      $files = array ();
+      $category = array();
+      foreach($directories as $directory) {
+          foreach($extensions as $extension) {
+              foreach(glob("{$directory}/*.{$extension}") as $file) {
+
+                if(basename($directory)!='posts'){
+                  if(array_key_exists(basename($directory),$category)){
+                    $category[basename($directory)] = $category[basename($directory)] + 1;
+                  }else{
+                    $category[basename($directory)] = 1;
+                  }
+                }
+                  
+                $files[$extension][] = $file;
+              }
+          }
+      }
+      
+      return array($category,$files);
+  }
+  
   private function __get_all_posts()
   {
     if(!empty($this->_all_posts))
@@ -221,128 +253,138 @@ class blog_lib{
     }
     $all_tags = array();
     $posts_path = $this->posts_path;
+    
+    list($categories,$post_files) = $this->findFiles($posts_path,array('md'));
+    $this->_all_categories = $categories;
+
     if($handle = opendir($posts_path)) {
 
         $files = array();
         $filetimes = array();
+        
+        foreach($post_files['md'] as $post_file_path){
+          $entry = basename($post_file_path);
+          $fcontents = file($post_file_path);
 
-        while (false !== ($entry = readdir($handle))) {
-            if(substr(strrchr($entry,'.'),1)==ltrim($this->file_ext, '.')) {
-                $fcontents = file($posts_path.$entry);
+          $hi=0;
+          $pattern = '/^\s*(title|date|position|description|intro|status|toc|url|tags|category)\s*:(.*?)$/im';
+          $post_title='';
+          $post_intro='';
+          $post_date='';
+          $post_status='public'; 
+          $post_tags=array();
+          $position = '';
+          
+          if($fcontents and $fcontents[$hi] and strpos($fcontents[$hi],':')){
 
-                $hi=0;
-                $pattern = '/^\s*(title|date|position|description|intro|status|toc|url|tags|category)\s*:(.*?)$/im';
-                $post_title='';
-                $post_intro='';
-                $post_date='';
-                $post_status='public'; 
-                $post_tags=array();
-                $position = '';
+            while(trim($fcontents[$hi])){
+              preg_match($pattern, $fcontents[$hi], $matches);
+              $hi++;
+            
+              if(empty($matches)) break;
+              else{
+                switch (trim(strtolower($matches[1]))) {
+                  case 'position':                        
+                    $position = time() - trim($matches[2]);
+                    break;
+                  case 'title':
+                    $post_title = $matches[2];
+                    break;
+                  case 'date':
+                    $post_date = trim($matches[2]);
+                    break;                      
                 
-                if($fcontents and $fcontents[$hi] and strpos($fcontents[$hi],':')){
+                  case 'status':
+                    $post_status = trim($matches[2]);
+                    if($post_status!='public'){
+                      $post_status = 'draft';
+                    }
+                    break;
 
-                  while(trim($fcontents[$hi])){
-                    preg_match($pattern, $fcontents[$hi], $matches);
-                    $hi++;
+                  case 'tags':
+                  case 'category':
+                    $tags = trim($matches[2]);
+                    if(substr($tags,0,1)=='[') $tags = substr($tags,1);
+                    if(substr($tags,-1,1)==']') $tags = substr($tags,0,-1);
+                    $post_tags = preg_split('#[,\s]#',$tags, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+
+
+                    break;
+                  case 'intro':
+                  case 'description':
+                    $post_intro = trim($matches[2]);
+                    break;
                   
-                    if(empty($matches)) break;
-                    else{
-                      switch (trim(strtolower($matches[1]))) {
-                        case 'position':                        
-                          $position = time() - trim($matches[2]);
-                          break;
-                        case 'title':
-                          $post_title = $matches[2];
-                          break;
-                        case 'date':
-                          $post_date = trim($matches[2]);
-                          break;                      
-                      
-                        case 'status':
-                          $post_status = trim($matches[2]);
-                          if($post_status!='public'){
-                            $post_status = 'draft';
-                          }
-                          break;
-
-                        case 'tags':
-                        case 'category':
-                          $tags = trim($matches[2]);
-                          if(substr($tags,0,1)=='[') $tags = substr($tags,1);
-                          if(substr($tags,-1,1)==']') $tags = substr($tags,0,-1);
-                          $post_tags = preg_split('#[,\s]#',$tags, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
-
-
-                          break;
-                        case 'intro':
-                        case 'description':
-                          $post_intro = trim($matches[2]);
-                          break;
-                        
-                        default:
-                          # code...
-                          break;
-                      }
-                    }                  
-                  }                  
+                  default:
+                    # code...
+                    break;
                 }
+              }                  
+            }                  
+          }
 
-                if(empty($post_title)){
-                  $post_title = str_replace('.md','',$entry);
-                }
-                
-                if(strtolower($post_status)!='public'){
-                  continue;
-                }
-                foreach($post_tags as $k=>$row)
-                {
-                  $trimed_tag = trim($row);
-                  if(empty($trimed_tag))
-                    unset($post_tags[$k]);
-                  else{
-                    $all_tags[$trimed_tag]=1;
-                  }
-                }                
-                if(empty($post_date))
-                {
-                  $post_date = filemtime($posts_path.$entry);
-                }else{
-                  $post_date = strtotime($post_date);
-                }
-                $post_author = $this->CI->blog_config['author'];
+          if(empty($post_title)){
+            $post_title = str_replace('.md','',$entry);
+          }
+          
+          if(strtolower($post_status)!='public'){
+            continue;
+          }
+          foreach($post_tags as $k=>$row)
+          {
+            $trimed_tag = trim($row);
+            if(empty($trimed_tag))
+              unset($post_tags[$k]);
+            else{
+              $all_tags[$trimed_tag]=1;
+            }
+          }                
+          if(empty($post_date))
+          {
+            $post_date = filemtime($post_file_path);
+          }else{
+            $post_date = strtotime($post_date);
+          }
+          $post_author = $this->CI->blog_config['author'];
 
-                $post_content_md = trim(join('', array_slice($fcontents, $hi, count($fcontents))));
-                $post_content = $post_content_md;
+          $post_content_md = trim(join('', array_slice($fcontents, $hi, count($fcontents))));
+          $post_content = $post_content_md;
 
-                if(empty($post_intro)){
-                  $post_text = strip_tags($this->markdown($post_content));
-                  $post_intro = mb_substr($post_text,0,200);                  
-                }
-                $slug = str_replace($this->file_ext,'',$entry);
+          if(empty($post_intro)){
+            $post_text = strip_tags($this->markdown($post_content));
+            $post_intro = mb_substr($post_text,0,200);                  
+          }
+          $slug = str_replace($this->file_ext,'',$entry);
+          
+          $temp_c = basename(str_replace($entry,'',$post_file_path));
+          $post_category = '';
+          if($temp_c!='posts'){
+            $post_category = $temp_c;
+          }
+          
+          if($post_status=='public'){
 
-                if($post_status=='public'){
-
-                  $files[] = array('fname' => $entry, 
-                  'slug'=>$slug,
-                  'link'=> $this->CI->blog_config['base_url']."/post/$slug",
-                  'title' => $post_title, 'author' => $post_author, 'date' => $post_date, 'tags' => $post_tags, 'status' => $post_status, 'intro' => $post_intro, 'content' => $post_content);
-                  if($position){
-                    $post_dates[] = $position;
-                  }else{
-                    $post_dates[] = $post_date;                    
-
-                  }
-                  
-                  $post_titles[] = $post_title;
-                  $post_authors[] = $post_author;
-                  $post_tags[] = $post_tags;
-                  $post_statuses[] = $post_status;
-                  $post_intros[] = $post_intro;
-                  $post_contents[] = $post_content;                  
-                }
+            $files[] = array('fname' => $entry, 
+            'slug'=>$slug,
+            'link'=> $this->CI->blog_config['base_url']."/post/$slug",
+            'title' => $post_title, 'author' => $post_author, 'date' => $post_date, 'tags' => $post_tags, 'status' => $post_status, 'intro' => $post_intro, 'content' => $post_content,'category'=>$post_category);
+            if($position){
+              $post_dates[] = $position;
+            }else{
+              $post_dates[] = $post_date;                    
 
             }
-        }
+            
+            $post_titles[] = $post_title;
+            $post_authors[] = $post_author;
+            $post_tags[] = $post_tags;
+            $post_statuses[] = $post_status;
+            $post_intros[] = $post_intro;
+            $post_contents[] = $post_content;                  
+          }
+      }
+        
+        //
         array_multisort($post_dates, SORT_DESC, $files);
 
         $this->_all_posts = $files;
@@ -367,7 +409,7 @@ class blog_lib{
     return array_keys($this->_all_tags);
   }
   
- public function get_posts_by_tag($tag){
+  public function get_posts_by_tag($tag){
    $tag = trim($tag);
    $posts = $this->__get_all_posts();
    $result = array();
@@ -383,6 +425,29 @@ class blog_lib{
      }
    }
    return $result;
- }
+  }
  
+  public function get_posts_categories()
+  {
+    $this->__get_all_posts();
+    return $this->_all_categories;
+  }
+    
+  public function get_posts_by_category($category){
+   $category = trim($category);
+   $posts = $this->__get_all_posts();
+   $result = array();
+
+   foreach($posts as $post)
+   {
+
+     if(strtolower($category)==strtolower($post['category'])){
+        $result[]=$post;
+        break;
+     }     
+   }
+
+   return $result;
+  }
+
 }
