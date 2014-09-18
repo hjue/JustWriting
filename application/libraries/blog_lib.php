@@ -247,7 +247,7 @@ class blog_lib{
   
   private function __get_all_posts()
   {
-    if(!empty($this->_all_posts))
+    if(isset($this->_all_posts))
     {
       return $this->_all_posts;
     }
@@ -393,7 +393,10 @@ class blog_lib{
         return $this->_all_posts;
 
     } else {
-        return array();
+      $this->_all_tags = array();
+      $this->_all_categories = array();
+      $this->_all_posts = array();      
+      return array();
     }        
   }
   
