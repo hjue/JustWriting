@@ -2,13 +2,23 @@
 
 class Blog extends CI_Controller {
 
+  var $data;
+  
   public function __construct()
   {
     parent::__construct();
-    $this->load->library('blog_lib');    
+    $this->load->library('blog_lib');  
 
   }
-    
+
+
+  public function load_common_data()
+  {
+    $this->data['config'] = $this->blog_config;              
+    $this->data['all_categories'] = $this->blog_lib->get_posts_categories(); 
+    $this->data['all_tags'] = $this->blog_lib->get_posts_tags();    
+  }
+  
 	public function index()
 	{
     $this->posts();
@@ -17,39 +27,41 @@ class Blog extends CI_Controller {
   public function posts($pageno=1)
   {
     $pageno = intval($pageno);
-    $data['config'] = $this->blog_config;
+
     $posts_per_page = $this->blog_config['posts_per_page'];
     if(empty($posts_per_page)) $posts_per_page = 10;
     
-
+    $this->load_common_data();
+    
     $this->load->library('twig_lib');    
-    $data['all_tags'] = $this->blog_lib->get_posts_tags();
+
     $posts = $this->blog_lib->get_posts();
 
     $offset = ($pageno-1)*$posts_per_page;
-    $data['posts'] = array_slice($posts,$offset,$posts_per_page);
+    $this->data['posts'] = array_slice($posts,$offset,$posts_per_page);
     if($pageno>1){
-      $data['paginator']['has_previous'] = true;
-      $data['paginator']['previous_page_url'] = "/page/".($pageno-1);
+      $this->data['paginator']['has_previous'] = true;
+      $this->data['paginator']['previous_page_url'] = "/page/".($pageno-1);
       
     }else{
-      $data['paginator']['has_previous'] = false;
+      $this->data['paginator']['has_previous'] = false;
     }
     if(($offset+$posts_per_page)<count($posts)){
-      $data['paginator']['has_next'] = true;
-      $data['paginator']['next_page_url'] = "/page/".($pageno+1);
+      $this->data['paginator']['has_next'] = true;
+      $this->data['paginator']['next_page_url'] = "/page/".($pageno+1);
     }else{
-      $data['paginator']['has_next'] = false;
+      $this->data['paginator']['has_next'] = false;
     }
     
-    $this->twig_lib->render("index.html",$data);     
+    $this->twig_lib->render("index.html",$this->data);
 
   }
   
   public function archive()
   {
-    $data['config'] = $this->blog_config;
+    $this->load_common_data();
     $this->load->library('twig_lib');    
+
     $posts = $this->blog_lib->get_posts();
     $entries = array();
     foreach($posts as $post){
@@ -60,26 +72,25 @@ class Blog extends CI_Controller {
       }
       $entries[date('Y',$item['date'])][] = $item;
     }
-    $data['entries'] = $entries;
-    $this->twig_lib->render("archive.html",$data);
+    $this->data['entries'] = $entries;
+    $this->twig_lib->render("archive.html",$this->data);
     
   }
   public function post($slug)
   {
     $slug=urldecode($slug);
     $this->load->library('twig_lib');        
-    $data['all_tags'] = $this->blog_lib->get_posts_tags();        
-    $data['config'] = $this->blog_config;
+    $this->load_common_data();
     $post = $this->blog_lib->get_post($slug);
     if($post===False)
     {
       show_404('Page Not Found.');
     }else{
-      $data['post'] = $post['curr'];
-      $data['next_post'] = $post['next'];
-      $data['prev_post'] =  $post['prev'];
+      $this->data['post'] = $post['curr'];
+      $this->data['next_post'] = $post['next'];
+      $this->data['prev_post'] =  $post['prev'];
 
-      $this->twig_lib->render("post.html",$data); 
+      $this->twig_lib->render("post.html",$this->data); 
     }
 
   }
@@ -87,11 +98,9 @@ class Blog extends CI_Controller {
   
   public function gallery()
   {
-
+    $this->load_common_data();
     $this->load->library('twig_lib');        
-    $data['config'] = $this->blog_config;
-
-    $this->twig_lib->render("gallery.html",$data); 
+    $this->twig_lib->render("gallery.html",$this->data); 
 
 
   }
@@ -99,26 +108,24 @@ class Blog extends CI_Controller {
   public function category($category)
   {
     $category = trim(urldecode($category));
-    $data['config'] = $this->blog_config;
+    $this->load_common_data();    
     $this->load->library('twig_lib');    
-    $data['all_tags'] = $this->blog_lib->get_posts_tags();        
-    $data['all_categories'] = $this->blog_lib->get_posts_categories();    
-    $data['posts'] = $this->blog_lib->get_posts_by_category($category);
-    $this->twig_lib->render("tags.html",$data);
+    $this->data['posts'] = $this->blog_lib->get_posts_by_category($category);
+    $this->twig_lib->render("tags.html",$this->data);
   }  
     
   public function tags($tag='')
   {
     $tag = trim(urldecode($tag));
-    $data['config'] = $this->blog_config;
+
     $this->load->library('twig_lib');    
-    $data['all_tags'] = $this->blog_lib->get_posts_tags();    
+    $this->load_common_data();
     if(empty($tag)){
-      $this->twig_lib->render("tags_cloud.html",$data);           
+      $this->twig_lib->render("tags_cloud.html",$this->data);           
       return ;
     }else{
-      $data['posts'] = $this->blog_lib->get_posts_by_tag($tag);
-      $this->twig_lib->render("tags.html",$data);           
+      $this->data['posts'] = $this->blog_lib->get_posts_by_tag($tag);
+      $this->twig_lib->render("tags.html",$this->data);           
     }
   }
   
@@ -129,11 +136,10 @@ class Blog extends CI_Controller {
   
   public function feed()
   {
+    $this->load_common_data();    
     $this->load->helper('xml');
     $this->load->helper('text');    
-    $data['config'] = $this->blog_config;
-    $data['all_tags'] = $this->blog_lib->get_posts_tags();    
-    $data['posts'] = $this->blog_lib->get_posts();
-    $this->load->view("feed.html",$data); 
+    $this->data['posts'] = $this->blog_lib->get_posts();
+    $this->load->view("feed.html",$this->data); 
   }
 }
