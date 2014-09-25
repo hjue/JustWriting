@@ -48,9 +48,9 @@ If you have any question, [click here](https://github.com/hjue/JustWriting/issue
 
 ### Deploy  With Docker
 
-    docker pull hjue/centos-docker-justwriting
+    docker pull hjue/justwriting
 
-[JustWriting Docker Repo ](https://github.com/hjue/centos-docker-justwriting)
+[JustWriting Docker Repo ](https://github.com/hjue/dockerfiles/tree/master/justwriting)
 
 
 #### Web Server Configuration
