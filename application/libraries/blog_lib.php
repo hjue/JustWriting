@@ -352,7 +352,12 @@ class blog_lib{
 
           if(empty($post_intro)){
             $post_text = strip_tags($this->markdown($post_content));
-            $post_intro = mb_substr($post_text,0,200);                  
+            if (function_exists('mb_substr')){
+              $post_intro = mb_substr($post_text,0,200);              
+            }else{
+              $post_intro = substr($post_text,0,200);
+            }
+
           }
           $slug = str_replace($this->file_ext,'',$entry);
           
