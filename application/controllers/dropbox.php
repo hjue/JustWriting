@@ -26,8 +26,16 @@ class Dropbox extends CI_Controller
     }
 	}
   
+
   public function download($value='')
   {
+    $debug = false;
+    if(isset($_GET['challenge'])){
+      echo $_GET['challenge'];exit;
+    }
+    if(isset($_GET['debug'])){
+      $debug = true;
+    }
     set_time_limit(60*30);
 	  $this->load->library('dropbox_lib');
     $client = $this->dropbox_lib->getClient();
@@ -44,8 +52,11 @@ class Dropbox extends CI_Controller
       $cursor = null;
     }
     $changes = $client->getDelta($cursor);
-
-    print_r($changes);      
+    
+    if($debug){
+      print_r($changes);        
+    }
+    
     if(!empty($changes))
     {
       foreach($changes['entries'] as $row){
