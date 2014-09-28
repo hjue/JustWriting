@@ -80,24 +80,33 @@ It also support Jekyll head information.
 
 As **Justwriting** will convert any .md file in the posts folder to post, so you just need upload `.md` file to the servers through any ways. Here list some methods:
 
-#### 1. Synic with Dropbox Automatically
+#### 1. Sync with Dropbox client Automatically
 
 If running **Justwriting** on VPS, suggest to update post through Dropbox. [Installation Process](https://github.com/hjue/JustWriting/wiki/%E4%BD%BF%E7%94%A8Dropbox%E5%92%8CJustwriting%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2)。
 
-#### 2. Manually Update from Dropbox
+#### 2. Sync with Dropbox webhook URL
 
 For virtual host user, it may not able to install Dropbox client, **JustWritting** provide a function to manually pull files from Dropbox.
 
  1. [ Create App ](https://www.dropbox.com/developers/apps)
- 2. Generated access token
- 3. Configure params in settings.php: 
+ 
+   *  Generated access token
+   *  Add Webhook URI  `http://<your_justwriting_site>/sync/dropbox/download`
+   
+ 
+ ![Dropbox Create App](docs/images/dropbox-create-app.png)
+ 
+ 2. Configure params in settings.php: 
 
 	      $blog_config['dropbox']['key'],
 	      $blog_config['dropbox']['secret'],
 	      $blog_config['dropbox']['access_token']
 
- 4. access [http://your_justwriting_site/sync/dropbox/download ](http://your_justwriting_site/sync/dropbox/download ) for syncing posts
+>  [http://<your_justwriting_site>/sync/dropbox/download ](http://your_justwriting_site/sync/dropbox/download ) is url for syncing posts
+
     
+
+
 
 #### 3. Through Api
 
