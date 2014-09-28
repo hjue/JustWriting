@@ -13,7 +13,10 @@ If share the folder in Dropbox with others, then all members can add, edit the p
 
 Of cause, if you have problem to install Dropbox on servers, it also can upload files by FTP, SVN or git, any methods you can.
 
-[Oneline Demo](http://justwriting.sinaapp.com/)
+[Oneline Demo on SAE](http://justwriting.sinaapp.com/)
+
+[Oneline Demo on OpenShift](http://php-justwriting.rhcloud.com/)
+
 
 If you have any question, [click here](https://github.com/hjue/JustWriting/issues/new) to tell me.
 
@@ -102,7 +105,7 @@ For virtual host user, it may not able to install Dropbox client, **JustWritting
 	      $blog_config['dropbox']['secret'],
 	      $blog_config['dropbox']['access_token']
 
->  [http://<your_justwriting_site>/sync/dropbox/download ](http://your_justwriting_site/sync/dropbox/download ) is url for syncing posts
+>  [http://your_justwriting_site/sync/dropbox/download ](http://your_justwriting_site/sync/dropbox/download ) is url for syncing posts
 
     
 
