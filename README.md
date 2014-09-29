@@ -11,7 +11,7 @@ So don't care about lost files while the server damaged, as all files can be sto
 
 If you share the folder in Dropbox with others, all members can add, edit the posts.
 
-Of course, if you have problems to install Dropbox on servers, it also can upload files by FTP, SVN or git, or any methods you can upload files.
+Of course, if you have problems to install Dropbox on servers, it also can upload files by FTP, SVN or git, or any other methods you can upload files with.
 
 [Oneline Demo on SAE](http://justwriting.sinaapp.com/)
 
