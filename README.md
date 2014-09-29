@@ -66,7 +66,7 @@ If you have any questions, feel free to [ask me](https://github.com/hjue/JustWri
 Put the head information at the beginning of the .md file.
 
 ```Markdown
-Date: 2014-08-09
+Date: 2014-12-31
 Title: Post tilte
 Intro: Post abstract
 Tags: Tags
@@ -75,9 +75,9 @@ Status: public
 Contents
 ```
 
-The `status` also can be define as `draft`, then this file will not appeared on the website. 
+The `status` can also be defined as `draft`, then this file will not appear on the website. 
 
-It also support Jekyll head information.
+It also supports Jekyll head information.
 
 ### Add Posts
 
