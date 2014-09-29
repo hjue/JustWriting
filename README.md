@@ -9,9 +9,9 @@ It can synchronize files to the server by Dropbox.
 
 So don't care about lost files while the server damaged, as all files can be store on your local devices.
 
-If share the folder in Dropbox with others, then all members can add, edit the postes.
+If you share the folder in Dropbox with others, all members can add, edit the posts.
 
-Of cause, if you have problem to install Dropbox on servers, it also can upload files by FTP, SVN or git, any methods you can.
+Of course, if you have problems to install Dropbox on servers, it also can upload files by FTP, SVN or git, or any methods you can upload files.
 
 [Oneline Demo on SAE](http://justwriting.sinaapp.com/)
 
@@ -33,9 +33,9 @@ If you have any question, [click here](https://github.com/hjue/JustWriting/issue
 ### Features
 
 - Simple blog platform
-- No need database
-- No need online edit, just writing locally with any device
-- Writ with Markdown
+- No need for a database
+- No need for online editor, just write locally on any device
+- Write with Markdown
 - Support code highlight
 - Support Latex math equation
 - Multi themes
