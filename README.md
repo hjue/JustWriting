@@ -3,22 +3,20 @@ JustWriting
 
 ### Introduction
 
-[**Justwriting**](https://github.com/hjue/JustWriting) is a simple blog platform. You just need writing content with Markdown format, upload the .md file to website, then it will show .md files as posts on your website. 
+[**Justwriting**](https://github.com/hjue/JustWriting) is a simple blog platform. You just need the text written in Markdown, upload the .md file to website, and it will show .md files as posts on your website. 
 
-It can synchronize files to the server by Dropbox.
+It can synchronize files to the server by Dropbox, so you don't have to care about losing your files when the server breaks, as all files can be stored on your local devices.
 
-So don't care about lost files while the server damaged, as all files can be store on your local devices.
+If you share the folder in Dropbox with others, all members can add or edit posts.
 
-If share the folder in Dropbox with others, then all members can add, edit the postes.
-
-Of cause, if you have problem to install Dropbox on servers, it also can upload files by FTP, SVN or git, any methods you can.
+Of course, if you have problems to install Dropbox on servers, it also can upload files by FTP, SVN or git, or any other methods you can upload files with.
 
 [Oneline Demo on SAE](http://justwriting.sinaapp.com/)
 
 [Oneline Demo on OpenShift](http://php-justwriting.rhcloud.com/)
 
 
-If you have any question, [click here](https://github.com/hjue/JustWriting/issues/new) to tell me.
+If you have any questions, feel free to [ask me](https://github.com/hjue/JustWriting/issues/new).
 
 [中文版使用说明移步这里](https://github.com/hjue/JustWriting/blob/master/README.zh.md)
 
@@ -32,22 +30,22 @@ If you have any question, [click here](https://github.com/hjue/JustWriting/issue
 
 ### Features
 
-- Simple blog platform
-- No need database
-- No need online edit, just writing locally with any device
-- Writ with Markdown
-- Support code highlight
-- Support Latex math equation
-- Multi themes
-- Support update via Dropbox
-- Support post via API
+* Simple blog platform
+* No need for a database
+* No need for an online editor, just write locally on any device
+* Write with Markdown
+* Supports code highlighting
+* Supports Latex math equations
+* Multiple themes
+* Supports updates via Dropbox
+* Supports post via API
 
 ### Installation
 
-1. Setting blog parameter, update 'settings.php'
-2. Upload codes to php space
-3. Upload Markdown files to folder 'posts'
-4. Open website, just so...
+0. Set blog settings in 'settings.php'
+0. Upload code to php space
+0. Upload your Markdown files to the 'posts' folder
+0. Open website, that's it.
 
 ### Deploy  With Docker
 
@@ -67,17 +65,19 @@ If you have any question, [click here](https://github.com/hjue/JustWriting/issue
 
 Put the head information at the beginning of the .md file.
 
-    Date: 2014-08-09
-    Title: Post tilte
-    Intro: Post abstract
-    Tags: Tags
-    Status: public
-    
-    Contents
+```Markdown
+Date: 2014-12-31
+Title: Post tilte
+Intro: Post abstract
+Tags: Tags
+Status: public
 
-The `status` also can be define as `draft`, then this file will not appeared on the website. 
+Contents
+```
 
-It also support Jekyll head information.
+The `status` can also be defined as `draft`, then this file will not appear on the website. 
+
+It also supports Jekyll head information.
 
 ### Add Posts
 
@@ -93,45 +93,47 @@ For virtual host user, it may not able to install Dropbox client, **JustWritting
 
  1. [ Create App ](https://www.dropbox.com/developers/apps)
  
-   *  Generated access token
-   *  Add Webhook URI  `http://<your_justwriting_site>/sync/dropbox/download`
+*  Generate access token
+*  Add Webhook URI  `http://<your_justwriting_site>/sync/dropbox/download`
    
  
  ![Dropbox Create App](docs/images/dropbox-create-app.png)
  
  2. Configure params in settings.php: 
 
-	      $blog_config['dropbox']['key'],
-	      $blog_config['dropbox']['secret'],
-	      $blog_config['dropbox']['access_token']
+```PHP
+$blog_config['dropbox']['key'],
+$blog_config['dropbox']['secret'],
+$blog_config['dropbox']['access_token']
+```
 
->  [http://your_justwriting_site/sync/dropbox/download ](http://your_justwriting_site/sync/dropbox/download ) is url for syncing posts
+>  [http://your_justwriting_site/sync/dropbox/download ](http://your_justwriting_site/sync/dropbox/download ) is the URL for syncing posts
 
+
+
+
+
+#### 3. Through API
+
+Justwriting supports post through API.
+
+If use the API, it need true on the option in settings.php, and set the API Key in it.
+
+Click here to check the [API documents](https://github.com/hjue/JustWriting/wiki/API)
     
+### Who uses JustWriting?
 
-
-
-#### 3. Through Api
-
-Justwriting supports post through Api.
-
-If use Api, it need true on the option in settings.php, and set the Api Key in it.
-
-Click here to check the [Api documents](https://github.com/hjue/JustWriting/wiki/API)
-    
-### Who are using
-
-  - [hjue](http://www.hjue.me)
-  - [JellyBool](http://www.jellybool.com/)
-  - [Colin](http://doc.mekesim.com/)
+* [hjue](http://www.hjue.me)
+* [JellyBool](http://www.jellybool.com/)
+* [Colin](http://doc.mekesim.com/)
   
-  If you are using Justwriting, and would like to list here, [click here](https://github.com/hjue/JustWriting/issues/new) tell me.
+  If you are using Justwriting, and would like to be listed here, [tell me](https://github.com/hjue/JustWriting/issues/new).
 
   
 ### Contributors
 
-- [xieyu33333](https://github.com/xieyu33333)
-- [mekesim](https://github.com/mekesim)
+* [xieyu33333](https://github.com/xieyu33333)
+* [mekesim](https://github.com/mekesim)
 
 ## License
 
