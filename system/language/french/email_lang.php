@@ -20,4 +20,4 @@ $lang['email_smtp_data_failure'] = "Impossible de transmettre les données : %s"
 $lang['email_exit_status'] = "Etat de la fermeture : %s";
 
 /* End of file email_lang.php */
-/* Location: ./system/language/english/email_lang.php */
+/* Location: ./system/language/french/email_lang.php */
