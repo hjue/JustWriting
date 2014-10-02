@@ -1,38 +1,50 @@
 <?php
-//博客标题
+//blog title
 $blog_config['title'] = 'Just Writing';
-//博客副标题
+//blog sub title
 $blog_config['intro'] = 'Super Simple Blog Engine';
-//博客作者
+//blog author
 $blog_config['author']='JustWriting';
-//博客头像
+//blog avatar
 $blog_config['avatar']= 'https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/logo.png';
-//博客模板,模板在templates目录下，可自己定制，目前可选模板rock,deepure
+
+//blog template name.The template root path is /templates.You can set rock or deepure. 
 $blog_config['template'] = 'rock';
-//是否开启评论,关闭设置为False
+
+//If you would like that everyone comment your post,you must set this variable to True.
 $blog_config['comment'] = True;
-//多说评论系统的名字，可去多说申请 http://duoshuo.com/
+//duoshuo short name，duoshuo is the social comment system,url is  http://duoshuo.com/.
 $blog_config['duoshuo_short_name'] = 'justwriting';
-//博客的域名如 http://justwriting.sinaapp.com,末尾不需要/
+
+$blog_config['disqus'] = '';
+
+//URL to your blog root.This is your base URL,without  a trailing slash:http://justwriting.sinaapp.com
 $blog_config['base_url'] = '';
-//你的github地址，没有可以设置为空
+
+//your github url
 $blog_config['github'] = 'https://github.com/hjue/JustWriting';
 
+//posts count of posts list
 $blog_config['posts_per_page'] = 10;
 
-//是否开启通过Api发布文章功能，默认未开启,Api文档见 /api
+//on or off API.  API doc : https://github.com/hjue/JustWriting/wiki/API .
 $blog_config['api'] = False;
-//api_key的密码，请不要告诉其他人
+//api key
 $blog_config['api_key'] = '1234561';
 
-//有关dropgox的配置，详细配置方法见https://github.com/hjue/JustWriting
+//dropbox settings,for more infomation pls see the README : https://github.com/hjue/JustWriting
 $blog_config['dropbox']['key']= '';
 $blog_config['dropbox']['secret']= '';
 $blog_config['dropbox']['access_token']= '';
 
-//代码高亮的配置，不需要的话可以设置为空,支持多种高亮方案，高亮方案的名称是styles/highlight/styles/目录下css的文件名
+/*
+ * Supports code highlightin.If you don't write code in post,set this to empty.
+ * Support 49 code styles, pls see this page: https://highlightjs.org/static/test.html
+ */
 $blog_config['highlight']='default';
-//数学公式的支持
+
+//remove comment to support Latex math equations
+/*
 $blog_config['mathjax']='<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default">
 MathJax.Hub.Config({
     tex2jax: {
@@ -41,3 +53,4 @@ MathJax.Hub.Config({
      extensions: ["jsMath2jax.js", "tex2jax.js"],
      messageStyle: "none"
  });</script>';
+*/
