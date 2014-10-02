@@ -15,8 +15,8 @@ $blog_config['template'] = 'rock';
 $blog_config['comment'] = True;
 //duoshuo short name，duoshuo is the social comment system,url is  http://duoshuo.com/.
 $blog_config['duoshuo_short_name'] = 'justwriting';
-
-$blog_config['disqus'] = '';
+//disqus short name
+$blog_config['disqus_short_name'] = '';
 
 //URL to your blog root.This is your base URL,without  a trailing slash:http://justwriting.sinaapp.com
 $blog_config['base_url'] = '';

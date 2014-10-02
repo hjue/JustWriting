@@ -1,4 +1,5 @@
 {% if config.comment %}
+{% if config.duoshuo_short_name %}
 <!-- 多说评论框 start -->
 	<div class="ds-thread" data-title="{{ post.title }}" data-url="{{ post.link }}"></div>
 <!-- 多说评论框 end -->
@@ -15,4 +16,18 @@ var duoshuoQuery = {short_name:"{{config.duoshuo_short_name}}"};
 	})();
 	</script>
 <!-- 多说公共JS代码 end -->    
+{% endif %}
+{% if config.disqus_short_name %}
+<div id="disqus_thread"></div>
+  <script type="text/javascript">
+      var disqus_shortname = "{{config.disqus_short_name}}"; 
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+{% endif %}  
 {% endif %}
