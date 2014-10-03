@@ -9,8 +9,8 @@
   RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
   RewriteRule ^(.*) - [E=BASE:%1]
 
-	RewriteCond $1 !(index\.php|css|styles|posts|images|templates|robots\.txt)
-	RewriteRule ^(.*)$ /jw/index.php/$1 [L]
+  RewriteCond $1 !(index\.php|css|styles|posts|images|templates|robots\.txt)
+  RewriteRule ^(.*)$ /jw/index.php/$1 [L]
 </IfModule>
 
 <IfModule !mod_rewrite.c>
