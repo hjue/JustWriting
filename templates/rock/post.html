@@ -21,7 +21,7 @@
                 <div class="category">
                     {% if post.tags %}
                         <div class="tags">
-                            标签：
+                            {{ lang('tags') }}：
                             {% for tag in post.tags %}
                                 <a href="/tags/{{ tag }}">{{ tag }}</a>
                             {% endfor %}

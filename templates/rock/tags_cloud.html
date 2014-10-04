@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}{{ config.title }} - 标签{% endblock %}
+{% block title %}{{ config.title }} - {{ lang('tags') }}{% endblock %}
 
 {% block content %}
 {%if  all_tags %}
 <div class="mid-col">
     <div class="mid-col-container">
-        <h2 class="title">标签：</h2>
+        <h2 class="title">{{ lang('tags') }}：</h2>
         <br>
       {% for tag in all_tags %}
         <div class="tag">
