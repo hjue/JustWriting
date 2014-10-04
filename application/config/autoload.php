@@ -64,7 +64,7 @@ $autoload['libraries'] = array();
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','storage');
+$autoload['helper'] = array('url','storage','twig','language');
 
 
 /*

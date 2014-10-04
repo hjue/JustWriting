@@ -1,4 +1,8 @@
 <?php
+
+//template language,english or zh
+$blog_config['language']	= 'english';
+
 //blog title
 $blog_config['title'] = 'Just Writing';
 //blog sub title

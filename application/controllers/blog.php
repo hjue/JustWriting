@@ -14,6 +14,9 @@ class Blog extends CI_Controller {
 
   public function load_common_data()
   {
+    $this->lang->load('blog', $this->blog_config['language']);
+    $this->load->library('twig_lib');    
+    twig_extend();    
     $this->data['config'] = $this->blog_config;              
     $this->data['all_categories'] = $this->blog_lib->get_posts_categories(); 
     $this->data['all_tags'] = $this->blog_lib->get_posts_tags();    
@@ -33,7 +36,7 @@ class Blog extends CI_Controller {
     
     $this->load_common_data();
     
-    $this->load->library('twig_lib');    
+
 
     $posts = $this->blog_lib->get_posts();
 
@@ -60,7 +63,6 @@ class Blog extends CI_Controller {
   public function archive()
   {
     $this->load_common_data();
-    $this->load->library('twig_lib');    
 
     $posts = $this->blog_lib->get_posts();
     $entries = array();
@@ -79,7 +81,7 @@ class Blog extends CI_Controller {
   public function post($slug)
   {
     $slug=urldecode($slug);
-    $this->load->library('twig_lib');        
+
     $this->load_common_data();
     $post = $this->blog_lib->get_post($slug);
     if($post===False)
@@ -99,7 +101,7 @@ class Blog extends CI_Controller {
   public function gallery()
   {
     $this->load_common_data();
-    $this->load->library('twig_lib');        
+
     $this->twig_lib->render("gallery.html",$this->data); 
 
 
@@ -109,7 +111,7 @@ class Blog extends CI_Controller {
   {
     $category = trim(urldecode($category));
     $this->load_common_data();    
-    $this->load->library('twig_lib');    
+
     $this->data['posts'] = $this->blog_lib->get_posts_by_category($category);
     $this->twig_lib->render("tags.html",$this->data);
   }  
@@ -118,7 +120,6 @@ class Blog extends CI_Controller {
   {
     $tag = trim(urldecode($tag));
 
-    $this->load->library('twig_lib');    
     $this->load_common_data();
     if(empty($tag)){
       $this->twig_lib->render("tags_cloud.html",$this->data);           
