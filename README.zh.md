@@ -128,6 +128,11 @@ Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱�
 
   如果你使用了Justwriting，你将出现在这里。[点这里告诉我](https://github.com/hjue/JustWriting/issues/new)
 
+* [hjue](http://www.hjue.me)
+* [JellyBool](http://www.jellybool.com/)
+* [Colin](http://doc.mekesim.com/)
+* [周渊](http://blog.zhouyuan11.cn/)
+
 ### Contributors
 
 - [xieyu33333](https://github.com/xieyu33333)
