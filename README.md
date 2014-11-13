@@ -127,7 +127,8 @@ Click here to check the [API documents](https://github.com/hjue/JustWriting/wiki
 * [JellyBool](http://www.jellybool.com/)
 * [Colin](http://doc.mekesim.com/)
 * [周渊](http://blog.zhouyuan11.cn/)
-  
+* [花开堪折枝](http://yaming.coding.io/)  
+
   If you are using Justwriting, and would like to be listed here, [tell me](https://github.com/hjue/JustWriting/issues/new).
 
   
