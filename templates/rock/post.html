@@ -12,8 +12,14 @@
                     <span class="date">{{ post.date | date('Y-m-d') }}</span>
                 </div>
 
+
                 <div class="entry-content">
                     <div class="p_part">
+
+{% if post.toc %}
+<div class="toc"></div>  
+{% endif %}  
+
 {{ post.html|raw }}
                     </div>
                 </div>
@@ -35,5 +41,16 @@
     </div>
     {% include 'include/footer.html' %}
 </div>
-{% endblock %}
+{% if post.toc %}
+<script type="text/javascript" src="/templates/rock/js/toc.min.js"></script>      
+<script>
+  $('.toc').toc({
+    'container': '.entry-content',
+    'anchorName': function(i, heading, prefix) { //custom function for anchor name
+         return prefix+i;
+     }    
+  });
+</script>
+{% endif %}  
 
+{% endblock %}

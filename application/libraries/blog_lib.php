@@ -267,13 +267,14 @@ class blog_lib{
           $fcontents = file($post_file_path);
 
           $hi=0;
-          $pattern = '/^\s*(title|date|position|description|intro|status|toc|url|tags|category)\s*:(.*?)$/im';
+          $pattern = '/^\s*(title|date|position|toc|description|intro|status|toc|url|tags|category)\s*:(.*?)$/im';
           $post_title='';
           $post_intro='';
           $post_date='';
           $post_status='public'; 
           $post_tags=array();
           $position = '';
+          $toc = false;
           
           if($fcontents and $fcontents[$hi] and strpos($fcontents[$hi],':')){
 
@@ -284,10 +285,14 @@ class blog_lib{
               if(empty($matches)) break;
               else{
                 switch (trim(strtolower($matches[1]))) {
+                  case 'toc':
+                    $tocstring = strtolower(trim($matches[2]));
+                    $toc = $tocstring=='yes'?true:false;
+                    break;
                   case 'position':                        
                     $position = time() - trim($matches[2]);
                     break;
-                  case 'title':
+                  case 'title':                  
                     $post_title = $matches[2];
                     break;
                   case 'date':
@@ -371,6 +376,7 @@ class blog_lib{
 
             $files[] = array('fname' => $entry, 
             'slug'=>$slug,
+            'toc'=>$toc,
             'link'=> $this->CI->blog_config['base_url']."/post/$slug",
             'title' => $post_title, 'author' => $post_author, 'date' => $post_date, 'tags' => $post_tags, 'status' => $post_status, 'intro' => $post_intro, 'content' => $post_content,'category'=>$post_category);
             if($position){
