@@ -70,12 +70,15 @@ Date: 2014-12-31
 Title: Post tilte
 Intro: Post abstract
 Tags: Tags
+Toc:yes
 Status: public
 
 Contents
 ```
 
 The `status` can also be defined as `draft`, then this file will not appear on the website. 
+
+The `Toc` can control show the table of contents or not,accept yes or no.
 
 It also supports Jekyll head information.
 
