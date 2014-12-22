@@ -5,8 +5,10 @@ class Dropbox extends CI_Controller
     public function __construct()
     {
     	parent::__construct();
-        $this->load->library('session');
-        $this->load->helper('url');
+      $this->load->library('session');
+      $this->load->helper('url');
+      ini_set('display_errors', true);
+      error_reporting(E_ALL);      
     }
     
     // Call this method first by visiting http://SITE_URL/example/request_dropbox
