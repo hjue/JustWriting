@@ -80,4 +80,3 @@ class WebAuthNoRedirect extends WebAuthBase
         return $this->_finish($code, null);
     }
 }
-

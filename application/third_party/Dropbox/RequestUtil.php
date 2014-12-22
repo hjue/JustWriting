@@ -230,7 +230,7 @@ final class RequestUtil
      */
     static function parseResponseJson($responseBody)
     {
-        $obj = json_decode($responseBody, TRUE, 10);
+        $obj = json_decode($responseBody, true, 10);
         if ($obj === null) {
             throw new Exception_BadResponse("Got bad JSON from server: $responseBody");
         }

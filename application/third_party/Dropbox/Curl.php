@@ -30,10 +30,13 @@ final class Curl
         // don't respect these settings.  Run "examples/test-ssl.php" to run some basic
         // SSL tests to see how well your PHP implementation behaves.
 
-        // Force SSL and use our own certificate list.
+        // Use our own certificate list.
         $this->set(CURLOPT_SSL_VERIFYPEER, true);   // Enforce certificate validation
         $this->set(CURLOPT_SSL_VERIFYHOST, 2);      // Enforce hostname validation
-        $this->set(CURLOPT_SSLVERSION, 3);          // Enforce SSL v3.
+
+        // Force the use of TLS (SSL v2 and v3 are not secure).
+        // TODO: Use "CURL_SSLVERSION_TLSv1" instead of "1" once we can rely on PHP 5.5+.
+        $this->set(CURLOPT_SSLVERSION, 1);
 
         // Limit the set of ciphersuites used.
         global $sslCiphersuiteList;

@@ -11,4 +11,3 @@ function error_to_exception($errno, $errstr, $errfile, $errline, $context)
     throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
 }
 set_error_handler('error_to_exception');
-

@@ -55,12 +55,14 @@ class SSLTester
         }
         else if ($pinnedCertFailures) {
             echo "-----------------------------------------------------------------------------\n";
-            echo "WARNING: Your PHP installation's SSL implementation doesn't support\n";
-            echo "certificate pinning, which is an important security feature of the Dropbox\n";
-            echo "SDK.  The root certificates embedded in the SDK are being silently ignored,\n";
-            echo "which reduces the security of the communication with the Dropbox API servers.\n";
+            echo "WARNING: Your PHP installation's cURL module doesn't support SSL certificate\n";
+            echo "pinning, which is an important security feature of the Dropbox SDK.\n";
             echo "\n";
-            echo "More information:\n";
+            echo "This SDK uses CURLOPT_CAINFO and CURLOPT_CAPATH to tell PHP cURL to only trust\n";
+            echo "our custom certificate list.  But your PHP installation's cURL module seems to\n";
+            echo "trust certificates that aren't on that list.\n";
+            echo "\n";
+            echo "More information on SSL certificate pinning:\n";
             echo "https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning#What_Is_Pinning.3F\n";
             echo "-----------------------------------------------------------------------------\n";
             return false;

@@ -43,4 +43,3 @@ class CurlStreamRelay
         return implode($this->errorData);
     }
 }
-
