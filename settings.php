@@ -1,6 +1,6 @@
 <?php
 
-//template language,english or zh
+//template language,english, french or zh
 $blog_config['language']	= 'english';
 
 //blog title
