@@ -9,6 +9,8 @@ $blog_config['title'] = 'Just Writing';
 $blog_config['intro'] = 'Super Simple Blog Engine';
 //blog author
 $blog_config['author']='JustWriting';
+//"About Me" box
+$blog_config['aboutme']='This is about JustWriting';
 //blog avatar
 $blog_config['avatar']= 'https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/logo.png';
 
