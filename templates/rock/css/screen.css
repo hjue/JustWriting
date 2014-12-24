@@ -362,7 +362,7 @@ body{background:#3D4349;font-family:"Open Sans","HelveticaNeue-Light","Helvetica
 .container .mid-col .mid-col-container #content article .entry-content{margin-left:0px}
 .container .mid-col .mid-col-container #content article .entry-content .gist .gist-file .gist-data .line_numbers{line-height:inherit}
 .container .mid-col .mid-col-container #content article .entry-content .gist .gist-file .gist-data pre{line-height:inherit}
-.container .mid-col .mid-col-container #content article .entry-content h2{font-size:1.3em;color:#574C4C;border-bottom:none}
+.container .mid-col .mid-col-container #content article .entry-content h2{font-size:1.5em;color:#574C4C;border-bottom:none}
 .container .mid-col .mid-col-container #content article .entry-content h2::before{border-bottom:none}
 .container .mid-col .mid-col-container #content article .entry-content blockquote{border-left:5px solid #1593c9;background:#FCFCFC}
 .container .mid-col .mid-col-container #content article .entry-content table{line-height:1.2em}
