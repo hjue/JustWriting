@@ -30,6 +30,10 @@ $blog_config['base_url'] = '';
 //your github url
 $blog_config['github'] = 'https://github.com/hjue/JustWriting';
 
+//other social network : twitter, facebook, rss and email. For example :
+$blog_config['twitter'] = '';
+//there's more supported networks, but you must add them manually to \templates\rock\base.html - names are in \templates\rock\images\social\*
+
 //posts count of posts list
 $blog_config['posts_per_page'] = 10;
 
