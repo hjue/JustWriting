@@ -69,9 +69,10 @@ Put the head information at the beginning of the .md file.
 Date: 2014-12-31
 Title: Post tilte
 Intro: Post abstract
-Tags: Tags
+Tags: justwriting blog
 Toc:yes
 Status: public
+Position: 1
 
 Contents
 ```
