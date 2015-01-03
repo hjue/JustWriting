@@ -69,9 +69,10 @@ Put the head information at the beginning of the .md file.
 Date: 2014-12-31
 Title: Post tilte
 Intro: Post abstract
-Tags: Tags
+Tags: justwriting blog
 Toc:yes
 Status: public
+Position: 1
 
 Contents
 ```
@@ -132,6 +133,7 @@ Click here to check the [API documents](https://github.com/hjue/JustWriting/wiki
 * [周渊](http://blog.zhouyuan11.cn/)
 * [花开堪折枝](http://yaming.coding.io/)  
 * [Jings](http://nsaos.com/)
+* [Tictech](http://tictech.info/)
 
   If you are using Justwriting, and would like to be listed here, [tell me](https://github.com/hjue/JustWriting/issues/new).
 
