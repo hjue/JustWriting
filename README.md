@@ -59,6 +59,15 @@ If you have any questions, feel free to [ask me](https://github.com/hjue/JustWri
 * [Apache Setting](https://gist.github.com/hjue/4da6b1e897de31d135f7)
 * [Nginx Setting](https://gist.github.com/hjue/647dc694dc3b67994202)
 
+
+### Themes for JustWriting
+
+* [rock](https://github.com/hjue/JustWriting/tree/master/templates/rock)
+* [deepure](https://github.com/hjue/JustWriting/tree/master/templates/deepure)
+* [simpleBlue](https://github.com/ncosnard/jw-theme-simpleBlue)
+* [bmore](https://github.com/JellyBool/JustWriting-themes/tree/master/bmore)
+* [Jelly](https://github.com/JellyBool/JustWriting-themes/tree/master/Jelly)
+
 ### Write Articles
 
 #### Head information
