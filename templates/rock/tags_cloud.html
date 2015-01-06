@@ -7,9 +7,9 @@
     <div class="mid-col-container">
         <h2 class="title">{{ lang('tags') }}：</h2>
         <br>
-      {% for tag in all_tags %}
+      {% for tag,weight in all_tags %}       
         <div class="tag">
-		<a href="/tags/{{ tag }}">{{ tag }} </a>
+    		<a href="/tags/{{ tag }}">{{ tag }}</a>
         </div>
         {% endfor %}
     </div>

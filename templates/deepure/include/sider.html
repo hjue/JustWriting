@@ -3,7 +3,7 @@
     <aside>
         <h3>Tags</h3>
         <div>
-            {% for tag in all_tags %}
+            {% for tag,weight in all_tags %}            
             <a href="/tags/{{tag}}">{{ tag }}</a>
             {% endfor %}
         </div>

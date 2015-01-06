@@ -54,7 +54,7 @@
                             </a>
                         </li>
                         <li class="treeview">
-                            {% for tag in all_tags %}
+                            {% for tag,weight in all_tags %}                            
                               <a href="/tags/{{ tag }}">{{ tag }}</a>
                             {% endfor %}                          
                             <a href="#">

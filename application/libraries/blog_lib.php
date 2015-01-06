@@ -341,7 +341,12 @@ class blog_lib{
             if(empty($trimed_tag))
               unset($post_tags[$k]);
             else{
-              $all_tags[$trimed_tag]=1;
+              if(isset($all_tags[$trimed_tag])){
+
+                $all_tags[$trimed_tag] += 1;
+              }else{
+                $all_tags[$trimed_tag] = 1;
+              }
             }
           }                
           if(empty($post_date))
@@ -420,7 +425,7 @@ class blog_lib{
   public function get_posts_tags()
   {
     $this->__get_all_posts();
-    return array_keys($this->_all_tags);
+    return $this->_all_tags;
   }
   
   public function get_posts_by_tag($tag){
