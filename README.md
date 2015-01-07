@@ -31,14 +31,17 @@ If you have any questions, feel free to [ask me](https://github.com/hjue/JustWri
 ### Features
 
 * Simple blog platform
+* No need for an onlinetoc editor, just write your post offline on any device
 * No need for a database
-* No need for an online editor, just write locally on any device
 * Write with Markdown
 * Supports code highlighting
 * Supports Latex math equations
+* Supports Toc
 * Multiple themes
 * Supports updates via Dropbox
 * Supports post via API
+* Supports Jekyll post file
+
 
 ### Installation
 
