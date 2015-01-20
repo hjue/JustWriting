@@ -1,6 +1,8 @@
 JustWriting
 ============
 
+[![Latest Stable Version](https://poser.pugx.org/hjue/justwriting/v/stable.svg)](https://packagist.org/packages/hjue/justwriting) [![Total Downloads](https://poser.pugx.org/hjue/justwriting/downloads.svg)](https://packagist.org/packages/hjue/justwriting) [![Latest Unstable Version](https://poser.pugx.org/hjue/justwriting/v/unstable.svg)](https://packagist.org/packages/hjue/justwriting) [![License](https://poser.pugx.org/hjue/justwriting/license.svg)](https://packagist.org/packages/hjue/justwriting)
+
 ### Introduction
 
 [**Justwriting**](https://github.com/hjue/JustWriting) is a simple blog platform. You just need the text written in Markdown, upload the .md file to website, and it will show .md files as posts on your website. 
