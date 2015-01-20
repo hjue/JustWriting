@@ -1,5 +1,19 @@
 {
+    "name": "hjue/JustWriting",
+    "type": "project",
+    "description": "Markdown blog system",
+    "keywords": ["Markdown","Blog"],
+    "homepage": "https://github.com/hjue/JustWriting",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jason Hao",
+            "email": "",
+            "homepage": "http://hjue.me",
+            "role": "Developer"
+        }
+    ],
     "require": {
-        
+        "php": ">=5.3.0"
     }
 }
