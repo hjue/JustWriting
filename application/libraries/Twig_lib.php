@@ -15,7 +15,7 @@ class Twig_lib {
     function __construct() {
         Twig_Autoloader::register();
         $this->_ci =& get_instance();
-        $this->loader = new Twig_Loader_Filesystem(FCPATH.'templates/'.$this->_ci->blog_config['template'].'/');
+        $this->loader = new Twig_Loader_Filesystem(APPPATH.'../templates/'.$this->_ci->blog_config['template'].'/');
         if(IS_SAE or !is_writable(APPPATH.'cache')){
           $this->twig = new Twig_Environment($this->loader, array(
           'auto_reload' => true

@@ -20,7 +20,7 @@ class blog_lib{
 		{
 			$this->CI =& get_instance();
 		}
-    $this->posts_path = FCPATH.'posts/';
+    $this->posts_path = APPPATH.'../posts/';
 
 	}
 

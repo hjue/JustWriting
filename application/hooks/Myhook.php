@@ -7,8 +7,10 @@ class Myhook
 		
 	function load_settings()
 	{
-    ini_set('date.timezone', 'Asia/Shanghai');	    
-    include(FCPATH.'/settings.php');    
+    if(!ini_get('date.timezone')){
+      ini_set('date.timezone', 'Asia/Shanghai');        
+    }    
+    include(APPPATH.'../settings.php');    
     $CI = & get_instance();
     if($blog_config['base_url']==''){
       $schema = 'http';
@@ -16,6 +18,7 @@ class Myhook
       {
         $schema = 'https';
       }
+
       $blog_config['base_url'] = $schema.'://'.$_SERVER['HTTP_HOST'];
     }    
     $CI->blog_config= $blog_config;
