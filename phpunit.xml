@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit
+    colors="true"
+    stopOnFailure="false"
+    backupGlobals="false"
+    backupStaticAttributes="false"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    processIsolation="false"
+    syntaxCheck="false"
+    cacheTokens="true"
+    verbose="false"
+    bootstrap="tests/bootstrap.php">
+    <testsuites>
+        <testsuite name="Justwriting Test Suite">
+            <directory>./tests/</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+      <const name="PHPUNIT_TEST" value="1" />
+      <const name="PHPUNIT_CHARSET" value="UTF-8" />
+      <server name="REMOTE_ADDR" value="0.0.0.0" />
+      <server name="HTTP_HOST" value="localhost" />
+    </php>    
+    <filter>
+        <whitelist>
+            <directory>./system/</directory>
+        </whitelist>
+    </filter>
+</phpunit>
