@@ -1,6 +1,7 @@
 JustWriting
 ============
 
+[![Build Status](https://api.travis-ci.org/hjue/JustWriting.svg?branch=master)](https://travis-ci.org/hjue/JustWriting)
 [![Latest Stable Version](https://poser.pugx.org/hjue/justwriting/v/stable.svg)](https://packagist.org/packages/hjue/justwriting) [![Total Downloads](https://poser.pugx.org/hjue/justwriting/downloads.svg)](https://packagist.org/packages/hjue/justwriting) [![Latest Unstable Version](https://poser.pugx.org/hjue/justwriting/v/unstable.svg)](https://packagist.org/packages/hjue/justwriting) [![License](https://poser.pugx.org/hjue/justwriting/license.svg)](https://packagist.org/packages/hjue/justwriting)
 
 ### Introduction
