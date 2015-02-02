@@ -267,9 +267,10 @@ class blog_lib{
           $fcontents = file($post_file_path);
 
           $hi=0;
-          $pattern = '/^\s*(title|date|position|toc|description|intro|status|toc|url|tags|category)\s*:(.*?)$/im';
+          $pattern = '/^\s*(title|author|date|position|toc|description|intro|status|toc|url|tags|category)\s*:(.*?)$/im';
           $post_title='';
           $post_intro='';
+          $post_author='';
           $post_date='';
           $post_status='public'; 
           $post_tags=array();
@@ -298,7 +299,9 @@ class blog_lib{
                   case 'date':
                     $post_date = trim($matches[2]);
                     break;                      
-                
+                  case 'author':
+                    $post_author = trim($matches[2]);
+                    break;                                      
                   case 'status':
                     $post_status = trim($matches[2]);
                     if($post_status!='public'){
@@ -355,7 +358,10 @@ class blog_lib{
           }else{
             $post_date = strtotime($post_date);
           }
-          $post_author = $this->CI->blog_config['author'];
+          if(empty($post_author)){
+            $post_author = $this->CI->blog_config['author'];  
+          }
+          
 
           $post_content_md = trim(join('', array_slice($fcontents, $hi, count($fcontents))));
           $post_content = $post_content_md;
