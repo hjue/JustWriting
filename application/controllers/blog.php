@@ -68,7 +68,7 @@ class Blog extends CI_Controller {
     $entries = array();
     foreach($posts as $post){
       $item=array();
-      foreach(array('title','date','link','tags') as $row)
+      foreach(array('title','date','link','tags','author') as $row)
       {
         $item[$row]=$post[$row];
       }
