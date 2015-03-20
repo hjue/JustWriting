@@ -6,7 +6,7 @@ JustWriting
 
 ### Introduction
 
-[**Justwriting**](https://github.com/hjue/JustWriting) is a simple blog platform. You just need the text written in Markdown, upload the .md file to website, and it will show .md files as posts on your website. 
+[**Justwriting**](https://github.com/hjue/JustWriting) is a simple blog platform. You just need the text written in Markdown, upload the .md file to website, and it will show .md files as posts on your website.
 
 It can synchronize files to the server by Dropbox, so you don't have to care about losing your files when the server breaks, as all files can be stored on your local devices.
 
@@ -73,6 +73,7 @@ If you have any questions, feel free to [ask me](https://github.com/hjue/JustWri
 * [simpleBlue](https://github.com/ncosnard/jw-theme-simpleBlue)
 * [bmore](https://github.com/JellyBool/JustWriting-themes/tree/master/bmore)
 * [Jelly](https://github.com/JellyBool/JustWriting-themes/tree/master/Jelly)
+* [海棠红叶](http://www.htredleaf.com/)
 
 ### Write Articles
 
@@ -92,7 +93,7 @@ Position: 1
 Contents
 ```
 
-The `status` can also be defined as `draft`, then this file will not appear on the website. 
+The `status` can also be defined as `draft`, then this file will not appear on the website.
 
 The `Toc` can control show the table of contents or not,accept yes or no.
 
@@ -111,14 +112,14 @@ If running **Justwriting** on VPS, suggest to update post through Dropbox. [Inst
 For virtual host user, it may not able to install Dropbox client, **JustWritting** provide a function to manually pull files from Dropbox.
 
  1. [ Create App ](https://www.dropbox.com/developers/apps)
- 
+
 *  Generate access token
 *  Add Webhook URI  `http://<your_justwriting_site>/sync/dropbox/download`
-   
- 
+
+
  ![Dropbox Create App](docs/images/dropbox-create-app.png)
- 
- 2. Configure params in settings.php: 
+
+ 2. Configure params in settings.php:
 
 ```PHP
 $blog_config['dropbox']['key'],
@@ -139,20 +140,20 @@ Justwriting supports post through API.
 If use the API, it need true on the option in settings.php, and set the API Key in it.
 
 Click here to check the [API documents](https://github.com/hjue/JustWriting/wiki/API)
-    
+
 ### Who uses JustWriting?
 
 * [hjue](http://www.hjue.me)
 * [JellyBool](http://www.jellybool.com/)
 * [Colin](http://doc.mekesim.com/)
 * [周渊](http://blog.zhouyuan11.cn/)
-* [花开堪折枝](http://yaming.coding.io/)  
+* [花开堪折枝](http://yaming.coding.io/)
 * [Jings](http://nsaos.com/)
 * [Tictech](http://tictech.info/)
 
   If you are using Justwriting, and would like to be listed here, [tell me](https://github.com/hjue/JustWriting/issues/new).
 
-  
+
 ### Contributors
 
 * [xieyu33333](https://github.com/xieyu33333)
