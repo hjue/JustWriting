@@ -151,6 +151,9 @@ Click here to check the [API documents](https://github.com/hjue/JustWriting/wiki
 * [Jings](http://nsaos.com/)
 * [Tictech](http://tictech.info/)
 * [海棠红叶](http://www.htredleaf.com/)
+* [Unee Wang](http://unee.wang/)
+* [fuis](http://www.fuisblog.com/)
+
 
   If you are using Justwriting, and would like to be listed here, [tell me](https://github.com/hjue/JustWriting/issues/new).
 
