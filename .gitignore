@@ -3,7 +3,7 @@ posts/*
 !posts/index.html
 !posts/justwriting.md
 !posts/test2.md
-
+!posts/images/preview_deepure.png
 cache/*
 !cache/index.html
 
