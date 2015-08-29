@@ -11,6 +11,8 @@ Position: 1
 
 ![](https://raw.githubusercontent.com/hjue/JustWriting/develop/docs/page.png)
 
+![](images/preview_deepure.png)
+
 ### Requirements
 
 - PHP 5.3.6+
@@ -52,21 +54,21 @@ Status: public
     1. Generated access token
     1. Configure params in settings.php: `$blog_config['dropbox']['key'],$blog_config['dropbox']['secret'],$blog_config['dropbox']['access_token']`
     1. access [http://your_justwriting_site/sync/dropbox/download ](http://your_justwriting_site/sync/dropbox/download ) for syncing posts
-    
+
 - 如果在SAE上搭建Justwriting，建议使用SVN来更新文章
     Windows下SVN的使用方法点[这里](http://sae.sina.com.cn/doc/tutorial/code-deploy.html#tortoisesvn)
     Mac & Linux 下还是习惯用命令行：
-    
+
         svn co https://svn.sinaapp.com/you_sae_name
         svn add 1/
-        svn ci -m "submit code"   
-        
+        svn ci -m "submit code"
+
     [详情使用方法点这里](http://sae.sina.com.cn/doc/tutorial/helloworld-for-linux-mac.html)
-    
+
 ### ToDo List
 
 - [ ] 文章列表分页
-- [x] 支持微盘同步(Sina网盘) 
+- [x] 支持微盘同步(Sina网盘)
 Vdisk暂时无法支持了，除非申请basic访问权限。Vdisk的App沙箱中的文件居然不出现在用户的微盘中，微盘为什么要这么设计？多学学Dropbox的设计吧。
 [Vdisk文档参见这里](http://vdisk.weibo.com/developers/index.php?module=api&action=rights#space)
 
