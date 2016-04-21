@@ -262,7 +262,7 @@ class blog_lib{
       return array($category,$files);
   }
 
-  private function __get_all_posts($with_drafts=false)
+  private function __get_all_posts($direct_access=false)
   {
     if(isset($this->_all_posts))
 	{
@@ -351,7 +351,16 @@ class blog_lib{
           if(empty($post_title)){
             $post_title = str_replace('.md','',$entry);
 		  }
-		  if(!$with_drafts && strtolower($post_status)!='public'){
+		  if(!$direct_access && strtolower($post_status)!='public'){
+		    continue;
+		  }
+          if(empty($post_date))
+          {
+            $post_date = filemtime($post_file_path);
+          }else{
+            $post_date = strtotime($post_date);
+          }
+		  if(!$direct_access && $post_date>time()){
 		    continue;
 		  }
           foreach($post_tags as $k=>$row)
@@ -367,12 +376,6 @@ class blog_lib{
                 $all_tags[$trimed_tag] = 1;
               }
             }
-          }
-          if(empty($post_date))
-          {
-            $post_date = filemtime($post_file_path);
-          }else{
-            $post_date = strtotime($post_date);
           }
           if(empty($post_author)){
             $post_author = $this->CI->blog_config['author'];
@@ -399,7 +402,7 @@ class blog_lib{
             $post_category = $temp_c;
           }
 
-          if($with_drafts || $post_status=='public'){
+          if($direct_access || $post_status=='public'){
 
             $files[] = array('fname' => $entry,
             'slug'=>$slug,
@@ -444,9 +447,9 @@ class blog_lib{
     return $this->__get_all_posts();
   }
 
-  public function get_posts_tags($with_drafts=false)
+  public function get_posts_tags($direct_access=false)
   {
-    $this->__get_all_posts($with_drafts);
+    $this->__get_all_posts($direct_access);
     return $this->_all_tags;
   }
 
@@ -468,9 +471,9 @@ class blog_lib{
    return $result;
   }
 
-  public function get_posts_categories($with_drafts=false)
+  public function get_posts_categories($direct_access=false)
   {
-    $this->__get_all_posts($with_drafts);
+    $this->__get_all_posts($direct_access);
     return $this->_all_categories;
   }
 
