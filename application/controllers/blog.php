@@ -38,9 +38,7 @@ class Blog extends CI_Controller {
     
 
 
-	$posts = $this->blog_lib->get_posts();
-
-	$planned_posts_keys = array();
+    $posts = $this->blog_lib->get_posts();
 
     $offset = ($pageno-1)*$posts_per_page;
     $this->data['posts'] = array_slice($posts,$offset,$posts_per_page);
