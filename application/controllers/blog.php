@@ -83,7 +83,7 @@ class Blog extends CI_Controller {
     $slug=urldecode($slug);
 
     $this->load_common_data(true);
-	$post = $this->blog_lib->get_post($slug);
+    $post = $this->blog_lib->get_post($slug);
     if($post===False)
     {
       show_404('Page Not Found.');
