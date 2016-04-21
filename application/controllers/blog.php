@@ -12,14 +12,14 @@ class Blog extends CI_Controller {
   }
 
 
-  public function load_common_data()
+  public function load_common_data($with_drafts=false)
   {
     $this->lang->load('blog', $this->blog_config['language']);
     $this->load->library('twig_lib');    
     twig_extend();    
     $this->data['config'] = $this->blog_config;              
-    $this->data['all_categories'] = $this->blog_lib->get_posts_categories(); 
-    $this->data['all_tags'] = $this->blog_lib->get_posts_tags();    
+    $this->data['all_categories'] = $this->blog_lib->get_posts_categories($with_drafts); 
+    $this->data['all_tags'] = $this->blog_lib->get_posts_tags($with_drafts);    
   }
   
 	public function index()
@@ -90,8 +90,8 @@ class Blog extends CI_Controller {
   {
     $slug=urldecode($slug);
 
-    $this->load_common_data();
-    $post = $this->blog_lib->get_post($slug);
+    $this->load_common_data(true);
+	$post = $this->blog_lib->get_post($slug);
     if($post===False)
     {
       show_404('Page Not Found.');

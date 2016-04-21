@@ -208,7 +208,7 @@ class blog_lib{
     $next_post = array();
     $current_post = array();
     $filename .= '.md';
-    $posts = $this->__get_all_posts();
+	$posts = $this->__get_all_posts(true);
     foreach($posts as $key =>$post){
       if(strtolower($post['fname'])==strtolower($filename)){
         if($key>=1)
@@ -262,12 +262,12 @@ class blog_lib{
       return array($category,$files);
   }
 
-  private function __get_all_posts()
+  private function __get_all_posts($with_drafts=false)
   {
     if(isset($this->_all_posts))
-    {
-      return $this->_all_posts;
-    }
+	{
+	   	return $this->_all_posts;
+	}
     $all_tags = array();
     $posts_path = $this->posts_path;
 
@@ -350,11 +350,10 @@ class blog_lib{
 
           if(empty($post_title)){
             $post_title = str_replace('.md','',$entry);
-          }
-
-          if(strtolower($post_status)!='public'){
-            continue;
-          }
+		  }
+		  if(!$with_drafts && strtolower($post_status)!='public'){
+		    continue;
+		  }
           foreach($post_tags as $k=>$row)
           {
             $trimed_tag = trim($row);
@@ -400,7 +399,7 @@ class blog_lib{
             $post_category = $temp_c;
           }
 
-          if($post_status=='public'){
+          if($with_drafts || $post_status=='public'){
 
             $files[] = array('fname' => $entry,
             'slug'=>$slug,
@@ -445,9 +444,9 @@ class blog_lib{
     return $this->__get_all_posts();
   }
 
-  public function get_posts_tags()
+  public function get_posts_tags($with_drafts=false)
   {
-    $this->__get_all_posts();
+    $this->__get_all_posts($with_drafts);
     return $this->_all_tags;
   }
 
@@ -469,9 +468,9 @@ class blog_lib{
    return $result;
   }
 
-  public function get_posts_categories()
+  public function get_posts_categories($with_drafts=false)
   {
-    $this->__get_all_posts();
+    $this->__get_all_posts($with_drafts);
     return $this->_all_categories;
   }
 
