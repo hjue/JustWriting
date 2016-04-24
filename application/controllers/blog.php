@@ -12,14 +12,14 @@ class Blog extends CI_Controller {
   }
 
 
-  public function load_common_data()
+  public function load_common_data($direct_access=false)
   {
     $this->lang->load('blog', $this->blog_config['language']);
     $this->load->library('twig_lib');    
     twig_extend();    
     $this->data['config'] = $this->blog_config;              
-    $this->data['all_categories'] = $this->blog_lib->get_posts_categories(); 
-    $this->data['all_tags'] = $this->blog_lib->get_posts_tags();    
+    $this->data['all_categories'] = $this->blog_lib->get_posts_categories($direct_access); 
+    $this->data['all_tags'] = $this->blog_lib->get_posts_tags($direct_access);    
   }
   
 	public function index()
@@ -38,15 +38,7 @@ class Blog extends CI_Controller {
     
 
 
-	$posts = $this->blog_lib->get_posts();
-
-	$planned_posts_keys = array();
-	foreach($posts as $key => $post)
-		if($post['date'] > time())
-			$planned_posts_keys[] = $key;
-	foreach($planned_posts_keys as $key)
-		unset($posts[$key]);
-	
+    $posts = $this->blog_lib->get_posts();
 
     $offset = ($pageno-1)*$posts_per_page;
     $this->data['posts'] = array_slice($posts,$offset,$posts_per_page);
@@ -90,7 +82,7 @@ class Blog extends CI_Controller {
   {
     $slug=urldecode($slug);
 
-    $this->load_common_data();
+    $this->load_common_data(true);
     $post = $this->blog_lib->get_post($slug);
     if($post===False)
     {
