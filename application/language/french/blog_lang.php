@@ -1,6 +1,6 @@
 <?php
 
-$lang['archive'] = "Archive";
+$lang['archive'] = "Archives";
 $lang['link'] = "Liens";
 $lang['aboutme'] = "À propos";
 $lang['myworks'] = "Travail";
